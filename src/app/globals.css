@@ -2,26 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=PT+Sans:wght@400;700&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --blanco: #f2f2f2;
+  --Amarillo-verde: #d9d04e;
+  --Amarillo-cafe: #d9c873;
+  --rojo-rosa:#F24444;
+  --Azul-oscuro: #0c3c59;
+  --azul-oscuro: #0b3c65;
+  --azul-marino: #0a4b73;
+  --azul-normal: #026ab1;
+  --Azul-claro: #3caacb;
+  --azul-claro: #a0d3f2;
+  --gris-oscuro: #5a5c5a;
+
+  /* font-family: 'Nunito', sans-serif; */
+/* font-family: 'Poppins', sans-serif; */
+
+/* font-family: 'PT Sans', sans-serif; */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*{
+  padding: 0;
+  margin: 0;
+ 
 }
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--blanco);
+  color: var(--blanco);
+  width: 100%;
 }
