@@ -1,8 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import {CarroseriaUI,} from "./CarroseriaUI"
+
+import autoImage from "@/assets/icons/auto.png";
+
+
+
 function RadioButtonExample() {
-  const [tieneGolpes, setTieneGolpes] = useState(false);
+  const [tieneGolpes, setTieneGolpes] = useState(true);
 
   const handleTieneGolpesChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.value =="true";
@@ -37,7 +42,7 @@ function RadioButtonExample() {
     </div>
     {tieneGolpes && 
      <div className=" h-fit">
-       <CarroseriaUI></CarroseriaUI>
+       <CarroseriaUI autoImage={autoImage}></CarroseriaUI>
      </div>
       }
    </>

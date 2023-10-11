@@ -1,5 +1,5 @@
 "use client";
-import useElementSize from "@/app/utils/useElementSize";
+import {useElementSize} from "@/app/utils/useElementSize";
 import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import ButtonAzul from "../ButtonAzul";

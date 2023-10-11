@@ -4,8 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ButtonAzul from "../Formularios/ButtonAzul";
 import Image from "next/image";
 import autoImage from "@/assets/icons/auto.png";
-import { drawMarks } from "../Formularios/inputCarroceria/CarroseriaUI";
-import useElementSize from "@/app/utils/useElementSize";
+
 import MostrarAuto from '@/components/Formularios/inputCarroceria/MostrarAuto'
 function MostrarDatosSalida() {
   // Utiliza el hook useDatosSalida para acceder al estado del contexto
@@ -13,7 +12,7 @@ function MostrarDatosSalida() {
 
   // Utiliza el estado local para almacenar los datos del contexto
   const [data, setDatos] = useState(state);
-
+  const containerAutoRef = useRef(null)
   // Actualiza los datos locales cuando cambie el estado del contexto
   useEffect(() => {
     setDatos(state);
@@ -36,22 +35,13 @@ function MostrarDatosSalida() {
       <p>Kilometraje: {data.kilometraje}</p>
       <ul>
         <li>Carrocería:</li>
-        <MostrarAuto autoImage={autoImage} coordenadas={data.carroceria}></MostrarAuto>
+       <div ref={containerAutoRef} className="w-1/2  relative">
+       <MostrarAuto autoImage={autoImage} coordenadas={data.carroceria } ></MostrarAuto>
+       </div>
         <ul>
           <li> equises:</li>
           <ul>
-            {data.carroceria.map((equis) => {
-              return (
-                <>
-                  <div key={equis.x+equis.y}>
-                  <li>X: {equis?.x}</li>
-                  <li>Y: {equis?.y}</li>
-                  <li>width: {equis.widthOriginal}</li>
-                  <li>height: {equis.heightOriginal}</li>
-                  </div>
-                </>
-              );
-            })}
+            
           </ul>
         </ul>
       </ul>

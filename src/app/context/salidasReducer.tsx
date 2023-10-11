@@ -11,7 +11,7 @@ type ActionTypes =
   | { type: "SET_HORA_SALIDA"; payload: string | null }
   | { type: "SET_KILOMETRAJE"; payload: number | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
-  | { type: "SET_CARROCERIA"; payload: coordenadasType[] }
+  | { type: "SET_CARROCERIA"; payload: CoordenadasType[] }
   | { type: "SET_PORCENTAJE_GASOLINA"; payload: number | null }
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
@@ -29,11 +29,11 @@ type ActionTypes =
       };
     };
 
-interface coordenadasType {
-  x: number | null;
-  y: number | null;
-  widthOriginal: number | null;
-  heightOriginal: number | null;
+export interface CoordenadasType {
+  x: number | string |undefined;
+  y: number | string |undefined;
+  widthOriginal: number | string |undefined;
+  heightOriginal: number | string |undefined;
 }
 
 // Define el estado inicial
@@ -45,7 +45,7 @@ type InitialStateType = {
   horaSalida: string | null;
   kilometraje: number | null;
   golpes: boolean | null;
-  carroceria: coordenadasType[];
+  carroceria: CoordenadasType[];
   porcentajeGasolina: number | null;
   nombreVigilante: string | null;
   firmaVigilante: string | null;

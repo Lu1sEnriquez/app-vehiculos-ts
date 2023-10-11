@@ -1,108 +1,106 @@
 import React, { useState, useRef, useEffect, MutableRefObject } from "react";
 import Image from "next/image";
-import autoImage from "@/assets/icons/auto.png";
 import ButtonAzul from "../ButtonAzul";
 import useElementSize from "@/app/utils/useElementSize";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer, CoordenadasType } from "@/app/context/salidasReducer";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
-interface CoordenadasType {
-  x: number | null;
-  y: number | null;
-  widthOriginal: number | null;
-  heightOriginal: number | null;
-}
+
 
 export function drawMarks(
   canvasRef: MutableRefObject<HTMLCanvasElement | null>,
   coordenadas: CoordenadasType[],
-  imagen:  MutableRefObject<HTMLImageElement | null>
-  
+  imagen: MutableRefObject<HTMLImageElement | null>
 ) {
   const ctx = canvasRef.current?.getContext("2d");
-  
+
   if (ctx && coordenadas && imagen.current) {
     ctx.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     ctx.strokeStyle = "red";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 5;
 
     coordenadas.forEach((marca) => {
-      const newCoordenadas = redimensionarCoordenada(
-        marca,
-        marca.widthOriginal,
-        marca.heightOriginal,
-        imagen.current.width,
-        imagen.current.height
-      );
+      if (imagen.current) {
+        const newCoordenadas = redimensionarCoordenada(
+          marca,
+         Number( marca.widthOriginal),
+          Number(marca.heightOriginal),
+          imagen.current.width,
+          imagen.current.height
+        );
 
-      if (newCoordenadas) {
-        ctx.beginPath();
-        ctx.moveTo(newCoordenadas.x - 10, newCoordenadas.y - 10);
-        ctx.lineTo(newCoordenadas.x + 10, newCoordenadas.y + 10);
-        ctx.moveTo(newCoordenadas.x - 10, newCoordenadas.y + 10);
-        ctx.lineTo(newCoordenadas.x + 10, newCoordenadas.y - 10);
-        ctx.stroke();
+        if (newCoordenadas.x && newCoordenadas.y) {
+          ctx.beginPath();
+          ctx.moveTo(newCoordenadas.x - 10, newCoordenadas.y - 10);
+          ctx.lineTo(newCoordenadas.x + 10, newCoordenadas.y + 10);
+          ctx.moveTo(newCoordenadas.x - 10, newCoordenadas.y + 10);
+          ctx.lineTo(newCoordenadas.x + 10, newCoordenadas.y - 10);
+          ctx.stroke();
+        }
+
       }
+
+      
     });
   }
 }
 
 export function redimensionarCoordenada(
   coordenada: CoordenadasType,
-  originalWidth: number | null,
-  originalHeight: number | null,
-  newWidth: number | null,
-  newHeight: number | null
-) {
-  if (originalWidth && originalHeight && newWidth && newHeight) {
+  originalWidth: number,
+  originalHeight: number ,
+  newWidth: number,
+  newHeight: number
+):{ x: any, y:any} {
+  if (originalWidth  && originalHeight && newWidth && newHeight) {
     const xRatio = newWidth / originalWidth;
     const yRatio = newHeight / originalHeight;
 
-    const newX = coordenada.x !== null ? coordenada.x * xRatio : null;
-    const newY = coordenada.y !== null ? coordenada.y * yRatio : null;
+    const newX = coordenada.x !== null ? Number(coordenada.x) * xRatio : null;
+    const newY = coordenada.y !== null ? Number(coordenada.y )* yRatio : null;
 
     return { x: newX, y: newY };
   }
   return coordenada;
 }
 
-
-
-
-
-export function CarroseriaUI() {
- 
+export function CarroseriaUI({
+  autoImage,
+}: {
+  autoImage: string | StaticImport;
+}) {
   const initialStateCoordenadas: CoordenadasType[] = [];
 
-  const [coordenadas, setCoordenadas] = useState<CoordenadasType[]>(initialStateCoordenadas);
+  const [coordenadas, setCoordenadas] = useState<CoordenadasType[]>(
+    initialStateCoordenadas
+  );
 
-  const containerCanvas = useRef<HTMLDivElement | null>(null);
-  const containerCanvasSize = useElementSize(containerCanvas);
+  const autoRef = useRef<HTMLImageElement | null>(null);
+  
+  const { width, height } = useElementSize(autoRef);
 
-  const imageRef = useRef<HTMLImageElement | null>(null);
-  const { width, height } = useElementSize(imageRef);
-
-  const [mode, setMode] = useState<boolean>(true);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  autoRef;
+
+  const [mode, setMode] = useState<boolean>(true);
 
   const { dispatch, state } = useDatosSalidaReducer();
 
   useEffect(() => {
-    if (imageRef.current) {
-      drawMarks(canvasRef, coordenadas, imageRef);
+    drawMarks(canvasRef, coordenadas, autoRef);
+    if (coordenadas && autoRef.current) {
       dispatch({ type: "SET_CARROCERIA", payload: coordenadas });
     }
-  }, [coordenadas, imageRef.current]);
+    
 
-  
-
-  
+  }, [coordenadas, autoRef.current, height, width]);
 
   function addMark(event: React.MouseEvent<HTMLCanvasElement>) {
     const rect = canvasRef.current!.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    setCoordenadas((coordenadasAnteriores) => [
+    const x :number= event.clientX - rect.left;
+    const y:number = event.clientY - rect.top;
+    setCoordenadas((coordenadasAnteriores:CoordenadasType[]) => [
       ...coordenadasAnteriores,
       { x, y, widthOriginal: width, heightOriginal: height },
     ]);
@@ -110,13 +108,20 @@ export function CarroseriaUI() {
 
   function removeMark(event: React.MouseEvent<HTMLCanvasElement>) {
     const rect = canvasRef.current!.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    setCoordenadas((coordenadas) =>
-      coordenadas.filter((marca) => {
-        const distance = Math.sqrt((x - (marca.x || 0)) ** 2 + (y - (marca.y || 0)) ** 2);
-        return distance >= 10;
+    const x: number = event.clientX - rect.left;
+    const y: number = event.clientY - rect.top;
+  
+    setCoordenadas((coordenadasAnteriores: CoordenadasType[]) =>
+      coordenadasAnteriores.filter((marca) => {
+        const newCoordenadas = redimensionarCoordenada(
+          marca,
+         Number( marca.widthOriginal),
+          Number(marca.heightOriginal),
+          autoRef.current!.width,
+          autoRef.current!.height
+        );
+        const distance = Math.sqrt((x - Number(newCoordenadas.x)) ** 2 + (y - Number(newCoordenadas.y)) ** 2);
+        return distance >= 10; // Puedes ajustar este valor según tus necesidades
       })
     );
   }
@@ -128,15 +133,6 @@ export function CarroseriaUI() {
       ctx.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
     }
   }
-
-  useEffect(() => {
-    
-    if(imageRef.current){
-      
-      drawMarks(canvasRef,coordenadas, imageRef);
-    
-    }
-  }, [coordenadas, width, height]);
 
   function handleAgregar() {
     setMode(true);
@@ -162,25 +158,22 @@ export function CarroseriaUI() {
       <div
         id="container-espacioSobrante-Central"
         className="grow w-5/6  text-black border-2"
-        ref={containerCanvas}
       >
-        <div className="container-canvasImg relative  w-full     ">
+        <div className="relative  ">
+          <canvas
+            className="absolute border-2 border-blue-700 "
+            ref={canvasRef}
+            height={height}
+            width={width}
+            onClick={handleCanvas}
+          ></canvas>
           <Image
             src={autoImage}
-            height={containerCanvasSize.height}
-            alt="car"
-            key={5}
-            ref={imageRef}
-          />
-          <canvas
-            onClick={(e) => {
-              handleCanvas(e);
-            }}
-            className="absolute top-0  z-10 border-4  border-slate-800"
-            ref={canvasRef}
-            width={width || undefined}
-            height={height || undefined}
-          />
+            alt="carro"
+            style={{ width: "100%" }}
+            ref={autoRef}
+            key={3}
+          ></Image>
         </div>
       </div>
 
