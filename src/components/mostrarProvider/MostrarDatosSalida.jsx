@@ -1,4 +1,5 @@
 "use client";
+
 import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
 import React, { useEffect, useRef, useState } from "react";
 import ButtonAzul from "../Formularios/ButtonAzul";
@@ -6,6 +7,8 @@ import Image from "next/image";
 import autoImage from "@/assets/icons/auto.png";
 
 import MostrarAuto from '@/components/Formularios/inputCarroceria/MostrarAuto'
+import html2canvas from "html2canvas";
+import { ComponentToImage } from "@/app/utils/useCustom/ComponentToImage";
 function MostrarDatosSalida() {
   // Utiliza el hook useDatosSalida para acceder al estado del contexto
   const { state, dispatch } = useDatosSalidaReducer();
@@ -22,8 +25,21 @@ function MostrarDatosSalida() {
   //   const { folio, fechaSalida, nombreUsuario, placas,horaSalida,kilometraje
   //  ,carroceria,porcentajeGasolina,nombreVigilante,firmaVigilante,firmaUsuario
   // ,destino,accesorios} = state;
+  useEffect(() => {
+    const loadImage = async () => {
+      try {
+       ComponentToImage(data.marcadorGasolina).then( img => marcadorRef.current.src = img)
+        
+      } catch (error) {
+        // Maneja el error aquí si es necesario
+        console.error("Error al cargar la imagen:", error);
+      }
+    };
+  
+    loadImage();
+  }, [data.porcentajeGasolina]);
 
-
+const marcadorRef = useRef(null)
   return (
     <div className=" ml-10" >
       <h1>Datos de Salida</h1>
@@ -46,7 +62,7 @@ function MostrarDatosSalida() {
         </ul>
       </ul>
 
-      <p>Porcentaje de Gasolina: {data.porcentajeGasolina}</p>
+      
       <p>Nombre del Vigilante: {data.nombreVigilante}</p>
       <p>Firma del Vigilante: </p>
       {data.firmaVigilante && (
@@ -54,24 +70,26 @@ function MostrarDatosSalida() {
         key={1}
           className="border-2 border-red-500"
           src={data?.firmaVigilante}
-          width={500}
-          height={300}
+          width={200}
+          height={200}
           alt="otra firma"
         ></Image>
       )}
       <p>Firma del Solicitante: </p>
       {data.firmaSolicitante && (
-        <Image
-        
-
+        <Image 
+        key={2}
           className="border-2 border-red-500"
           src={data?.firmaSolicitante}
-          width={300}
-          height={150}
+          width={200}
+          height={200}
           alt="firma"
         ></Image>
       )}
-
+<p>Porcentaje de Gasolina: {data.porcentajeGasolina}</p>
+<div>
+  <Image ref={marcadorRef} width={200} height={200}></Image>
+</div>
       <p>Destino: {data.destino}</p>
       <p>Accesorios:</p>
       <ul>

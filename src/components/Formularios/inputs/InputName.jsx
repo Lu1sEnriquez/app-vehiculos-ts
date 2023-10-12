@@ -7,6 +7,7 @@ function InputName({ text }) {
   const [name, setName] = useState("");
   const { datosState, dispatch } = useDatosSalidaReducer();
   const inputRef = useRef(null);
+  
   const handleSetNombre = () => {
     setName(inputRef.current.value);
   };

@@ -11,6 +11,7 @@ import InputFirma from "../Formularios/inputs/InputFirma";
 import InputGasolina from "../Formularios/inputGasolina/InputGasolina";
 import { DatosSalidasProvider } from "@/app/context/salidasReducer";
 import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
+import InputDestino from "../Formularios/inputs/inputDestino";
 
 function FormularioSalida() {
   return (
@@ -54,7 +55,7 @@ function FormularioSalida() {
           </ButtonFirmaModal>
           
           <InputGasolina></InputGasolina>
-         
+         <InputDestino></InputDestino>
         </div>
       </section>
       <MostrarDatosSalida></MostrarDatosSalida>

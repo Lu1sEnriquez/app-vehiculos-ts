@@ -3,8 +3,8 @@
 import { useState, useEffect, MutableRefObject } from 'react';
 
 interface ElementSizeType {
-  width: number | string |undefined;
-  height: number | string| undefined;
+  width: number ;
+  height: number ;
   element: MutableRefObject<HTMLElement | null>;
 }
 

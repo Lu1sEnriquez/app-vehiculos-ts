@@ -1,9 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UiGasolina from "./UiGasolina";
+import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import LabelFormulario from "../LabelFormulario";
 
 function InputGasolina() {
+  const {dispatch, state} = useDatosSalidaReducer();
   const [porcentaje, setPorcentaje] = useState(0);
+  
 
   const handleChange = (e) => {
     const nuevoPorcentaje = e.target.value;
@@ -11,8 +15,14 @@ function InputGasolina() {
     console.log(porcentaje);
   };
 
+
+useEffect(()=>{
+  dispatch({type:"SET_PORCENTAJE_GASOLINA", payload: porcentaje})
+},[porcentaje])
+
   return (
     <section className="gasolina-container border-2  flex flex-col justify-center items-center w-3/5">
+      <LabelFormulario>{"Medida de Gasolina:"}</LabelFormulario>
       <UiGasolina porcentaje={porcentaje} />
 
       <div className="mt-8 w-5/6">

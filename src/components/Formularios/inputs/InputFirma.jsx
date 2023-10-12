@@ -1,5 +1,5 @@
 "use client";
-import {useElementSize} from "@/app/utils/useElementSize";
+import useElementSize from "@/app/utils/useElementSize"; "@/app/utils/useElementSize";
 import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import ButtonAzul from "../ButtonAzul";
@@ -8,7 +8,6 @@ import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
 
 function InputFirma({ id , onClose }) {
   const contentSignaturePad = useRef(null);
-  const { width, height } = useElementSize(contentSignaturePad);
 
   const [firma, setFirma] = useState(null);
   const padId = `${id}-canvas`;
@@ -33,6 +32,9 @@ function InputFirma({ id , onClose }) {
       onClose()
     }
   }
+
+  const { width, height } = useElementSize(contentSignaturePad);
+
   return (
     <div className="firma-container h-full  w-full   flex pb-10 flex-col ">
       <div

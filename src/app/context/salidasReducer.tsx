@@ -12,6 +12,7 @@ type ActionTypes =
   | { type: "SET_KILOMETRAJE"; payload: number | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
   | { type: "SET_CARROCERIA"; payload: CoordenadasType[] }
+  | { type: "SET_MARCADOR_GASOLINA"; payload: HTMLDivElement| null }
   | { type: "SET_PORCENTAJE_GASOLINA"; payload: number | null }
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
@@ -47,9 +48,10 @@ type InitialStateType = {
   golpes: boolean | null;
   carroceria: CoordenadasType[];
   porcentajeGasolina: number | null;
+  marcadorGasolina: HTMLDivElement | null;
   nombreVigilante: string | null;
   firmaVigilante: string | null;
-  firmaUsuario: string | null;
+  firmaSolicitante: string | null;
   destino: string | null;
   accesorios: {
     gato: boolean | null;
@@ -85,12 +87,14 @@ const DatosSalidaReducer = (
       return { ...state, carroceria: action.payload };
     case "SET_PORCENTAJE_GASOLINA":
       return { ...state, porcentajeGasolina: action.payload };
+    case "SET_MARCADOR_GASOLINA":
+      return { ...state, marcadorGasolina: action.payload };
     case "SET_NOMBRE_VIGILANTE":
       return { ...state, nombreVigilante: action.payload };
     case "SET_FIRMA_VIGILANTE":
       return { ...state, firmaVigilante: action.payload };
     case "SET_FIRMA_SOLICITANTE":
-      return { ...state, firmaUsuario: action.payload };
+      return { ...state, firmaSolicitante: action.payload };
     case "SET_DESTINO":
       return { ...state, destino: action.payload };
     case "SET_ACCESORIOS":
@@ -127,9 +131,10 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
     golpes: null,
     carroceria: [],
     porcentajeGasolina: null,
+    marcadorGasolina:null,
     nombreVigilante: null,
     firmaVigilante: null,
-    firmaUsuario: null,
+    firmaSolicitante: null,
     destino: null,
     accesorios: {
       gato: null,
