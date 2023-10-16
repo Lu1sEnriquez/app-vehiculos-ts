@@ -1,10 +1,10 @@
-"use client";
-import useElementSize from "@/app/utils/useElementSize"; "@/app/utils/useElementSize";
+"use client"
+import useElementSize from "@/utils/custom/useElementSize";
 import React, { useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
-import ButtonAzul from "../ButtonAzul";
-import CreateImageFirmaURL from "@/app/utils/CreateImageFirmaURL";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import CreateImageFirmaURL from "@/utils/canvas/CreateImageFirmaURL";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { ButtonAzul, ButtonAzulLink } from "@/components/basicos/ButtonAzul";
 
 function InputFirma({ id , onClose }) {
   const contentSignaturePad = useRef(null);
@@ -56,7 +56,7 @@ function InputFirma({ id , onClose }) {
         <ButtonAzul
           type="button"
           className="btn btn-clear"
-          onClick={handleClearClick}
+          
           text={"Limpiar"}
         />
         <ButtonAzul
@@ -65,12 +65,12 @@ function InputFirma({ id , onClose }) {
           onClick={handleSaveClick}
           text={"Guardar"}
         />
-        <ButtonAzul
+        {/* <ButtonAzul
           type="button"
           className="btn btn-save"
           onClick={()=>{onClose()}}
           text={"CERRAR"}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -1,18 +1,24 @@
 "use client";
 import Link from "next/link";
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { HiMenuAlt3 } from "react-icons/hi";
 
-import menuItems from "@/app/utils/menuItems";
+import menuItems from "@/app/router/menuItems"; // aqui estan los apartados del nav y sus iconos
+
 
 function NavbarDesktop() {
   
   const [open, setOpen] = useState(false);
 
   const handleClick = () => setOpen(!open);
+  const handleClickItem = () =>{
+    if(!open){
+      setOpen(!open)
+    }
+  };
   return (
-    <section className=" fixed z-50 flex   gap-6 overflow-hidden ">
+    <section className=" fixed z-50 flex   gap-6 overflow-hidden  ">
       <div
         className={` bg-azulOscuro w-screen flex flex-col md:min-h-screen h-14    text-gray-100 md:px-4 
       ${open ? "md:w-72" : "md:w-16"} duration-300
@@ -32,11 +38,11 @@ function NavbarDesktop() {
             <Link
               className={`${item.margin && "md:mt-6"}
             flex items-center 
-            text-sm gap-3.5 font-medium p-2 
+            text-lg gap-3.5 font-medium p-2 
             hover:bg-azulNormal rounded-md`}
               href={item?.link}
               key={item?.name}
-              onClick={handleClick}
+              onClick={handleClickItem}
             >
               <div>{React.createElement(item?.icon, { size: "20" })}</div>
               <h1

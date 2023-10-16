@@ -1,12 +1,11 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
 import { HiMenuAlt3 } from "react-icons/hi";
 import { AiOutlineHome } from "react-icons/ai";
 
-import menuItems from "@/app/utils/menuItems"; // aqui estan los apartados del nav y sus iconos
+import menuItems from "@/app/router/menuItems"; // aqui estan los apartados del nav y sus iconos
 
 function NavbarMovil() {
   const [open, setOpen] = useState(false);
@@ -46,12 +45,12 @@ function NavbarMovil() {
           />
         </div>
       </div>
-      <div className={` flex  flex-col  gap-4 whitespace-pre duration-300 ${!open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"} `}>
+      <div className={` flex  flex-col  gap-2 whitespace-pre duration-300 ${!open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"} `}>
         {menuItems.map((item) => (
           <Link
             className={`${item.margin && "md:mt-6 "}
             flex items-center 
-            text-sm gap-3.5 font-medium p-2 
+            text-lg gap-3.5 font-medium p-2 
             hover:bg-azulNormal rounded-md`}
             href={item?.link}
             key={item?.name}

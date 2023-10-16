@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 const InputDate = () => {
   const [date, setDate] = useState("");

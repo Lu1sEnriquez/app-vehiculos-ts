@@ -1,5 +1,5 @@
+'use client'
 import Link from "next/link";
-
 export interface ButtonAzulType {
   onClick?: () => void | undefined;
   text?: string;

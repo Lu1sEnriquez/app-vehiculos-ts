@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import UiGasolina from "./UiGasolina";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 import LabelFormulario from "../LabelFormulario";
 
 function InputGasolina() {
@@ -21,7 +21,7 @@ useEffect(()=>{
 },[porcentaje])
 
   return (
-    <section className="gasolina-container border-2  flex flex-col justify-center items-center w-3/5">
+    <section className="gasolina-container  flex flex-col justify-center items-center w-5/6 m-auto">
       <LabelFormulario>{"Medida de Gasolina:"}</LabelFormulario>
       <UiGasolina porcentaje={porcentaje} />
 

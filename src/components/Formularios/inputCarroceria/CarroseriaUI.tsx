@@ -1,14 +1,15 @@
+'use client'
 import React, { useState, useRef, useEffect, MutableRefObject } from "react";
 import Image from "next/image";
-import ButtonAzul from "../ButtonAzul";
-import useElementSize from "@/app/utils/useElementSize";
-import { useDatosSalidaReducer, CoordenadasType } from "@/app/context/salidasReducer";
+import {ButtonAzul} from "@/components/basicos/ButtonAzul";
+import useElementSize from "@/utils/custom/useElementSize";
+import { useDatosSalidaReducer, CoordenadasType } from "@/reducer/salidasReducer";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 
 
 export function drawMarks(
-  canvasRef: MutableRefObject<HTMLCanvasElement | null>,
+  canvasRef: MutableRefObject<HTMLCanvasElement | null >,
   coordenadas: CoordenadasType[],
   imagen: MutableRefObject<HTMLImageElement | null>
 ) {
@@ -153,15 +154,15 @@ export function CarroseriaUI({
   return (
     <div
       id="auto-container"
-      className="h-full w-full flex pb-10 flex-col items-center gap-3"
+      className="h-full w-full flex  flex-col items-center gap-3"
     >
       <div
         id="container-espacioSobrante-Central"
-        className="grow w-5/6  text-black border-2"
+        className="grow w-full  text-black border-2"
       >
         <div className="relative  ">
           <canvas
-            className="absolute border-2 border-blue-700 "
+            className="absolute border border-black "
             ref={canvasRef}
             height={height}
             width={width}
@@ -177,20 +178,20 @@ export function CarroseriaUI({
         </div>
       </div>
 
-      <div className="container-buttons flex flex-row justify-end gap-2 w-5/6 pb-2">
+      <div className="container-buttons flex flex-row justify-end gap-2 w-full pb-2">
         <ButtonAzul
           text={"Agregar"}
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={() => {
             handleAgregar();
           }}
         />
         <ButtonAzul
           text={"Eliminar"}
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={() => {
             handleEliminar();
           }}
         />
-        <ButtonAzul text={"Enviar"} onClick={() => {}} />
+        
       </div>
     </div>
   );

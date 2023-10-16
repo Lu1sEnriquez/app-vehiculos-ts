@@ -1,4 +1,4 @@
-import useDeviceSizeWindow from "@/app/utils/useDeviseSizeWindow";
+import useDeviceSizeWindow from "@/utils/custom/useDeviseSizeWindow";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 

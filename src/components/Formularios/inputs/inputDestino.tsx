@@ -1,7 +1,7 @@
 "use client"
 import React, { LegacyRef, MutableRefObject, useRef, useState, useEffect } from 'react'
 import LabelFormulario from '../LabelFormulario';
-import { useDatosSalidaReducer } from '@/app/context/salidasReducer';
+import { useDatosSalidaReducer } from '@/reducer/salidasReducer';
 
 function InputDestino() {
   const LOCAL = "local"

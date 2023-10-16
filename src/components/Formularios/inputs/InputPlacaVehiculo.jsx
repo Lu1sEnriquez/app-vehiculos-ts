@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import placaImg from "@/assets/icons/PlacaVehiculo.svg";
 import { useEffect, useState } from "react";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 function InputPlacaVehiculo() {
   const [placa, setPlaca] = useState("");

@@ -1,7 +1,7 @@
 "use client";
 
-import useModal from "@/app/utils/useModal";
-import ButtonAzul from "../Formularios/ButtonAzul";
+import useModal from "@/utils/custom/useModal";
+import {ButtonAzul} from "@/components/basicos/ButtonAzul";
 import Modal from "./Modal";
 import InputFirma from "../Formularios/inputs/InputFirma";
 
@@ -12,8 +12,12 @@ function ButtonFirmaModal({  textButton, id }) {
     <>
       <ButtonAzul
         text={textButton}
-        onClick={openModal}
+        onClick={
+          openModal
+        }
       />
+
+    
 
       <Modal
         isOpen= {isModalOpen}

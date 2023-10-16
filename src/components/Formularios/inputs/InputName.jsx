@@ -1,6 +1,6 @@
 "use client";
 
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 import { useEffect, useReducer, useRef, useState } from "react";
 
 function InputName({ text }) {

@@ -12,12 +12,13 @@ type ActionTypes =
   | { type: "SET_KILOMETRAJE"; payload: number | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
   | { type: "SET_CARROCERIA"; payload: CoordenadasType[] }
-  | { type: "SET_MARCADOR_GASOLINA"; payload: HTMLDivElement| null }
+  | { type: "SET_MARCADOR_GASOLINA"; payload: HTMLDivElement | null }
   | { type: "SET_PORCENTAJE_GASOLINA"; payload: number | null }
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_SOLICITANTE"; payload: string | null }
   | { type: "SET_DESTINO"; payload: string | null }
+  | { type: "SET_OBSERVACIONES"; payload: string | null }
   | {
       type: "SET_ACCESORIOS";
       payload: {
@@ -31,14 +32,14 @@ type ActionTypes =
     };
 
 export interface CoordenadasType {
-  x: number | string |undefined;
-  y: number | string |undefined;
-  widthOriginal: number | string |undefined;
-  heightOriginal: number | string |undefined;
+  x: number | string | undefined;
+  y: number | string | undefined;
+  widthOriginal: number | string | undefined;
+  heightOriginal: number | string | undefined;
 }
 
 // Define el estado inicial
-type InitialStateType = {
+export type datosSalidaEntradaType = {
   folio: string | null;
   fechaSalida: string | null;
   nombreSolicitante: string;
@@ -61,13 +62,14 @@ type InitialStateType = {
     extintor: boolean | null;
     documentos: boolean | null;
   };
+  observaciones: string | null;
 };
 
 // Define el reducer para gestionar el estado
 const DatosSalidaReducer = (
-  state: InitialStateType,
+  state: datosSalidaEntradaType,
   action: ActionTypes
-): InitialStateType => {
+): datosSalidaEntradaType => {
   switch (action.type) {
     case "SET_FOLIO":
       return { ...state, folio: action.payload };
@@ -99,6 +101,8 @@ const DatosSalidaReducer = (
       return { ...state, destino: action.payload };
     case "SET_ACCESORIOS":
       return { ...state, accesorios: action.payload };
+    case "SET_OBSERVACIONES":
+      return { ...state, observaciones: action.payload };
     default:
       return state;
   }
@@ -107,7 +111,7 @@ const DatosSalidaReducer = (
 // Define el contexto
 export const DatosSalidaContext = createContext<
   | {
-      state: InitialStateType;
+      state: datosSalidaEntradaType;
       dispatch: React.Dispatch<ActionTypes>;
     }
   | undefined
@@ -116,12 +120,12 @@ export const DatosSalidaContext = createContext<
 // Proveedor de contexto
 type DatosSalidasProviderProps = {
   children: ReactNode;
-  value: InitialStateType;
+  value: datosSalidaEntradaType;
 };
 
 export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
-  const initialState: InitialStateType = {
+  const initialState: datosSalidaEntradaType = {
     folio: null,
     fechaSalida: null,
     nombreSolicitante: "luis",
@@ -131,7 +135,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
     golpes: null,
     carroceria: [],
     porcentajeGasolina: null,
-    marcadorGasolina:null,
+    marcadorGasolina: null,
     nombreVigilante: null,
     firmaVigilante: null,
     firmaSolicitante: null,
@@ -144,6 +148,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
       extintor: null,
       documentos: null,
     },
+    observaciones: null,
   };
 
   // Usa useReducer para gestionar el estado con el reducer

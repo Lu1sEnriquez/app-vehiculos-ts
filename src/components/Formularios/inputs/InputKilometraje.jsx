@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
 import LabelFormulario from "../LabelFormulario"
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 function InputKilometraje() {
   const [kilometraje, setkilometraje] = useState("");

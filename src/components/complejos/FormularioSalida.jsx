@@ -1,4 +1,3 @@
-import Image from "next/image";
 import InputDate from "../Formularios/inputs/InputDate";
 
 import InputPlacaVehiculo from "../Formularios/inputs/InputPlacaVehiculo";
@@ -9,24 +8,45 @@ import InputCarroceria from "../Formularios/inputCarroceria/InputCarroceria";
 import ButtonFirmaModal from "../modal/ButtonActiveModal";
 import InputFirma from "../Formularios/inputs/InputFirma";
 import InputGasolina from "../Formularios/inputGasolina/InputGasolina";
-import { DatosSalidasProvider } from "@/app/context/salidasReducer";
+import { DatosSalidasProvider } from "@/reducer/salidasReducer";
 import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
 import InputDestino from "../Formularios/inputs/inputDestino";
+import InputAccesorios from "../Formularios/inputs/InputAccesorios";
+import InputObservaciones from "../Formularios/inputs/InputObservaciones";
+import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 
 function FormularioSalida() {
+
+
   return (
     <DatosSalidasProvider>
       <section
         className=" flex flex-wrap sm:justify-around 
     py-5 md:px-5 
-    gap-y-5 mr-5 md:gap-0 w-full"
+    gap-y-5 mr-5 md:gap-0 w-full mb-10"
       >
         <div
-          className="  columna2 lg:w-96 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
-      w-full mx-5 
+          className="  columna2 lg:w-1/3 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
+      w-full h-full mx-5 
       flex flex-col gap-y-5"
         >
           <InputDate />
+          <InputHora />
+          <InputDestino></InputDestino>
+          <InputPlacaVehiculo />
+          <InputCarroceria></InputCarroceria>
+          <InputAccesorios></InputAccesorios>
+        </div>
+
+        <div
+          className="columna2 lg:w-1/3 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
+      w-full mx-5 
+      flex flex-col gap-y-5"
+        >
+          
+          <InputKilometraje />
+          <InputGasolina></InputGasolina>
+
           <InputName text={"Nombre Solicitante:"} />
           <ButtonFirmaModal
             id={"solicitante"}
@@ -34,17 +54,6 @@ function FormularioSalida() {
           >
             <InputFirma></InputFirma>
           </ButtonFirmaModal>
-          <InputPlacaVehiculo />
-          <InputCarroceria></InputCarroceria>
-        </div>
-
-        <div
-          className="columna2 lg:w-96 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
-      w-full mx-5 
-      flex flex-col gap-y-5"
-        >
-          <InputHora />
-          <InputKilometraje />
           <InputName text={"Nombre Vigilante:"} />
 
           <ButtonFirmaModal
@@ -54,12 +63,13 @@ function FormularioSalida() {
             <InputFirma ></InputFirma>
           </ButtonFirmaModal>
           
-          <InputGasolina></InputGasolina>
-         <InputDestino></InputDestino>
+         
+         <InputObservaciones></InputObservaciones>
+          <ButtonGenerarPDF />
         </div>
       </section>
-      <MostrarDatosSalida></MostrarDatosSalida>
     </DatosSalidasProvider>
+    
   );
 }
 export default FormularioSalida;

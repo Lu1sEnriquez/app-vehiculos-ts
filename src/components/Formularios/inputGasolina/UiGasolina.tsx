@@ -3,9 +3,9 @@ import Image from "next/image";
 
 import marcadorGasolina from "@/assets/icons/marcadorGasolina.png";
 
-import useElementSize from "@/app/utils/useElementSize";
+import useElementSize from "@/utils/custom/useElementSize";
 import { useEffect, useRef } from "react";
-import { useDatosSalidaReducer } from "@/app/context/salidasReducer";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 function UiGasolina({ porcentaje }:{porcentaje:number}) {
   const containerMarcador = useRef<HTMLDivElement>(null);
@@ -26,6 +26,7 @@ function UiGasolina({ porcentaje }:{porcentaje:number}) {
 
   // Define el estilo CSS del fondo con el gradiente
   const backgroundStyle = {
+    zIndex: 10,
     borderRadius: height,
     height: height * 2,
     background: `linear-gradient(90deg, rgba(${red},${green},0,.7) 0%, rgba(${red},${green},${porcentaje},1) 50%, transparent 50%)`,
@@ -37,9 +38,9 @@ function UiGasolina({ porcentaje }:{porcentaje:number}) {
       className="overflow-hidden rounded-lg w-full border-t-2  rounded-t-full bg-primary relative flex justify-center h-full"
       ref={containerMarcador}
     >
-       <Image src={marcadorGasolina} className="z-20"  alt="marcador"/>
+       <Image src={marcadorGasolina} style={{zIndex:11}}  alt="marcador"/>
       <div
-        className={`semicirculo absolute z-10 w-full`}
+        className={`semicirculo absolute  w-full`}
         style={backgroundStyle}
       ></div>
       <div
@@ -50,7 +51,7 @@ function UiGasolina({ porcentaje }:{porcentaje:number}) {
           transformOrigin: "bottom center",
           transform: `rotate(${porcentajeAgrados}deg)`,
           bottom: -2,
-          zIndex: 11,
+          zIndex: 12,
           borderRadius: 10,
           position: "absolute",
         }}
