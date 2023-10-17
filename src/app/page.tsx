@@ -1,16 +1,15 @@
-import ButtonAzul from "@/components/Formularios/ButtonAzul";
 import { ButtonAzulLink } from "@/components/basicos/ButtonAzul";
 import Link from "next/link";
 import React from "react";
 
 function PagePrincipal() {
   return (
-    <div>
-      PagePrincipal
+    <main className="flex justify-center items-center h-screen  w-full ">
+      
       
         <ButtonAzulLink text={"lobby"} href="/lobby" ></ButtonAzulLink>
       
-    </div>
+    </main>
     
   );
 }

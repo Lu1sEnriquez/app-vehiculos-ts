@@ -59,26 +59,18 @@ async function GenerarPDF(data: datosSalidaEntradaType, imgCar: StaticImageData)
   }
 
 
-  doc.rect(30, 130, 50, 30)
-  doc.addImage(
-    imgCar.src
-    , 'PNG', 30, 130, 50, 30)
+  doc.rect(30, 130, 50, 30) //posicion rectangulo car salida
+    doc.rect(130, 130, 50, 30) //posicion rectangulo car llegada
 
-    doc.rect(130, 130, 50, 30)
-   generateImageWithCoordinates(data.carroceria, imgCar).then((img)=>{
-    doc.addImage(img, 'PNG', 130, 130, 50, 30)
-  
-
-
+   generateImageWithCoordinates(data.carroceria, imgCar)
+   .then((img)=>{  
+    doc.addImage(img, 'PNG', 30, 130, 50, 30)
+    // doc.addImage(img, 'PNG', 130, 130, 50, 30) carro salida
     //pagina 2
     doc.addPage();
     doc.addImage(formatoPart2.src, 'PNG', -10, 0, 240, 350); // Agrega la imagen al comienzo de la segunda página
-  
-  
     
-  
-    // Guardar el PDF o ofrecerlo para su descarga
-   
+    // Guardar el PDF o ofrecerlo para su descarga 
    } ).then(r=>  doc.save()).catch(error =>{console.log(error);
    })
 

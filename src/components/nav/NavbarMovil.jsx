@@ -45,7 +45,7 @@ function NavbarMovil() {
           />
         </div>
       </div>
-      <div className={` flex  flex-col  gap-2 whitespace-pre duration-300 ${!open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"} `}>
+      <div className={`flex  flex-col  gap-2 whitespace-pre duration-300 ${!open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"}`}>
         {menuItems.map((item) => (
           <Link
             className={`${item.margin && "md:mt-6 "}
