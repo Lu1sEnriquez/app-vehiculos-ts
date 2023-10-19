@@ -30,7 +30,7 @@ function InputObservaciones() {
         <textarea
           id="observacion"
           name="observacion"
-          className={`w-full h-full sm p-2 border rounded focus:border-azulNormal 
+          className={`w-full h-full sm p-2 border-2 rounded border-black  
           ${width<288?'h-52':''}`}
           placeholder="Escribe tus observaciones aquí"
           value={observacion}

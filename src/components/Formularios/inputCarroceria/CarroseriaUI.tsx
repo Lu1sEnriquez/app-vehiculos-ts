@@ -55,8 +55,11 @@ export function redimensionarCoordenada(
 ):{ x: any, y:any} {
   if (originalWidth  && originalHeight && newWidth && newHeight) {
     const xRatio = newWidth / originalWidth;
+    console.log(xRatio);
+    
     const yRatio = newHeight / originalHeight;
-
+    console.log(yRatio);
+    
     const newX = coordenada.x !== null ? Number(coordenada.x) * xRatio : null;
     const newY = coordenada.y !== null ? Number(coordenada.y )* yRatio : null;
 

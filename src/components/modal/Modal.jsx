@@ -7,13 +7,15 @@ const Modal = ({ isOpen, onClose, children, title }) => {
   
   if (!isOpen) return null;
 
-  
-
   return (
-    <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-[100dvh] top-0 left-0 min-h-fit ">
-      <div className={`modal bg-white rounded-lg overflow-hidden max-h-[30rem] relative
-      ${height<250 ?  'h-[95%]':' h-[90dvh]'}  
-      ${width<400 ? 'w-[95%]': 'w-5/6'}
+    <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen top-0 left-0 min-h-fit ">
+      <div 
+      style={{ height:
+      height<350?'98%':
+      width<500?`${width}px`: '90dvh',
+      width: width>height?height<350?`${height+100}px`:`${height}px`:'97%',
+      }}
+      className={`modal bg-white rounded-lg overflow-hidden max-h-[30rem] relative max-w-5xl
       `}>
         <button
           onClick={onClose}
