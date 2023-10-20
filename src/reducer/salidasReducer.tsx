@@ -42,7 +42,7 @@ export interface CoordenadasType {
 export type datosSalidaEntradaType = {
   folio: string | null;
   fechaSalida: string | null;
-  nombreSolicitante: string;
+  nombreSolicitante: string | null;
   placa: string | null;
   horaSalida: string | null;
   kilometraje: number | null;
@@ -128,7 +128,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   const initialState: datosSalidaEntradaType = {
     folio: null,
     fechaSalida: null,
-    nombreSolicitante: "luis",
+    nombreSolicitante: null,
     placa: null,
     horaSalida: null,
     kilometraje: null,

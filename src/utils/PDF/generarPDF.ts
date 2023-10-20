@@ -81,10 +81,10 @@ function generarCoordenadas(doc:jsPDF) {
     if(data.nombreVigilante){
       doc.text(data.nombreVigilante, 55,72);
     }  
+    doc.rect(50, 85, 50, 25);
     if(data.firmaVigilante){
       console.log(data.firmaVigilante);
-      
-      doc.addImage(data.firmaVigilante,'PNG',50, 90, 50, 20);
+      doc.addImage(data.firmaVigilante,'PNG',50, 85, 50, 25);
     }  
     // Guardar el PDF o ofrecerlo para su descarga
 

@@ -8,12 +8,13 @@ const Modal = ({ isOpen, onClose, children, title }) => {
   if (!isOpen) return null;
 
   return (
-    <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen top-0 left-0 min-h-fit ">
+    <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen max-h-max top-0 left-0 min-h-fit ">
       <div 
       style={{ height:
       height<350?'98%':
-      width<500?`${width}px`: '90dvh',
-      width: width>height?height<350?`${height+100}px`:`${height}px`:'97%',
+      width<600?`${width/1.4}px`: '90dvh',
+
+      width: width>height*0.8?height<600?`${height*1.2}px`:`${height}px`:'97%',
       }}
       className={`modal bg-white rounded-lg overflow-hidden max-h-[30rem] relative max-w-5xl
       `}>

@@ -5,19 +5,33 @@ import LabelFormulario from "../LabelFormulario";
 import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 function InputHora() {
+ 
+  // Obtiene la hora actual del dispositivo
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  const currentMinute = currentDate.getMinutes();
+  // Formatea la hora actual en formato HH:mm:ss
+  const formattedTime = `${currentHour.toString().padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
 
-  const [time, setTime] = useState("");
+  
+  const [time, setTime] = useState(formattedTime);
   
 
-  const handleTimeChange = (evt) => {
+  const handleTimeChange = (evt:React.ChangeEvent<HTMLInputElement>) => {
     setTime(evt.target.value);
   };
 
-  const {state, dispatch} = useDatosSalidaReducer();
 
+
+  const { dispatch} = useDatosSalidaReducer();
 useEffect(()=>{
   dispatch({type:"SET_HORA_SALIDA", payload: time})
-},[time])
+},[time,dispatch])
+
+
+
+
+
 
   return (
     <>

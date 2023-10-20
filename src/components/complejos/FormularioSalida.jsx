@@ -68,6 +68,7 @@ function FormularioSalida() {
           <ButtonGenerarPDF />
         </div>
       </section>
+    <MostrarDatosSalida></MostrarDatosSalida>
     </DatosSalidasProvider>
     
   );
