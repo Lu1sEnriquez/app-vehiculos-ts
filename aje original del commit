@@ -1,0 +1,48 @@
+[33mcommit 6a96b31b0e025dc41df33e0818117bbe1624c147[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 94476b0 1cc6cf3
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Fri Oct 20 15:37:02 2023 +0200
+
+    Merge branch 'master' of https://github.com/Lu1sEnriquez/app-vehiculos-ts
+
+[33mcommit 94476b00b30ed93e2f91ca4d7238a1f8424c1cbb[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Thu Oct 19 15:24:10 2023 +0200
+
+    falta ajustar firma y colocar en jsPDF
+
+[33mcommit 1cc6cf3f50412df37fd632f65c6fc74ad130a6b2[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Tue Oct 17 00:04:47 2023 -0700
+
+    agrege localStorage inputDate faltan los demas
+
+[33mcommit 3f9a9da709b57b3a9d0505cd8b865d6ee36b0c4c[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Mon Oct 16 00:46:57 2023 -0700
+
+    agrege generarCarImg y inputAccesorios
+
+[33mcommit 88a0be40f513da2ed36559b6e7050b96c85d8951[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Thu Oct 12 03:04:30 2023 -0700
+
+    agregue destino y converti ComponenteMarcador a Img
+
+[33mcommit 006d3ffb3b9edbecf88c44a431ba63d175ddd1f2[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Wed Oct 11 00:05:44 2023 -0700
+
+    add types a useElementSize y repare removeMarks
+
+[33mcommit 2550f911b96006901be16f9024ae8e59bcd7c1e4[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Tue Oct 10 03:18:09 2023 -0700
+
+    agrege tipos al reducer y perfeccione input auto
+
+[33mcommit 27f9d0d3ec8eca9bbd19a9cef3e581ee88e473e2[m
+Author: Lu1sEnriquez <luis.lavz.2300@gmail.com>
+Date:   Sun Oct 8 13:21:39 2023 -0700
+
+    Initial commit from Create Next App

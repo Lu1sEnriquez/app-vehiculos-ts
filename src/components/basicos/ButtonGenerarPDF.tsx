@@ -1,7 +1,7 @@
 'use client'
 import {useMemo} from 'react'
 import {ButtonAzul} from '@/components/basicos/ButtonAzul'
-import {GenerarPDF} from '@/utils/PDF/generarReporteEntradaSalidaPDF';
+import {GenerarPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
 import { useDatosSalidaEntradaReducer } from '@/reducer/salidaEntradaReducer';
 
 function ButtonGenerarPDF() {

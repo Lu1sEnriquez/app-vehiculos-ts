@@ -2,14 +2,14 @@ import jsPDF from 'jspdf';
 import { datosSalidaEntradaType } from '@/reducer/salidaEntradaReducer';
 
 
-import formatoPart1 from './ReporteEntradaSalida/ReporteEntradaSalidaPart1.png'; // Asegúrate de que la ruta sea correcta
-import formatoPart2 from './ReporteEntradaSalida/ReporteEntradaSalidaPart2.png'; // Asegúrate de que la ruta sea correcta
-import iconFalse from './icons/icons8-eliminar-48.png'
-import iconTrue from './icons/icons8-emoji-de-marca-de-verificación-48.png'
+import formatoPart1 from './ReporteEntradaSalidaPart1.png'; // Asegúrate de que la ruta sea correcta
+import formatoPart2 from './ReporteEntradaSalidaPart2.png'; // Asegúrate de que la ruta sea correcta
+import iconFalse from '../icons/icons8-eliminar-48.png'
+import iconTrue from '../icons/icons8-emoji-de-marca-de-verificación-48.png'
 import imgCar from "@/assets/icons/auto.png"
 
-import { generateImageWithCoordinates } from '../canvas/generateCarImg';
-import { generarMarcadorGasolina } from '../canvas/generateMarcadorPng';
+import { generateImageWithCoordinates } from '../../canvas/generateCarImg';
+import { generarMarcadorGasolina } from '../../canvas/generateMarcadorPng';
 
 
 function generarCoordenadas(doc: jsPDF) {
