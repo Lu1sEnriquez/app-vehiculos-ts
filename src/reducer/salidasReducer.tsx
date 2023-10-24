@@ -39,7 +39,7 @@ export interface CoordenadasType {
 }
 
 // Define el estado inicial
-export type datosSalidaEntradaType = {
+export type datosSalidaType = {
   folio: string | null;
   fechaSalida: string | null;
   nombreSolicitante: string | null;
@@ -67,9 +67,9 @@ export type datosSalidaEntradaType = {
 
 // Define el reducer para gestionar el estado
 const DatosSalidaReducer = (
-  state: datosSalidaEntradaType,
+  state: datosSalidaType,
   action: ActionTypes
-): datosSalidaEntradaType => {
+): datosSalidaType => {
   switch (action.type) {
     case "SET_FOLIO":
       return { ...state, folio: action.payload };
@@ -94,6 +94,9 @@ const DatosSalidaReducer = (
     case "SET_NOMBRE_VIGILANTE":
       return { ...state, nombreVigilante: action.payload };
     case "SET_FIRMA_VIGILANTE":
+     if(action.payload){
+     }
+      
       return { ...state, firmaVigilante: action.payload };
     case "SET_FIRMA_SOLICITANTE":
       return { ...state, firmaSolicitante: action.payload };
@@ -111,7 +114,7 @@ const DatosSalidaReducer = (
 // Define el contexto
 export const DatosSalidaContext = createContext<
   | {
-      state: datosSalidaEntradaType;
+      state: datosSalidaType;
       dispatch: React.Dispatch<ActionTypes>;
     }
   | undefined
@@ -120,12 +123,12 @@ export const DatosSalidaContext = createContext<
 // Proveedor de contexto
 type DatosSalidasProviderProps = {
   children: ReactNode;
-  value: datosSalidaEntradaType;
+  value: datosSalidaType;
 };
 
 export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
-  const initialState: datosSalidaEntradaType = {
+  const initialState: datosSalidaType = {
     folio: null,
     fechaSalida: null,
     nombreSolicitante: null,

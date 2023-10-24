@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 
-import marcadorGasolina from "@/assets/icons/marcadorGasolina.png";
+import marcadorGasolina from "@/assets/icons/MarcadorGasolina.png";
 
 import useElementSize from "@/utils/custom/useElementSize";
 import { useEffect, useRef } from "react";

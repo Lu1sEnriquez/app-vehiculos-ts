@@ -161,7 +161,7 @@ export function CarroseriaUI({
     >
       <div
         id="container-espacioSobrante-Central"
-        className="grow w-full  text-black border-2"
+        className="grow w-full  text-black border-2 bg-white"
       >
         <div className="relative  ">
           <canvas

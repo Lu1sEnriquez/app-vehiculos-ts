@@ -65,7 +65,6 @@ function FormularioSalida() {
           
          
          <InputObservaciones></InputObservaciones>
-          <ButtonGenerarPDF />
         </div>
       </section>
     <MostrarDatosSalida></MostrarDatosSalida>

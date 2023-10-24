@@ -50,7 +50,6 @@ export async function generateImageWithCoordinates(coordenadas: CoordenadasType[
   }
   // Convertir el canvas en una URL de imagen
   const imageDataURL = canvas.toDataURL('image/png');
-  console.log(imageDataURL);
 
   return imageDataURL; // Devuelve la URL de la imagen en formato de datos base64
 }

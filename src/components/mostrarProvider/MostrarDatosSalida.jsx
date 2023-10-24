@@ -20,26 +20,9 @@ function MostrarDatosSalida() {
     setDatos(state);
   }, [state, state.accesorios]);
 
-  // Accede a los datos específicos del estado
-  //   const { folio, fechaSalida, nombreUsuario, placas,horaSalida,kilometraje
-  //  ,carroceria,porcentajeGasolina,nombreVigilante,firmaVigilante,firmaUsuario
-  // ,destino,accesorios} = state;
-  useEffect(() => {
-    const loadImage = async () => {
-      try {
-        ComponentToImage(data.marcadorGasolina).then(
-          (img) => (marcadorRef.current.src = img)
-        );
-      } catch (error) {
-        // Maneja el error aquí si es necesario
-        console.error("Error al cargar la imagen:", error);
-      }
-    };
 
-    loadImage();
-  }, [data.porcentajeGasolina]);
+   
 
-  const marcadorRef = useRef(null);
   return (
     <div className=" m-10 ">
       <h1>Datos de Salida</h1>
@@ -88,7 +71,6 @@ function MostrarDatosSalida() {
       )}
       <p>Porcentaje de Gasolina: {data.porcentajeGasolina}</p>
       <div>
-        <Image ref={marcadorRef} width={200} height={200}></Image>
       </div>
       <p>Destino: {data.destino}</p>
       <p>Accesorios:</p>

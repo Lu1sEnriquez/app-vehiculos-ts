@@ -1,15 +1,18 @@
 'use client'
-import React from 'react'
+import {useMemo} from 'react'
 import {ButtonAzul} from '@/components/basicos/ButtonAzul'
-import GenerarPDF from '@/utils/PDF/generarPDF';
-import {datosSalidaEntradaType, useDatosSalidaReducer} from "@/reducer/salidasReducer"
-import imgCar from "@/assets/icons/auto.png"
+import {GenerarPDF} from '@/utils/PDF/generarReporteEntradaSalidaPDF';
+import { useDatosSalidaEntradaReducer } from '@/reducer/salidaEntradaReducer';
 
 function ButtonGenerarPDF() {
-  const {state} = useDatosSalidaReducer()
-  const handleGenerar =()=>{
-    GenerarPDF(state,imgCar)
-  }
+
+  const {state} = useDatosSalidaEntradaReducer()
+
+  const handleGenerar =useMemo(()=>{
+    return ()=>{
+      GenerarPDF(state)
+  };
+  },[state]);
     
   return (
 
