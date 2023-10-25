@@ -12,8 +12,8 @@ import { DatosSalidasProvider } from "@/reducer/salidasReducer";
 import InputDestino from "../Formularios/inputs/inputDestino";
 import InputAccesorios from "../Formularios/inputs/InputAccesorios";
 import InputObservaciones from "../Formularios/inputs/InputObservaciones";
-import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import InputChofer from "../Formularios/inputs/InputChofer";
+import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
 
 function FormularioSalida() {
   return (
@@ -39,7 +39,7 @@ function FormularioSalida() {
         <div
           className="columna2 lg:w-1/3 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
       w-full mx-5 
-      flex flex-col gap-y-5"
+      flex flex-col gap-y-4"
         >
           
           <InputGasolina></InputGasolina>
@@ -58,6 +58,7 @@ function FormularioSalida() {
           <InputObservaciones />
         </div>
       </section>
+      <MostrarDatosSalida/>
     </DatosSalidasProvider>
   );
 }

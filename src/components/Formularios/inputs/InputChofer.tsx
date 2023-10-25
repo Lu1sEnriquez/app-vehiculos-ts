@@ -16,11 +16,11 @@ function InputChofer() {
     setchofer(newValor);
     
   };
+
+
 const {dispatch, state} = useDatosSalidaReducer();
   useEffect(() => {
     if (isChofer) {
-      dispatch({ type: "SET_ISLOCAL", payload: isChofer });
-    } else {
       dispatch({ type: "SET_NOMBRE_CHOFER", payload: chofer });
     }
   }, [isChofer,chofer, dispatch]);

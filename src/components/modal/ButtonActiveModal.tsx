@@ -3,12 +3,10 @@
 import useModal from "@/utils/custom/useModal";
 import { ButtonAzul } from "@/components/basicos/ButtonAzul";
 import Modal from "./Modal";
-import InputFirma from "../Formularios/inputs/InputFirma";
+import InputFirma, { firmaType } from "../Formularios/inputs/InputFirma";
 import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 import LabelFormulario from "../Formularios/LabelFormulario";
-type vigilanteType = "Vigilante";
-type solicitanteType = "Solicitante";
-type firmaType = vigilanteType | solicitanteType;
+
 
 function ButtonFirmaModal({ type }: { type: firmaType }) {
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -41,16 +39,16 @@ function ButtonFirmaModal({ type }: { type: firmaType }) {
   }
 
   return (
-    <>
+    <div>
       <LabelFormulario>{`Firma ${type}`}</LabelFormulario>
       <div className={containerClass}>
         <ButtonAzul text={textButton} onClick={openModal} />
       </div>
 
       <Modal isOpen={isModalOpen} onClose={closeModal} title={type}>
-        <InputFirma onClose={closeModal} id={type}></InputFirma>
+        <InputFirma onClose={closeModal} type={type}></InputFirma>
       </Modal>
-    </>
+    </div>
   );
 }
 export default ButtonFirmaModal;
