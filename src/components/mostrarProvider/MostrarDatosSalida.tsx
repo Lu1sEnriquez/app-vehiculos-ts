@@ -1,6 +1,6 @@
 "use client";
 
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { datosSalidaType, useDatosSalidaReducer } from "@/reducer/salidasReducer";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import autoImage from "@/assets/icons/auto.png";
@@ -13,7 +13,7 @@ function MostrarDatosSalida() {
   const { state, dispatch } = useDatosSalidaReducer();
 
   // Utiliza el estado local para almacenar los datos del contexto
-  const [data, setDatos] = useState(state);
+  const [data, setDatos] = useState<datosSalidaType>(state);
   const containerAutoRef = useRef(null);
   // Actualiza los datos locales cuando cambie el estado del contexto
   useEffect(() => {
@@ -26,9 +26,10 @@ function MostrarDatosSalida() {
   return (
     <div className=" m-10 ">
       <h1>Datos de Salida</h1>
-      <p>Folio: {data.folio}</p>
+      <p>Folio: {data.idSolicitud}</p>
       <p>Fecha de Salida: {data.fechaSalida}</p>
       <p>Nombre del Solicitante: {data.nombreSolicitante}</p>
+      <p>Nombre del Chofer: {data.nombreChofer}</p>
       <p>Placas del Vehículo: {data.placa}</p>
       <p>Hora de Salida: {data.horaSalida}</p>
       <p>Kilometraje: {data.kilometraje}</p>
