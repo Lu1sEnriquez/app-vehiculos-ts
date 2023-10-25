@@ -7,6 +7,8 @@ type ActionTypes =
   | { type: "SET_FOLIO"; payload: string | null }
   | { type: "SET_FECHA_SALIDA"; payload: string | null }
   | { type: "SET_NOMBRE_SOLICITANTE"; payload: string }
+  | { type: "SET_NOMBRE_CHOFER"; payload: string }
+  | { type: "SET_DEPARTAMENTO"; payload: string }
   | { type: "SET_PLACA"; payload: string | null }
   | { type: "SET_HORA_SALIDA"; payload: string | null }
   | { type: "SET_KILOMETRAJE"; payload: number | null }
@@ -17,6 +19,7 @@ type ActionTypes =
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_SOLICITANTE"; payload: string | null }
+  | { type: "SET_ISLOCAL"; payload: boolean | null }
   | { type: "SET_DESTINO"; payload: string | null }
   | { type: "SET_OBSERVACIONES"; payload: string | null }
   | {
@@ -40,9 +43,11 @@ export interface CoordenadasType {
 
 // Define el estado inicial
 export type datosSalidaType = {
-  folio: string | null;
+  idSolicitud: string | null;
   fechaSalida: string | null;
   nombreSolicitante: string | null;
+  nombreChofer: string| null;
+  departamento: string | null;
   placa: string | null;
   horaSalida: string | null;
   kilometraje: number | null;
@@ -53,6 +58,7 @@ export type datosSalidaType = {
   nombreVigilante: string | null;
   firmaVigilante: string | null;
   firmaSolicitante: string | null;
+  isLocal: boolean | null;
   destino: string | null;
   accesorios: {
     gato: boolean | null;
@@ -72,11 +78,15 @@ const DatosSalidaReducer = (
 ): datosSalidaType => {
   switch (action.type) {
     case "SET_FOLIO":
-      return { ...state, folio: action.payload };
+      return { ...state, idSolicitud: action.payload };
     case "SET_FECHA_SALIDA":
       return { ...state, fechaSalida: action.payload };
     case "SET_NOMBRE_SOLICITANTE":
       return { ...state, nombreSolicitante: action.payload };
+    case "SET_NOMBRE_CHOFER":
+      return { ...state, nombreChofer: action.payload };
+    case "SET_DEPARTAMENTO":
+      return { ...state, departamento: action.payload };
     case "SET_PLACA":
       return { ...state, placa: action.payload };
     case "SET_HORA_SALIDA":
@@ -94,12 +104,11 @@ const DatosSalidaReducer = (
     case "SET_NOMBRE_VIGILANTE":
       return { ...state, nombreVigilante: action.payload };
     case "SET_FIRMA_VIGILANTE":
-     if(action.payload){
-     }
-      
       return { ...state, firmaVigilante: action.payload };
     case "SET_FIRMA_SOLICITANTE":
       return { ...state, firmaSolicitante: action.payload };
+    case "SET_ISLOCAL":
+      return { ...state, isLocal: action.payload };
     case "SET_DESTINO":
       return { ...state, destino: action.payload };
     case "SET_ACCESORIOS":
@@ -129,9 +138,11 @@ type DatosSalidasProviderProps = {
 export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
   const initialState: datosSalidaType = {
-    folio: null,
+    idSolicitud: null,
     fechaSalida: null,
     nombreSolicitante: null,
+    nombreChofer: null,
+    departamento: null,
     placa: null,
     horaSalida: null,
     kilometraje: null,
@@ -142,6 +153,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
     nombreVigilante: null,
     firmaVigilante: null,
     firmaSolicitante: null,
+    isLocal:null,
     destino: null,
     accesorios: {
       gato: null,

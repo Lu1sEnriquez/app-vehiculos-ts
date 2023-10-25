@@ -18,6 +18,7 @@ export function ButtonAzul({ onClick, text }: ButtonAzulType) {
         
         duration-200
         hover:bg-azulNormal
+        hover:scale-105
         "
     >
       {text || ""}
@@ -41,6 +42,7 @@ export function ButtonAzulLink({ href, text }: ButtonAzulLinkType) {
         
         duration-200
         hover:bg-azulNormal
+        hover:scale-105
         "
       >
         {text || ""}

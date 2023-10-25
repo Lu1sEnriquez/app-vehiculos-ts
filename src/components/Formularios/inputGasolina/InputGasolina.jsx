@@ -21,7 +21,7 @@ useEffect(()=>{
 },[porcentaje])
 
   return (
-    <section className="gasolina-container  flex flex-col justify-center items-center w-5/6 m-auto">
+    <section className="gasolina-container  flex flex-col justify-center items-center w-3/4 m-auto">
       <LabelFormulario>{"Medida de Gasolina:"}</LabelFormulario>
       <UiGasolina porcentaje={porcentaje} />
 

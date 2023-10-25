@@ -6,7 +6,7 @@ import autoImage from "@/assets/icons/auto.png";
 import LabelFormulario from "../LabelFormulario";
 
 function InputCarroceria() {
-  const [tieneGolpes, setTieneGolpes] = useState(true);
+  const [tieneGolpes, setTieneGolpes] = useState(false);
 
   const handleTieneGolpesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.value == "true";
@@ -34,9 +34,7 @@ function InputCarroceria() {
             type="radio"
             name="daños"
             value={"true"}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              handleTieneGolpesChange(e);
-            }}
+            onChange={handleTieneGolpesChange}
             checked={tieneGolpes === true}
           />
           Si

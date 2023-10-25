@@ -9,13 +9,14 @@ import ButtonFirmaModal from "../modal/ButtonActiveModal";
 import InputFirma from "../Formularios/inputs/InputFirma";
 import InputGasolina from "../Formularios/inputGasolina/InputGasolina";
 import { DatosSalidasProvider } from "@/reducer/salidasReducer";
+import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
 import InputDestino from "../Formularios/inputs/inputDestino";
 import InputAccesorios from "../Formularios/inputs/InputAccesorios";
 import InputObservaciones from "../Formularios/inputs/InputObservaciones";
-import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
-import InputChofer from "../Formularios/inputs/InputChofer";
 
 function FormularioSalida() {
+
+
   return (
     <DatosSalidasProvider>
       <section
@@ -30,10 +31,10 @@ function FormularioSalida() {
         >
           <InputDate />
           <InputHora />
-          <InputDestino />
+          <InputDestino></InputDestino>
           <InputPlacaVehiculo />
-          <InputAccesorios />
-          <InputCarroceria />
+          <InputCarroceria></InputCarroceria>
+          <InputAccesorios></InputAccesorios>
         </div>
 
         <div
@@ -42,23 +43,31 @@ function FormularioSalida() {
       flex flex-col gap-y-5"
         >
           
-          <InputGasolina></InputGasolina>
           <InputKilometraje />
+          <InputGasolina></InputGasolina>
 
           <InputName text={"Nombre Solicitante:"} />
-          <ButtonFirmaModal type={"Solicitante"}>
-            <InputFirma />
+          <ButtonFirmaModal
+            type={"Solicitante"}
+            
+          >
+            <InputFirma></InputFirma>
           </ButtonFirmaModal>
           <InputName text={"Nombre Vigilante:"} />
 
-          <ButtonFirmaModal type={"Vigilante"}>
-            <InputFirma />
+          <ButtonFirmaModal
+            type={'Vigilante'}
+          >
+            <InputFirma ></InputFirma>
           </ButtonFirmaModal>
-          <InputChofer />
-          <InputObservaciones />
+          
+         
+         <InputObservaciones></InputObservaciones>
         </div>
       </section>
+    <MostrarDatosSalida></MostrarDatosSalida>
     </DatosSalidasProvider>
+    
   );
 }
 export default FormularioSalida;
