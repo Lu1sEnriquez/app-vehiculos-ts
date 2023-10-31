@@ -10,6 +10,7 @@ type ActionTypes =
   | { type: "SET_NOMBRE_CHOFER"; payload: string }
   | { type: "SET_DEPARTAMENTO"; payload: string }
   | { type: "SET_PLACA"; payload: string | null }
+  | { type: "SET_LICENCIA"; payload: string | null }
   | { type: "SET_HORA_SALIDA"; payload: string | null }
   | { type: "SET_KILOMETRAJE"; payload: number | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
@@ -22,6 +23,7 @@ type ActionTypes =
   | { type: "SET_ISLOCAL"; payload: boolean | null }
   | { type: "SET_DESTINO"; payload: string | null }
   | { type: "SET_OBSERVACIONES"; payload: string | null }
+  | { type: "SET_ISSALIDA"; payload: boolean | null }
   | {
       type: "SET_ACCESORIOS";
       payload: {
@@ -44,20 +46,20 @@ export interface CoordenadasType {
 // Define el estado inicial
 export type datosSalidaType = {
   idSolicitud: string | null;
-  fechaSalida: string | null;
+  fecha: string | null;
   nombreSolicitante: string | null;
   nombreChofer: string| null;
   departamento: string | null;
   placa: string | null;
-  horaSalida: string | null;
+  hora: string | null;
   kilometraje: number | null;
   golpes: boolean | null;
   carroceria: CoordenadasType[];
-  porcentajeGasolina: number | null;
-  marcadorGasolina: HTMLDivElement | null;
+  tanque: number | null;
   nombreVigilante: string | null;
   firmaVigilante: string | null;
   firmaSolicitante: string | null;
+  licencia:string | null;
   isLocal: boolean | null;
   destino: string | null;
   accesorios: {
@@ -69,6 +71,7 @@ export type datosSalidaType = {
     documentos: boolean | null;
   };
   observaciones: string | null;
+  isSalida: boolean |null;
 };
 
 // Define el reducer para gestionar el estado
@@ -80,7 +83,7 @@ const DatosSalidaReducer = (
     case "SET_FOLIO":
       return { ...state, idSolicitud: action.payload };
     case "SET_FECHA_SALIDA":
-      return { ...state, fechaSalida: action.payload };
+      return { ...state, fecha: action.payload };
     case "SET_NOMBRE_SOLICITANTE":
       return { ...state, nombreSolicitante: action.payload };
     case "SET_NOMBRE_CHOFER":
@@ -89,8 +92,10 @@ const DatosSalidaReducer = (
       return { ...state, departamento: action.payload };
     case "SET_PLACA":
       return { ...state, placa: action.payload };
+    case "SET_LICENCIA":
+      return { ...state, licencia: action.payload };
     case "SET_HORA_SALIDA":
-      return { ...state, horaSalida: action.payload };
+      return { ...state, hora: action.payload };
     case "SET_KILOMETRAJE":
       return { ...state, kilometraje: action.payload };
     case "SET_TIENE_GOLPES":
@@ -98,9 +103,9 @@ const DatosSalidaReducer = (
     case "SET_CARROCERIA":
       return { ...state, carroceria: action.payload };
     case "SET_PORCENTAJE_GASOLINA":
-      return { ...state, porcentajeGasolina: action.payload };
-    case "SET_MARCADOR_GASOLINA":
-      return { ...state, marcadorGasolina: action.payload };
+      return { ...state, tanque: action.payload };
+    case "SET_ISSALIDA":
+      return { ...state, isSalida: action.payload };
     case "SET_NOMBRE_VIGILANTE":
       return { ...state, nombreVigilante: action.payload };
     case "SET_FIRMA_VIGILANTE":
@@ -139,17 +144,17 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
   const initialState: datosSalidaType = {
     idSolicitud: null,
-    fechaSalida: null,
+    fecha: null,
     nombreSolicitante: null,
     nombreChofer: null,
     departamento: null,
     placa: null,
-    horaSalida: null,
+    licencia:null,
+    hora: null,
     kilometraje: null,
     golpes: null,
     carroceria: [],
-    porcentajeGasolina: null,
-    marcadorGasolina: null,
+    tanque: null,
     nombreVigilante: null,
     firmaVigilante: null,
     firmaSolicitante: null,
@@ -164,6 +169,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
       documentos: null,
     },
     observaciones: null,
+    isSalida:null
   };
 
   // Usa useReducer para gestionar el estado con el reducer
