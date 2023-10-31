@@ -23,6 +23,7 @@ function NavbarMovil() {
      fixed  
      w-full 
      z-30
+     shadow-xl
      ${!open ? "h-12" : "h-80"} duration-300
     `}
     >
