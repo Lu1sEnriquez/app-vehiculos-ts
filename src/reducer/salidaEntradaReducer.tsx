@@ -5,6 +5,10 @@ import marcador from '@/utils/examples/marcador.png'
 import firma from '@/utils/examples/firma.png'
 // Importa las bibliotecas de TypeScript y React
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
+import CoordenadasType from '@/models/CoordenadasType';
+import AccesoriosType from '@/models/AccesoriosType';
+import DatosSalidaLlegadaType from '@/models/DatosSalidaLlegada';
+
 
 type ActionTypes =
   | { type: "SET_FOLIO"; payload: string | null }
@@ -31,64 +35,21 @@ type ActionTypes =
   | { type: "SET_FIRMA_SOLICITANTE_SALIDA"; payload: string | null }
   | { type: "SET_FIRMA_SOLICITANTE_LLEGADA"; payload: string | null }
   | { type: "SET_DESTINO"; payload: string | null }
-  | { type: "SET_ACCESORIOS_SALIDA"; payload: accesorios }
-  | { type: "SET_ACCESORIOS_LLEGADA"; payload: accesorios }
+  | { type: "SET_ACCESORIOS_SALIDA"; payload: AccesoriosType }
+  | { type: "SET_ACCESORIOS_LLEGADA"; payload: AccesoriosType }
   | { type: "SET_OBSERVACIONES_SALIDA"; payload: string | null }
   | { type: "SET_OBSERVACIONES_LLEGADA"; payload: string | null };
 
-export interface CoordenadasType {
-  x: number | string | undefined;
-  y: number | string | undefined;
-  widthOriginal: number | string | undefined;
-  heightOriginal: number | string | undefined;
-}
-export interface accesorios {
-    gato: boolean | null;
-    extra: boolean | null;
-    cables: boolean | null;
-    luzMuerta: boolean | null;
-    extintor: boolean | null;
-    documentos: boolean | null;
-  };
+
+
 // Define el estado inicial
-export interface datosSalidaEntradaType  {
-  folio: string | null;
-  fechaSalida: string | null;
-  fechaLlegada: string | null;
-  horaSalida: string | null;
-  horaLlegada: string | null;
-  nombreSolicitante: string | null;
-  placa: string | null;
-  licencia:string| null;
-  chofer: string| null;
-  vehiculo: string | null;
-  departamento: string | null;
-  kilometrajeSalida: number | null;
-  kilometrajeLlegada: number | null;
-  golpesSalida: boolean | null;
-  golpesLlegada: boolean | null;
-  carroceriaSalida: CoordenadasType[];
-  carroceriaLlegada: CoordenadasType[];
-  porcentajeGasolinaSalida: number | null;
-  porcentajeGasolinaLlegada: number | null;
-  nombreVigilanteSalida: string | null;
-  nombreVigilanteLlegada: string | null;
-  firmaVigilanteSalida: string | null;
-  firmaVigilanteLlegada: string | null;
-  firmaSolicitanteSalida: string | null;
-  firmaSolicitanteLlegada: string | null;
-  destino: string | null;
-  accesoriosSalida: accesorios;
-  accesoriosLlegada:accesorios;
-  observacionesSalida: string | null;
-  observacionesLlegada: string | null;
-};
+
 
 // Define el reducer para gestionar el estado
 const DatosSalidaEntradaReducer = (
-    state: datosSalidaEntradaType,
+    state: DatosSalidaLlegadaType,
     action: ActionTypes
-  ): datosSalidaEntradaType => {
+  ): DatosSalidaLlegadaType => {
     switch (action.type) {
       case "SET_FOLIO":
         return { ...state, folio: action.payload };
@@ -154,7 +115,7 @@ const DatosSalidaEntradaReducer = (
 // Define el contexto
 export const DatosSalidaEntradaContext = createContext<
   | {
-      state: datosSalidaEntradaType;
+      state: DatosSalidaLlegadaType;
       dispatch: React.Dispatch<ActionTypes>;
     }
   | undefined
@@ -163,12 +124,12 @@ export const DatosSalidaEntradaContext = createContext<
 // Proveedor de contexto
 type DatosSalidasProviderProps = {
   children: ReactNode;
-  value: datosSalidaEntradaType;
+  value: DatosSalidaLlegadaType;
 };
 
 export function DatosSalidaEntradaProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
-  const initialState: datosSalidaEntradaType = {
+  const initialState: DatosSalidaLlegadaType = {
     folio: "ABC123",
     fechaSalida: "2023-10-01",
     fechaLlegada: "2023-10-02",

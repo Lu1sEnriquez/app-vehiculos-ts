@@ -1,10 +1,12 @@
 "use client";
+import datosSalidaType from "@/models/DatosSalidaType";
+import CoordenadasType from "@/models/CoordenadasType";
 // Importa las bibliotecas de TypeScript y React
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
 
 // Define los tipos de acciones
 type ActionTypes =
-  | { type: "SET_FOLIO"; payload: string | null }
+  | { type: "SET_IDSOLICITUD"; payload: number | null }
   | { type: "SET_FECHA_SALIDA"; payload: string | null }
   | { type: "SET_NOMBRE_SOLICITANTE"; payload: string }
   | { type: "SET_NOMBRE_CHOFER"; payload: string }
@@ -36,43 +38,8 @@ type ActionTypes =
       };
     };
 
-export interface CoordenadasType {
-  x: number | string | undefined;
-  y: number | string | undefined;
-  widthOriginal: number | string | undefined;
-  heightOriginal: number | string | undefined;
-}
 
-// Define el estado inicial
-export type datosSalidaType = {
-  idSolicitud: string | null;
-  fecha: string | null;
-  nombreSolicitante: string | null;
-  nombreChofer: string| null;
-  departamento: string | null;
-  placa: string | null;
-  hora: string | null;
-  kilometraje: number | null;
-  golpes: boolean | null;
-  carroceria: CoordenadasType[];
-  tanque: number | null;
-  nombreVigilante: string | null;
-  firmaVigilante: string | null;
-  firmaSolicitante: string | null;
-  licencia:string | null;
-  isLocal: boolean | null;
-  destino: string | null;
-  accesorios: {
-    gato: boolean | null;
-    extra: boolean | null;
-    cables: boolean | null;
-    luzMuerta: boolean | null;
-    extintor: boolean | null;
-    documentos: boolean | null;
-  };
-  observaciones: string | null;
-  isSalida: boolean |null;
-};
+
 
 // Define el reducer para gestionar el estado
 const DatosSalidaReducer = (
@@ -80,14 +47,14 @@ const DatosSalidaReducer = (
   action: ActionTypes
 ): datosSalidaType => {
   switch (action.type) {
-    case "SET_FOLIO":
+    case "SET_IDSOLICITUD":
       return { ...state, idSolicitud: action.payload };
     case "SET_FECHA_SALIDA":
       return { ...state, fecha: action.payload };
     case "SET_NOMBRE_SOLICITANTE":
       return { ...state, nombreSolicitante: action.payload };
     case "SET_NOMBRE_CHOFER":
-      return { ...state, nombreChofer: action.payload };
+      return { ...state, chofer: action.payload };
     case "SET_DEPARTAMENTO":
       return { ...state, departamento: action.payload };
     case "SET_PLACA":
@@ -143,16 +110,16 @@ type DatosSalidasProviderProps = {
 export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   // Define el estado inicial
   const initialState: datosSalidaType = {
-    idSolicitud: null,
+    idSolicitud: 13,
     fecha: null,
-    nombreSolicitante: null,
-    nombreChofer: null,
-    departamento: null,
-    placa: null,
-    licencia:null,
     hora: null,
+    nombreSolicitante: null,
+    chofer: null,
+    licencia:null,
+    departamento: "OFICINA",
+    placa: null,
     kilometraje: null,
-    golpes: null,
+    golpes: true,
     carroceria: [],
     tanque: null,
     nombreVigilante: null,
@@ -170,7 +137,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
     },
 
     observaciones: null,
-    isSalida:null
+    isSalida:true
   };
 
   // Usa useReducer para gestionar el estado con el reducer

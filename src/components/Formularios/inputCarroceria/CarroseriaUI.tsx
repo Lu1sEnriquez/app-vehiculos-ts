@@ -3,8 +3,10 @@ import React, { useState, useRef, useEffect, MutableRefObject } from "react";
 import Image from "next/image";
 import {ButtonAzul} from "@/components/basicos/ButtonAzul";
 import useElementSize from "@/utils/custom/useElementSize";
-import { useDatosSalidaReducer, CoordenadasType } from "@/reducer/salidasReducer";
+
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import CoordenadasType from "@/models/CoordenadasType";
+import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
 
 
 
@@ -70,8 +72,10 @@ export function redimensionarCoordenada(
 
 export function CarroseriaUI({
   autoImage,
+ 
 }: {
   autoImage: string | StaticImport;
+  
 }) {
   const initialStateCoordenadas: CoordenadasType[] = [];
 

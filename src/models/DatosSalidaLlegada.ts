@@ -1,0 +1,35 @@
+import AccesoriosType from "./AccesoriosType";
+import CoordenadasType from "./CoordenadasType";
+
+export default interface datosSalidaLlegadaType  {
+  folio: string | null;
+  fechaSalida: string | null;
+  fechaLlegada: string | null;
+  horaSalida: string | null;
+  horaLlegada: string | null;
+  nombreSolicitante: string | null;
+  placa: string | null;
+  licencia:string| null;
+  chofer: string| null;
+  vehiculo: string | null;
+  departamento: string | null;
+  kilometrajeSalida: number | null;
+  kilometrajeLlegada: number | null;
+  golpesSalida: boolean | null;
+  golpesLlegada: boolean | null;
+  carroceriaSalida: CoordenadasType[];
+  carroceriaLlegada: CoordenadasType[];
+  porcentajeGasolinaSalida: number | null;
+  porcentajeGasolinaLlegada: number | null;
+  nombreVigilanteSalida: string | null;
+  nombreVigilanteLlegada: string | null;
+  firmaVigilanteSalida: string | null;
+  firmaVigilanteLlegada: string | null;
+  firmaSolicitanteSalida: string | null;
+  firmaSolicitanteLlegada: string | null;
+  destino: string | null;
+  accesoriosSalida: AccesoriosType;
+  accesoriosLlegada:AccesoriosType;
+  observacionesSalida: string | null;
+  observacionesLlegada: string | null;
+};

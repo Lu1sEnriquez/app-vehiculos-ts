@@ -15,6 +15,8 @@ import InputObservaciones from "../Formularios/inputs/InputObservaciones";
 import InputChofer from "../Formularios/inputs/InputChofer";
 import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
 import InputLicencia from "../Formularios/inputs/InputLicencia";
+import { ButtonAzul } from "../basicos/ButtonAzul";
+import ButtonPostSalidaLlegada from "../buttonServices/ButtonPostSalidaLlegada";
 
 function FormularioSalida() {
   return (
@@ -58,9 +60,9 @@ function FormularioSalida() {
           </ButtonFirmaModal>
           <InputChofer />
           <InputObservaciones />
+          <ButtonPostSalidaLlegada></ButtonPostSalidaLlegada>
         </div>
       </section>
-      <MostrarDatosSalida/>
     </DatosSalidasProvider>
   );
 }
