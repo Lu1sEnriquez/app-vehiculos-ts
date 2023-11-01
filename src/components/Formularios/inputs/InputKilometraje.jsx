@@ -22,7 +22,7 @@ function InputKilometraje() {
 
   return (
     <>
-      <div className="w-60 sm:text-2xl ">
+      <div className="w-60  ">
         
           <LabelFormulario>Kilometraje de Salida:</LabelFormulario>
             <input

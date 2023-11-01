@@ -168,6 +168,7 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
       extintor: null,
       documentos: null,
     },
+
     observaciones: null,
     isSalida:null
   };

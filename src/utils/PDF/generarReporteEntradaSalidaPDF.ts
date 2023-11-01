@@ -47,33 +47,34 @@ export async function GenerarPDF(data: datosSalidaEntradaType) {
     imagesPromises.push(
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
-          doc.addImage(carSalida, 'PNG', 35, 140, 50, 30, '', 'FAST');
+          doc.addImage(carSalida, 'PNG', 35, 150, 50, 30, '', 'FAST');
+          generarCoordenadas(doc);
           resolve();
         });
       })
     );
   }else{
-    doc.addImage(imgCar.src, 'PNG', 35, 140, 50, 30, '', 'FAST')
+    doc.addImage(imgCar.src, 'PNG', 35, 150, 50, 30, '', 'FAST')
   }
   
   if (data.golpesLlegada) {
     imagesPromises.push(
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
-          doc.addImage(carSalida, 'PNG', 130, 140, 50, 30, '', 'FAST')
+          doc.addImage(carSalida, 'PNG', 130, 150, 50, 30, '', 'FAST')
           resolve();
         });
       })
     );
   }else{
-    doc.addImage(imgCar.src, 'PNG', 130, 140, 50, 30, '', 'FAST')
+    doc.addImage(imgCar.src, 'PNG', 130, 150, 50, 30, '', 'FAST')
   }
   
   if (data.porcentajeGasolinaSalida) {
     imagesPromises.push(
       generarMarcadorGasolina(data.porcentajeGasolinaSalida).then((img) => {
         return new Promise((resolve) => {
-          doc.addImage(img, 40, 190, 40, 20, '', 'FAST')
+          doc.addImage(img, 40, 205, 40, 20, '', 'FAST')
           resolve();
         });
       })
@@ -84,7 +85,7 @@ export async function GenerarPDF(data: datosSalidaEntradaType) {
     imagesPromises.push(
       generarMarcadorGasolina(data.porcentajeGasolinaLlegada).then((img) => {
         return new Promise((resolve) => {
-          doc.addImage(img, 135, 190, 40, 20, '', 'FAST')
+          doc.addImage(img, 135, 205, 40, 20, '', 'FAST')
           resolve();
         });
       })
@@ -133,11 +134,18 @@ export async function GenerarPDF(data: datosSalidaEntradaType) {
     doc.text(`${data.kilometrajeLlegada}`, 170, 120)
   }
 
+  if (data.licencia) {
+    doc.text(`${data.licencia}`, 40, 130)
+  }
+  if (data.chofer) {
+    doc.text(`${data.chofer}`, 140, 130)
+  }
 
 
 
-  doc.rect(35, 140, 50, 30) // rectangulo carSalida
-  doc.rect(130, 140, 50, 30) // rectangulo carLlegada
+
+  doc.rect(35, 150, 50, 30) // rectangulo carSalida
+  doc.rect(130, 150, 50, 30) // rectangulo carLlegada
 
   // Usar Promise.all para esperar a que todas las imágenes se carguen
   Promise.all(imagesPromises).then(async () => {

@@ -14,6 +14,7 @@ import InputAccesorios from "../Formularios/inputs/InputAccesorios";
 import InputObservaciones from "../Formularios/inputs/InputObservaciones";
 import InputChofer from "../Formularios/inputs/InputChofer";
 import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
+import InputLicencia from "../Formularios/inputs/InputLicencia";
 
 function FormularioSalida() {
   return (
@@ -32,6 +33,7 @@ function FormularioSalida() {
           <InputHora />
           <InputDestino />
           <InputPlacaVehiculo />
+          <InputLicencia/>
           <InputAccesorios />
           <InputCarroceria />
         </div>

@@ -44,7 +44,7 @@ const {state,dispatch} = useDatosSalidaReducer()
   return (
     <div className="relative">
       <div className="flex flex-row justify-start  ">
-        <div className="w-48 sm:text-2xl">
+        <div className="w-48 ">
           <label className="block text-gray-500 font-semibold mb-2">
             Placa Vehiculo:
           </label>

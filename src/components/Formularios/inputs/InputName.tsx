@@ -1,15 +1,19 @@
 "use client";
 
 import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
-import { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect,  useState } from "react";
 
-function InputName({ text }) {
+interface Props{
+  text: string
+}
+
+function InputName({ text}: Props) {
   const [name, setName] = useState("");
-  const { datosState, dispatch } = useDatosSalidaReducer();
-  const inputRef = useRef(null);
+  const { state, dispatch } = useDatosSalidaReducer();
+ 
   
-  const handleSetNombre = () => {
-    setName(inputRef.current.value);
+  const handleSetNombre = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setName(evt.target.value);
   };
 
 useEffect(()=>{
@@ -31,13 +35,10 @@ useEffect(()=>{
           className="border  border-slate-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
               shadow-md shadow-gray-300
               "
-          onChange={(e) => {
-            handleSetNombre();
-          }}
+          onChange={handleSetNombre}
           value={name}
           type="text"
           id=""
-          ref={inputRef}
         />
       </div>
     </>
