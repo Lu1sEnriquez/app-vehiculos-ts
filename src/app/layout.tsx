@@ -19,7 +19,7 @@ export default function RootLayout({ children }: {children: React.ReactNode}) {
       <NavbarPrincipal></NavbarPrincipal>
         <main
           className="  sm:w-full  md:mx-auto 
-        mt-16 md:mt-0    flex justify-center items-center flex-col"
+        mt-0    flex justify-center items-center flex-col"
         >
           {children}
         </main>

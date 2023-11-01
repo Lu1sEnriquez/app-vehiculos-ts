@@ -59,6 +59,8 @@ export interface datosSalidaEntradaType  {
   horaLlegada: string | null;
   nombreSolicitante: string | null;
   placa: string | null;
+  licencia:string| null;
+  chofer: string| null;
   vehiculo: string | null;
   departamento: string | null;
   kilometrajeSalida: number | null;
@@ -174,6 +176,8 @@ export function DatosSalidaEntradaProvider({ children }: DatosSalidasProviderPro
     horaLlegada: "05:00 PM",
     nombreSolicitante: "John Doe",
     placa: "XYZ-789",
+    licencia: "ASDEFW23423DD342",
+    chofer: "Vitor Lopez Perez",
     vehiculo: "Sedan",
     departamento: "Logística",
     kilometrajeSalida: 5000,
