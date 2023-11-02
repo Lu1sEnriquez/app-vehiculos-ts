@@ -1,7 +1,7 @@
 "use client"
 import { DatosSalidasProvider, useDatosSalidaReducer } from "@/reducer/salidasReducer"
 import { ButtonAzul } from "../basicos/ButtonAzul"
-import { salidaPost } from "@/app/services/reportes";
+import { salidaPost } from "@/services/reportes.services";
 import { data } from "autoprefixer";
 
 function ButtonPostSalidaLlegada() {

@@ -1,5 +1,4 @@
 import jsPDF from 'jspdf';
-import { datosSalidaEntradaType } from '@/reducer/salidaEntradaReducer';
 
 
 import formatoPart1 from './ReporteEntradaSalidaPart1.png'; // Asegúrate de que la ruta sea correcta
@@ -10,6 +9,7 @@ import imgCar from "@/assets/icons/auto.png"
 
 import { generateImageWithCoordinates } from '../../canvas/generateCarImg';
 import { generarMarcadorGasolina } from '../../canvas/generateMarcadorPng';
+import datosSalidaLlegadaType from '@/models/DatosSalidaLlegada';
 
 
 function generarCoordenadas(doc: jsPDF) {
@@ -29,7 +29,7 @@ function generarCoordenadas(doc: jsPDF) {
 
 
 
-export async function GenerarPDF(data: datosSalidaEntradaType) {
+export async function GenerarPDF(data: datosSalidaLlegadaType) {
 
 
   // Crear un nuevo documento PDF
@@ -43,7 +43,7 @@ export async function GenerarPDF(data: datosSalidaEntradaType) {
 
   const imagesPromises: Promise<void>[] = [];
 
-  if (data.golpesSalida) {
+  if (data.carroceriaSalida.length !== 0) {
     imagesPromises.push(
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
@@ -57,7 +57,7 @@ export async function GenerarPDF(data: datosSalidaEntradaType) {
     doc.addImage(imgCar.src, 'PNG', 35, 150, 50, 30, '', 'FAST')
   }
   
-  if (data.golpesLlegada) {
+  if (data.carroceriaLlegada.length !== 0) {
     imagesPromises.push(
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
