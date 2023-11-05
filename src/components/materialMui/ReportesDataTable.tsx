@@ -27,12 +27,14 @@ const options = {
 
 function ReportesDataTable() {
   return (
-    <MUIDataTable
-      title={"Lista de empleados"}
+    <div className="w-full md:pl-10">
+      <MUIDataTable
+      title={"Lista De Reportes Vehiculos"}
       data={data}
       columns={columns}
       options={{filterType:"checkbox"}}
     ></MUIDataTable>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ import ReportesTable from "@/components/materialMui/ReportesTable";
 
 function page() {
   return (
-    <main className=" bg-[#f2f2f2] text-black  w-full  h-full  ">
+    <main className=" bg-[#f2f2f2] text-black  w-full md:w-11/12  h-full  ">
       {/* <ReportesTable></ReportesTable> */}
       <ReportesDataTable></ReportesDataTable>
     </main>
