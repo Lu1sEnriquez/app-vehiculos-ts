@@ -5,14 +5,14 @@ import marcadorGasolina from "@/assets/icons/MarcadorGasolina.png";
 
 import useElementSize from "@/utils/custom/useElementSize";
 import { useEffect, useRef } from "react";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 
 function UiGasolina({ porcentaje }:{porcentaje:number}) {
   const containerMarcador = useRef<HTMLDivElement>(null);
   const { height } = useElementSize(containerMarcador);
 
 
-  const { dispatch } = useDatosSalidaReducer();
+  const { dispatch } = useDatosSalidaLlegadaReducer();
   useEffect(() => {
     dispatch({ type: "SET_MARCADOR_GASOLINA", payload: containerMarcador.current });
   }, [porcentaje]);

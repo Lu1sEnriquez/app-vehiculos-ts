@@ -6,8 +6,8 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import LabelFormulario from "./LabelFormulario";
 
 function InputDestino() {
   const LOCAL = "local";
@@ -15,7 +15,7 @@ function InputDestino() {
   const [isLocal, SetIsLocal] = useState<boolean>(true);
   const [destino, setDestino] = useState<string>("");
 
-  const { dispatch, state } = useDatosSalidaReducer();
+  const { dispatch, state } = useDatosSalidaLlegadaReducer();
 
   useEffect(() => {
     if (isLocal) {

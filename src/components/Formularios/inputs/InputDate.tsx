@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import LabelFormulario from "./LabelFormulario";
 
 const InputDate = () => {
  // Obtiene la fecha actual en el formato deseado (por ejemplo, "YYYY-MM-DD")
@@ -12,7 +12,7 @@ const InputDate = () => {
     setDate(evt.target.value);
   };
 
-  const { state, dispatch } = useDatosSalidaReducer();
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
   useEffect(() => {
    setDate((): string=>{
     try {
@@ -46,7 +46,7 @@ const InputDate = () => {
   return (
     <>
       <div className="w-full">
-        <LabelFormulario>Fecha de Salida:</LabelFormulario>
+        <LabelFormulario>Fecha Actual:</LabelFormulario>
         <input
           id="dia"
           type="date"

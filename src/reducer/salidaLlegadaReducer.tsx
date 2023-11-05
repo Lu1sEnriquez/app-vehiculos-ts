@@ -1,5 +1,5 @@
 "use client";
-import datosSalidaType from "@/models/DatosSalidaType";
+import DatosSalidaLlegadaType from "@/models/DatosSalidaType";
 import CoordenadasType from "@/models/CoordenadasType";
 // Importa las bibliotecas de TypeScript y React
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
@@ -14,11 +14,10 @@ type ActionTypes =
   | { type: "SET_PLACA"; payload: string | null }
   | { type: "SET_LICENCIA"; payload: string | null }
   | { type: "SET_HORA_SALIDA"; payload: string | null }
-  | { type: "SET_KILOMETRAJE"; payload: number | null }
+  | { type: "SET_KILOMETRAJE"; payload: string | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
   | { type: "SET_CARROCERIA"; payload: CoordenadasType[] }
-  | { type: "SET_MARCADOR_GASOLINA"; payload: HTMLDivElement | null }
-  | { type: "SET_PORCENTAJE_GASOLINA"; payload: number | null }
+  | { type: "SET_PORCENTAJE_GASOLINA"; payload: string | null }
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_SOLICITANTE"; payload: string | null }
@@ -42,10 +41,10 @@ type ActionTypes =
 
 
 // Define el reducer para gestionar el estado
-const DatosSalidaReducer = (
-  state: datosSalidaType,
+const DatosSalidaLlegadaReducer = (
+  state: DatosSalidaLlegadaType,
   action: ActionTypes
-): datosSalidaType => {
+): DatosSalidaLlegadaType => {
   switch (action.type) {
     case "SET_IDSOLICITUD":
       return { ...state, idSolicitud: action.payload };
@@ -93,30 +92,30 @@ const DatosSalidaReducer = (
 };
 
 // Define el contexto
-export const DatosSalidaContext = createContext<
+export const DatosSalidaLlegadaContext = createContext<
   | {
-      state: datosSalidaType;
+      state: DatosSalidaLlegadaType;
       dispatch: React.Dispatch<ActionTypes>;
     }
   | undefined
 >(undefined);
 
 // Proveedor de contexto
-type DatosSalidasProviderProps = {
-  children: ReactNode;
-  value: datosSalidaType;
+type DatosSalidaLlegadaProviderProps = {
+  children?: ReactNode;
+  value?: DatosSalidaLlegadaType;
 };
 
-export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
+export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProviderProps) {
   // Define el estado inicial
-  const initialState: datosSalidaType = {
-    idSolicitud: 13,
+  const initialState: DatosSalidaLlegadaType = {
+    idSolicitud: null,
     fecha: null,
     hora: null,
     nombreSolicitante: null,
     chofer: null,
     licencia:null,
-    departamento: "OFICINA",
+    departamento:null,
     placa: null,
     kilometraje: null,
     golpes: true,
@@ -141,20 +140,20 @@ export function DatosSalidasProvider({ children }: DatosSalidasProviderProps) {
   };
 
   // Usa useReducer para gestionar el estado con el reducer
-  const [state, dispatch] = useReducer(DatosSalidaReducer, initialState);
+  const [state, dispatch] = useReducer(DatosSalidaLlegadaReducer, initialState);
 
   // Proporciona el estado y el dispatcher a través del contexto
   const contextValue = { state, dispatch };
 
   return (
-    <DatosSalidaContext.Provider value={contextValue}>
+    <DatosSalidaLlegadaContext.Provider value={contextValue}>
       {children}
-    </DatosSalidaContext.Provider>
+    </DatosSalidaLlegadaContext.Provider>
   );
 }
 
-export function useDatosSalidaReducer() {
-  const context = useContext(DatosSalidaContext);
+export function useDatosSalidaLlegadaReducer() {
+  const context = useContext(DatosSalidaLlegadaContext);
   if (!context) {
     throw new Error(
       "useDatosSalida debe utilizarse dentro de un DatosSalidasProvider"

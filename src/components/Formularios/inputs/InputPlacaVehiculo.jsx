@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import placaImg from "@/assets/icons/PlacaVehiculo.svg";
 import { useEffect, useState } from "react";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 
 function InputPlacaVehiculo() {
   const [placa, setPlaca] = useState("");
-const {state,dispatch} = useDatosSalidaReducer()
+const {state,dispatch} = useDatosSalidaLlegadaReducer()
   const handleInputPlaca = (event) => {
     const valor = event.target.value;
     // const nuevoValor = formatearMatriculaMexicana(valor);

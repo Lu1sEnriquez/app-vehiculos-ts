@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { CarroseriaUI } from "./CarroseriaUI";
 
 import autoImage from "@/assets/icons/auto.png";
-import LabelFormulario from "../LabelFormulario";
+import LabelFormulario from "../inputs/LabelFormulario";
 
 function InputCarroceria() {
   const [tieneGolpes, setTieneGolpes] = useState(false);

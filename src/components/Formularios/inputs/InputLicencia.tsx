@@ -1,11 +1,11 @@
 'use client'
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ChangeEvent, useEffect, useState } from "react";
-import LabelFormulario from "../LabelFormulario";
+import LabelFormulario from "./LabelFormulario";
 
 function InputLicencia() {
   const [licencia, setLicencia] = useState("");
-  const {  dispatch } = useDatosSalidaReducer();
+  const {  dispatch } = useDatosSalidaLlegadaReducer();
   
   const handleSetLicencia = (e:ChangeEvent<HTMLInputElement>) => {
     setLicencia(e.target.value);

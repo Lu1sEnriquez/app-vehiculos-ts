@@ -1,8 +1,9 @@
 
-
-const POST_SALIDALLEGADA_URL ="http://10.21.44.8:3001/reportes/";  //varia  segun la propiedad isSalida
-const GET_REPORTES_INDIVIDUAL_URL ="http://10.21.44.8:3001/reportes/";
-const GET_REPORTES_GENERAL_URL ="http://10.21.44.8:3001/reportes/general/";
+const IP_API ="192.168.0.7"
+const PORT_API =3001
+const POST_SALIDALLEGADA_URL =`http://${IP_API}:${PORT_API}/reportes/` //varia  segun la propiedad isSalida
+const GET_REPORTES_INDIVIDUAL_URL =`http://${IP_API}:${PORT_API}/reportes/`;
+const GET_REPORTES_GENERAL_URL =`http://${IP_API}:${PORT_API}/reportes/general/`;
 
 export{
     POST_SALIDALLEGADA_URL ,

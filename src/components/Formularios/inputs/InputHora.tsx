@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import LabelFormulario from "./LabelFormulario";
 
 function InputHora() {
  
@@ -23,7 +23,7 @@ function InputHora() {
 
 
 
-  const { dispatch} = useDatosSalidaReducer();
+  const { dispatch} = useDatosSalidaLlegadaReducer();
 useEffect(()=>{
   dispatch({type:"SET_HORA_SALIDA", payload: time})
 },[time,dispatch])
@@ -36,7 +36,7 @@ useEffect(()=>{
   return (
     <>
     <div className="w-full">
-      <LabelFormulario>Fecha de Salida:</LabelFormulario>
+      <LabelFormulario>Hora Actual:</LabelFormulario>
       <input
         type="time"
         className="border bg-white border-slate-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline

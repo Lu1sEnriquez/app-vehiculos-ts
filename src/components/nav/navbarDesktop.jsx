@@ -36,7 +36,7 @@ function NavbarDesktop() {
         <div className="md:mt-4 flex  md:flex-col  gap-4   relative">
           {menuItems.map((item) => (
             <Link
-              className={`${item.margin && "md:mt-6"}
+              className={`${item?.margin && "md:mt-0"}
             flex items-center 
             text-lg gap-3.5 font-medium p-2 
             hover:bg-azulNormal rounded-md`}

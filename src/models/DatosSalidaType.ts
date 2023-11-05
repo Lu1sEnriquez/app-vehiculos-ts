@@ -2,18 +2,18 @@ import CoordenadasType from "./CoordenadasType";
 
 // Define el estado inicial
 export default interface datosSalidaType {
-  isSalida: boolean | null;
   idSolicitud: number | null;
+  isSalida: boolean | null;
   fecha: string | null;
   nombreSolicitante: string | null;
   chofer: string | null;
   departamento: string | null;
   placa: string | null;
   hora: string | null;
-  kilometraje: number | null;
+  kilometraje: string | null;
   golpes: boolean | null;
   carroceria: CoordenadasType[];
-  tanque: number | null;
+  tanque: string | null;
   nombreVigilante: string | null;
   firmaVigilante: string | null;
   firmaSolicitante: string | null;

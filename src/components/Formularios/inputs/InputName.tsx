@@ -1,6 +1,6 @@
 "use client";
 
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import React, { useEffect,  useState } from "react";
 
 interface Props{
@@ -9,7 +9,7 @@ interface Props{
 
 function InputName({ text}: Props) {
   const [name, setName] = useState("");
-  const { state, dispatch } = useDatosSalidaReducer();
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
  
   
   const handleSetNombre = (evt: React.ChangeEvent<HTMLInputElement>) => {

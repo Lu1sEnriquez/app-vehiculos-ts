@@ -1,6 +1,6 @@
 "use client";
 
-import { datosSalidaType, useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { datosSalidaType, useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import autoImage from "@/assets/icons/auto.png";
@@ -10,7 +10,7 @@ import html2canvas from "html2canvas";
 import { ComponentToImage } from "@/utils/canvas/ComponentToImage";
 function MostrarDatosSalida() {
   // Utiliza el hook useDatosSalida para acceder al estado del contexto
-  const { state, dispatch } = useDatosSalidaReducer();
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
   // Utiliza el estado local para almacenar los datos del contexto
   const [data, setDatos] = useState<datosSalidaType>(state);

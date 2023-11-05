@@ -4,37 +4,38 @@ import useModal from "@/utils/custom/useModal";
 import { ButtonAzul } from "@/components/basicos/ButtonAzul";
 import Modal from "./Modal";
 import InputFirma, { firmaType } from "../Formularios/inputs/InputFirma";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
-import LabelFormulario from "../Formularios/LabelFormulario";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import { ReactNode } from "react";
+import LabelFormulario from "../Formularios/inputs/LabelFormulario";
 
+interface Props {
+  type?: firmaType;
+  children?:ReactNode
+}
 
-function ButtonFirmaModal({ type }: { type: firmaType }) {
+function ButtonFirmaModal({ type, children }: Props) {
   const { isModalOpen, openModal, closeModal } = useModal();
 
-  const { state, dispatch } = useDatosSalidaReducer();
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
   let textButton;
-  let containerClass='';
+  let containerClass = "";
 
   if (type == "Solicitante") {
     if (!state.firmaSolicitante) {
       textButton = "Agregar firma Solicitante";
-      containerClass = "w-full"
-
+      containerClass = "w-full";
     } else {
       textButton = "Modificar";
-      containerClass = "w-62"
+      containerClass = "w-62";
     }
-
   } else {
     if (!state.firmaVigilante) {
       textButton = "Agregar firma Vigilante";
-      containerClass = "w-full"
-
+      containerClass = "w-full";
     } else {
       textButton = "Modificar";
-      containerClass = "w-62"
-
+      containerClass = "w-62";
     }
   }
 

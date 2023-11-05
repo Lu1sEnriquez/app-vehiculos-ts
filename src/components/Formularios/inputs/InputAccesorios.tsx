@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { FcCheckmark } from "react-icons/fc";
+import LabelFormulario from "./LabelFormulario";
 
 interface AccesoriosState {
   gato: boolean;
@@ -38,7 +38,7 @@ const InputAccesorios: React.FC = () => {
     });
   };
 
-  const { dispatch } = useDatosSalidaReducer();
+  const { dispatch } = useDatosSalidaLlegadaReducer();
   useEffect(() => {}, [accesorios]);
   const classNameLabel = "flex flex-row  ";
 const claseCheck ="w-8 h-8 border-black border-2 rounded flex items-center justify-center"

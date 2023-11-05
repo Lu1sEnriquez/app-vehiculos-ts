@@ -1,6 +1,4 @@
 
-
-
 import NavbarPrincipal from "@/components/nav/NavbarPrincipal";
 import "./globals.css";
 import React from "react";
@@ -13,9 +11,8 @@ export const metadata = {
 export default function RootLayout({ children }: {children: React.ReactNode}) {
   return (
     <html lang="en" className="relative">
-      
-
-      <body className="absolute lg:text-3xl md:text-2xl sm:text-xl sm:bg-white h-screen ">
+       
+      <body className="absolute  md:text-2xl sm:text-xl  h-screen ">
       <NavbarPrincipal></NavbarPrincipal>
         <main
           className="  sm:w-full  md:mx-auto 

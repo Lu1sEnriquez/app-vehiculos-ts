@@ -48,7 +48,7 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
           doc.addImage(carSalida, 'PNG', 35, 150, 50, 30, '', 'FAST');
-          generarCoordenadas(doc);
+          // generarCoordenadas(doc);
           resolve();
         });
       })
@@ -96,8 +96,8 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
   // generarCoordenadas(doc)
 
 
-  if (data.folio) {
-    doc.text(data.folio, 60, 71)
+  if (data.idSolicitud) {
+    doc.text(`${data.idSolicitud}`, 60, 71)
   }
   if (data.fechaSalida) {
     doc.text(data.fechaSalida, 52, 82)

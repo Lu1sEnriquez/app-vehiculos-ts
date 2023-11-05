@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import LabelFormulario from "../LabelFormulario";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import LabelFormulario from "./LabelFormulario";
 
 function InputChofer() {
   const [isChofer, setIsChofer] = useState(false);
@@ -18,7 +18,7 @@ function InputChofer() {
   };
 
 
-const {dispatch, state} = useDatosSalidaReducer();
+const {dispatch, state} = useDatosSalidaLlegadaReducer();
   useEffect(() => {
     if (isChofer) {
       dispatch({ type: "SET_NOMBRE_CHOFER", payload: chofer });

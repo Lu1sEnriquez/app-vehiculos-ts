@@ -1,5 +1,4 @@
 import InputDate from "../Formularios/inputs/InputDate";
-
 import InputPlacaVehiculo from "../Formularios/inputs/InputPlacaVehiculo";
 import InputName from "../Formularios/inputs/InputName";
 import InputHora from "../Formularios/inputs/InputHora";
@@ -8,17 +7,24 @@ import InputCarroceria from "../Formularios/inputCarroceria/InputCarroceria";
 import ButtonFirmaModal from "../modal/ButtonActiveModal";
 import InputFirma from "../Formularios/inputs/InputFirma";
 import InputGasolina from "../Formularios/inputGasolina/InputGasolina";
-import { DatosSalidasProvider } from "@/reducer/salidasReducer";
-import MostrarDatosSalida from "../mostrarProvider/MostrarDatosSalida";
+import { DatosSalidaLlegadaProvider } from "../../reducer/salidaLlegadaReducer";
 import InputDestino from "../Formularios/inputs/inputDestino";
 import InputAccesorios from "../Formularios/inputs/InputAccesorios";
 import InputObservaciones from "../Formularios/inputs/InputObservaciones";
+import InputChofer from "../Formularios/inputs/InputChofer";
+import InputLicencia from "../Formularios/inputs/InputLicencia";
+import ButtonPostSalidaLlegada from "../buttonServices/ButtonPostSalidaLlegada";
+import InputDepartamento from "../Formularios/inputs/InputDepartamento";
+import InputFolio from "../Formularios/inputs/InputFolio";
+import IsSalida from "../Formularios/inputs/IsSalida";
 
 function FormularioSalida() {
 
 
+
   return (
-    <DatosSalidasProvider>
+    <DatosSalidaLlegadaProvider>
+      <IsSalida isSalida={true}/>
       <section
         className=" flex flex-wrap sm:justify-around 
     py-5 md:px-5 
@@ -29,45 +35,44 @@ function FormularioSalida() {
       w-full h-full mx-5 
       flex flex-col gap-y-5"
         >
+          <InputFolio/>
           <InputDate />
           <InputHora />
-          <InputDestino></InputDestino>
+          <InputDestino />
           <InputPlacaVehiculo />
-          <InputCarroceria></InputCarroceria>
-          <InputAccesorios></InputAccesorios>
+          <InputLicencia/>
+          <InputAccesorios />
+          <InputCarroceria />
         </div>
 
         <div
           className="columna2 lg:w-1/3 md:w-72 sm:w-30 lg:text-2xl sm:text-xl 
       w-full mx-5 
-      flex flex-col gap-y-5"
+      flex flex-col gap-y-4"
         >
           
-          <InputKilometraje />
           <InputGasolina></InputGasolina>
-
+          <InputKilometraje />
+          <InputDepartamento/>
           <InputName text={"Nombre Solicitante:"} />
-          <ButtonFirmaModal
-            type={"Solicitante"}
-            
-          >
-            <InputFirma></InputFirma>
+
+          <ButtonFirmaModal type={"Solicitante"}>
+            <InputFirma />
           </ButtonFirmaModal>
           <InputName text={"Nombre Vigilante:"} />
 
-          <ButtonFirmaModal
-            type={'Vigilante'}
-          >
-            <InputFirma ></InputFirma>
+          <ButtonFirmaModal type={"Vigilante"}>
+            <InputFirma />
           </ButtonFirmaModal>
+          <InputChofer />
           
-         
-         <InputObservaciones></InputObservaciones>
+          <InputObservaciones />
+          <ButtonPostSalidaLlegada></ButtonPostSalidaLlegada>
         </div>
       </section>
-    <MostrarDatosSalida></MostrarDatosSalida>
-    </DatosSalidasProvider>
-    
+    </DatosSalidaLlegadaProvider>
   );
 }
 export default FormularioSalida;
+
+

@@ -2,21 +2,30 @@
 import {useMemo} from 'react'
 import {ButtonAzul} from '@/components/basicos/ButtonAzul'
 import {GenerarPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
-import { useDatosSalidaEntradaReducer } from '@/reducer/salidaEntradaReducer';
+import {GrDocumentPdf} from "react-icons/gr"
 
-function ButtonGenerarPDF() {
+import { ButtonRojo } from './ButtonRojo';
+import { datosSalidaLlegada } from '@/models/DatosSalidaLlegada';
+function ButtonGenerarPDF({id}:{id: number}) {
 
-  const {state} = useDatosSalidaEntradaReducer()
-
+  
+  
   const handleGenerar =useMemo(()=>{
     return ()=>{
-      GenerarPDF(state)
+      const data= datosSalidaLlegada.find(item => item.idSolicitud == id)
+      console.log(data);
+      
+      if(data){
+        GenerarPDF(data)
+      }
   };
-  },[state]);
+  },[id]);
     
   return (
 
-        <ButtonAzul onClick={handleGenerar} text={"generar PDF"}></ButtonAzul>
+        <ButtonRojo onClick={handleGenerar} >
+          <GrDocumentPdf size={20}></GrDocumentPdf>
+        </ButtonRojo>
   )
 }
 

@@ -1,22 +1,22 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
-import LabelFormulario from "../LabelFormulario"
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import LabelFormulario from "./LabelFormulario";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 
 function InputKilometraje() {
-  const [kilometraje, setkilometraje] = useState("");
-  const { datosState, dispatch } = useDatosSalidaReducer();
+  const [kilometraje, setkilometraje] = useState(0);
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
   
   const inputRef = useRef(null);
   
   
-  const handleSetKilometraje = () => {
-    setkilometraje(inputRef.current.value);
+  const handleSetKilometraje = (e:ChangeEvent<HTMLInputElement>) => {
+    setkilometraje(parseInt(e.target.value));
   };
 
   useEffect(()=>{ 
-    dispatch({type: "SET_KILOMETRAJE", payload:kilometraje})
-  },[kilometraje])
+    dispatch({type: "SET_KILOMETRAJE", payload:`${kilometraje}`})
+  },[kilometraje, dispatch])
 
 
 

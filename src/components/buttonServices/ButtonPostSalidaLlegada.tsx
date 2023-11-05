@@ -1,11 +1,11 @@
 "use client"
-import { DatosSalidasProvider, useDatosSalidaReducer } from "@/reducer/salidasReducer"
+import { DatosSalidaLlegadaProvider, useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer"
 import { ButtonAzul } from "../basicos/ButtonAzul"
 import { salidaPost } from "@/services/reportes.services";
 import { data } from "autoprefixer";
 
 function ButtonPostSalidaLlegada() {
-    const { state, dispatch } = useDatosSalidaReducer();
+    const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
     async function handlePost() {
         try {

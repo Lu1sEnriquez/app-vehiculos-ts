@@ -3,19 +3,19 @@ import useElementSize from "@/utils/custom/useElementSize";
 import React, { useRef, useState, MutableRefObject } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import CreateImageFirmaURL from "@/utils/canvas/CreateImageFirmaURL";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ButtonAzul } from "@/components/basicos/ButtonAzul"; // Importa ButtonAzul desde el lugar correcto
 
 type vigilanteType = "Vigilante";
 type solicitanteType = "Solicitante";
 export type firmaType = vigilanteType | solicitanteType;
 
-function InputFirma({ type, onClose }: { type:firmaType; onClose: () => void }) {
+function InputFirma({ type, onClose }: { type?:firmaType; onClose?: () => void }) {
   const contentSignaturePad = useRef<HTMLDivElement | null>(null); // Define el tipo de referencia
 
   const [firma, setFirma] = useState<SignatureCanvas | null>(null); // Define el tipo de estado
   const padId: string = `${type}-canvas`;
-  const { state, dispatch } = useDatosSalidaReducer();
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
   function handleClearClick() {
     if (firma) {
@@ -26,6 +26,8 @@ function InputFirma({ type, onClose }: { type:firmaType; onClose: () => void }) 
   function handleSaveClick() {
     if (firma) {
       const imageDataURL = CreateImageFirmaURL(firma, "png");
+      console.log(imageDataURL);
+      
       if (type === "Vigilante") {
         // Cambia '==' por '==='
         dispatch({ type: "SET_FIRMA_VIGILANTE", payload: imageDataURL });
@@ -33,7 +35,9 @@ function InputFirma({ type, onClose }: { type:firmaType; onClose: () => void }) 
         // Cambia '==' por '==='
         dispatch({ type: "SET_FIRMA_SOLICITANTE", payload: imageDataURL });
       }
-      onClose();
+      if(onClose){
+        onClose();
+      }
     }
   }
 

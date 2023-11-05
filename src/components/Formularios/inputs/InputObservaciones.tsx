@@ -1,5 +1,5 @@
 'use client'
-import { useDatosSalidaReducer } from '@/reducer/salidasReducer';
+import { useDatosSalidaLlegadaReducer } from '@/reducer/salidaLlegadaReducer';
 import useElementSize from '@/utils/custom/useElementSize';
 import React,{ChangeEvent, useEffect, useRef, useState} from 'react'
 
@@ -10,7 +10,7 @@ function InputObservaciones() {
       setObservacion(e.target.value);
     };
     
-    const {dispatch}= useDatosSalidaReducer();
+    const {dispatch}= useDatosSalidaLlegadaReducer();
     const containerObservacionesRef = useRef(null)
 
     useEffect(()=>{

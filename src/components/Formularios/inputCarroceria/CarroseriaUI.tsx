@@ -1,17 +1,16 @@
-'use client'
+"use client";
 import React, { useState, useRef, useEffect, MutableRefObject } from "react";
 import Image from "next/image";
-import {ButtonAzul} from "@/components/basicos/ButtonAzul";
+import { ButtonAzul } from "@/components/basicos/ButtonAzul";
 import useElementSize from "@/utils/custom/useElementSize";
 
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import CoordenadasType from "@/models/CoordenadasType";
-import { useDatosSalidaReducer } from "@/reducer/salidasReducer";
-
-
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
+import { ButtonRojo } from "@/components/basicos/ButtonRojo";
 
 export function drawMarks(
-  canvasRef: MutableRefObject<HTMLCanvasElement | null >,
+  canvasRef: MutableRefObject<HTMLCanvasElement | null>,
   coordenadas: CoordenadasType[],
   imagen: MutableRefObject<HTMLImageElement | null>
 ) {
@@ -26,7 +25,7 @@ export function drawMarks(
       if (imagen.current) {
         const newCoordenadas = redimensionarCoordenada(
           marca,
-         Number( marca.widthOriginal),
+          Number(marca.widthOriginal),
           Number(marca.heightOriginal),
           imagen.current.width,
           imagen.current.height
@@ -40,10 +39,7 @@ export function drawMarks(
           ctx.lineTo(newCoordenadas.x + 10, newCoordenadas.y - 10);
           ctx.stroke();
         }
-
       }
-
-      
     });
   }
 }
@@ -51,19 +47,16 @@ export function drawMarks(
 export function redimensionarCoordenada(
   coordenada: CoordenadasType,
   originalWidth: number,
-  originalHeight: number ,
+  originalHeight: number,
   newWidth: number,
   newHeight: number
-):{ x: any, y:any} {
-  if (originalWidth  && originalHeight && newWidth && newHeight) {
+): { x: any; y: any } {
+  if (originalWidth && originalHeight && newWidth && newHeight) {
     const xRatio = newWidth / originalWidth;
-    console.log(xRatio);
-    
     const yRatio = newHeight / originalHeight;
-    console.log(yRatio);
-    
+
     const newX = coordenada.x !== null ? Number(coordenada.x) * xRatio : null;
-    const newY = coordenada.y !== null ? Number(coordenada.y )* yRatio : null;
+    const newY = coordenada.y !== null ? Number(coordenada.y) * yRatio : null;
 
     return { x: newX, y: newY };
   }
@@ -72,10 +65,8 @@ export function redimensionarCoordenada(
 
 export function CarroseriaUI({
   autoImage,
- 
 }: {
   autoImage: string | StaticImport;
-  
 }) {
   const initialStateCoordenadas: CoordenadasType[] = [];
 
@@ -84,31 +75,28 @@ export function CarroseriaUI({
   );
 
   const autoRef = useRef<HTMLImageElement | null>(null);
-  
-  const { width, height } = useElementSize(autoRef);
 
+  const { width, height } = useElementSize(autoRef);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   autoRef;
 
   const [mode, setMode] = useState<boolean>(true);
 
-  const { dispatch, state } = useDatosSalidaReducer();
+  const { dispatch, state } = useDatosSalidaLlegadaReducer();
 
   useEffect(() => {
     drawMarks(canvasRef, coordenadas, autoRef);
     if (coordenadas && autoRef.current) {
       dispatch({ type: "SET_CARROCERIA", payload: coordenadas });
     }
-    
-
   }, [coordenadas, autoRef.current, height, width]);
 
   function addMark(event: React.MouseEvent<HTMLCanvasElement>) {
     const rect = canvasRef.current!.getBoundingClientRect();
-    const x :number= event.clientX - rect.left;
-    const y:number = event.clientY - rect.top;
-    setCoordenadas((coordenadasAnteriores:CoordenadasType[]) => [
+    const x: number = event.clientX - rect.left;
+    const y: number = event.clientY - rect.top;
+    setCoordenadas((coordenadasAnteriores: CoordenadasType[]) => [
       ...coordenadasAnteriores,
       { x, y, widthOriginal: width, heightOriginal: height },
     ]);
@@ -118,17 +106,20 @@ export function CarroseriaUI({
     const rect = canvasRef.current!.getBoundingClientRect();
     const x: number = event.clientX - rect.left;
     const y: number = event.clientY - rect.top;
-  
+
     setCoordenadas((coordenadasAnteriores: CoordenadasType[]) =>
       coordenadasAnteriores.filter((marca) => {
         const newCoordenadas = redimensionarCoordenada(
           marca,
-         Number( marca.widthOriginal),
+          Number(marca.widthOriginal),
           Number(marca.heightOriginal),
           autoRef.current!.width,
           autoRef.current!.height
         );
-        const distance = Math.sqrt((x - Number(newCoordenadas.x)) ** 2 + (y - Number(newCoordenadas.y)) ** 2);
+        const distance = Math.sqrt(
+          (x - Number(newCoordenadas.x)) ** 2 +
+            (y - Number(newCoordenadas.y)) ** 2
+        );
         return distance >= 10; // Puedes ajustar este valor según tus necesidades
       })
     );
@@ -184,22 +175,62 @@ export function CarroseriaUI({
           ></Image>
         </div>
       </div>
+      <ButtonsAction agregar={handleAgregar} eliminar={handleEliminar} active={mode} />
+    </div>
+  );
+}
 
-      <div className="container-buttons flex flex-row justify-end gap-2 w-full pb-2">
-        <ButtonAzul
-          text={"Agregar"}
-          onClick={() => {
-            handleAgregar();
-          }}
-        />
-        <ButtonAzul
-          text={"Eliminar"}
-          onClick={() => {
-            handleEliminar();
-          }}
-        />
-        
-      </div>
+function ButtonsAction({
+  agregar,
+  eliminar,
+  active
+}: {
+  agregar: () => void;
+  eliminar: () => void;
+  active:boolean
+}) {
+  
+
+  return (
+    <div className="container-buttons flex flex-row justify-end gap-2 w-full pb-2">
+      <button
+        className={`
+         ${active ? "bg-azulNormal":"bg-blue-300"  } text-blanco
+         px-5 py-2 rounded-md 
+         shadow-lg
+         
+         duration-200
+         ${!active ? "hover:bg-azulNormal" : "hover:bg-azulNormal"}
+         
+         hover:scale-105
+         `}
+        onClick={() => {
+          agregar();
+          // if(active==false){
+          //   setActive(true)
+          // }
+        }}
+      >Agregar</button>
+      <button
+        className={`
+           ${active ?"bg-red-300"  :"bg-red-600"} text-blanco
+           px-5 py-2 rounded-md 
+           shadow-lg
+           
+           duration-200
+           ${active ? "hover:bg-red-600": "hover:bg-red-600"}
+           
+           hover:scale-105
+           `}
+        onClick={() => {
+          eliminar();
+          // if(active){
+          //   setActive(false)
+          // }
+        }}
+      >
+        Eliminar
+      </button>
     </div>
   );
 }

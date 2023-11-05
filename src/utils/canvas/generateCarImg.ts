@@ -1,5 +1,5 @@
 import { drawMarks, redimensionarCoordenada } from "@/components/Formularios/inputCarroceria/CarroseriaUI";
-import { CoordenadasType } from "@/reducer/salidasReducer";
+import { CoordenadasType } from "@/reducer/salidaLlegadaReducer";
 import { StaticImageData } from "next/image";
 
 export async function generateImageWithCoordinates(coordenadas: CoordenadasType[], imgCar: StaticImageData) {
