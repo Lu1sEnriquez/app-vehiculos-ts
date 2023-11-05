@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import React, { useState, useEffect, useMemo } from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import {
   TextField,
   Box,
@@ -8,20 +8,21 @@ import {
   IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { reportesGeneralGet } from "@/services/reportes.services";
-import LabelFormulario from "../Formularios/LabelFormulario";
+import { reportesGeneralGet, reportesGeneralGetByRangeDate } from "@/services/reportes.services";
+import { resolve } from "path";
+import ErrorPopup from "../modal/Popups/ErrorPopup";
 
 interface ReporteGeneralType {
-  idSolicitud: number;
-  nombreSolicitante: string;
-  chofer: string;
-  destino: string;
-  vehiculo: string;
-  placa: string;
-  fechaRegistro: string;
-  fechaSalida: string;
-  fechaLlegada: string;
-  estadoSolicitud: string;
+  idSolicitud: number |null;
+  nombreSolicitante: string |null;
+  chofer: string |null;
+  destino: string |null;
+  vehiculo: string |null;
+  placa: string |null;
+  fechaRegistro: string |null;
+  fechaSalida: string |null;
+  fechaLlegada: string |null;
+  estadoSolicitud: string |null;
 }
 
 const columns: GridColDef[] = [
@@ -39,21 +40,77 @@ const columns: GridColDef[] = [
 
 export default function ReportesTable() {
   const [reportes, setReportes] = useState<ReporteGeneralType[]>([]);
+  const [reportesFiltered, setReportesFiltered] = useState<ReporteGeneralType[]>([]);
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
-  const [startDate, setStartDate] = useState<string>("");
-  const [endDate, setEndDate] = useState<string>("");
+
+  const fechaActual = new Date();
+
+  const yyyy = fechaActual.getFullYear();
+  const mm = String(fechaActual.getMonth() + 1).padStart(2, '0');
+  const dd = String(fechaActual.getDate()).padStart(2, '0');
+  
+  const initialStartDate = `${yyyy}-${mm}-01`;
+  const initialEndDate = `${yyyy}-${mm}-${dd}`;
+
+  const [startDate, setStartDate] = useState<string>(initialStartDate);
+  const [endDate, setEndDate] = useState<string>(initialEndDate);
+ const [error, setError] = useState<string | null>(null);
+ 
+async function getReportesByFilter(fechaInicio?:string, fechaFin?:string ,id?:number) {
+  
+  if(id){
+    
+  }else if(fechaInicio && fechaFin){
+    reportesGeneralGetByRangeDate(fechaInicio, fechaFin).then((response) => {
+      
+      if (typeof response == typeof reportes ) {
+        setReportes(response);
+        resolve("busqueda Exitosa")
+
+      }else{       
+        setError(response)
+      }
+    }).catch(error =>{
+      setError(error)
+    })
+  }else{
+    reportesGeneralGet().then((response) => {
+      if (response && typeof response == typeof [] ) {
+        setReportes(response);
+        resolve("busqueda Exitosa")
+
+      }else if (typeof response == "string" ){
+        setError(response)
+        
+      }
+    }).catch(error =>{
+      setError(error)     
+    })
+  }
+}
+
 
   useEffect(() => {
     // Reemplaza 'reportesGeneralGet' con la función real para obtener los datos
-    reportesGeneralGet().then((response) => {
-      console.log(response);
-      if (response) {
-        setReportes(response);
-      }
-    });
-  }, []);
+    getReportesByFilter( startDate, endDate).then(result =>{
+
+    })
+  }, [startDate, endDate]);
+
+useEffect(() => {
+   setReportesFiltered(reportes.filter((reporte) =>
+  Object.values(reporte).some((value) =>
+    value.toString().toLowerCase().includes(search.toLowerCase())
+  )))
+
+  
+}, [search,reportes])
+
+  
+
+
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -69,28 +126,11 @@ export default function ReportesTable() {
     setPage(0);
   };
 
-  const handleFilterByDate = () => {
-    // Filtrar la tabla por rango de fechas
-    const filteredByDate = reportes.filter((reporte) => {
-      if (startDate && endDate) {
-        const reporteDate = new Date(reporte.fechaRegistro);
-        const startDateObj = new Date(startDate);
-        const endDateObj = new Date(endDate);
-        return reporteDate >= startDateObj && reporteDate <= endDateObj;
-      }
-      return true;
-    });
-    return filteredByDate;
-  };
-
-  const filteredReportes = handleFilterByDate().filter((reporte) =>
-    Object.values(reporte).some((value) =>
-      value.toString().toLowerCase().includes(search.toLowerCase())
-    )
-  );
+  
 
   return (
     <div className="w-full h-screen overflow-x-auto  flex flex-col items-center">
+      {error && <ErrorPopup errorText={error}/>}
       <div className="flex flex-wrap gap-4 ">
         <Box display="flex" alignItems="center">
           <TextField
@@ -118,7 +158,11 @@ export default function ReportesTable() {
           variant="outlined"
           
           value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          onChange={(e) =>{
+            console.log(e.target.value);
+            
+            setStartDate(e.target.value)
+          }}
         />
         <TextField
 
@@ -136,12 +180,13 @@ export default function ReportesTable() {
         <DataGrid
         
           page={page}
-          rows={filteredReportes}
+          rows={reportesFiltered}
           columns={columns}
           getRowId={(row) => row.idSolicitud}
           pageSize={rowsPerPage}
-          rowCount={filteredReportes.length}
+          rowCount={reportesFiltered.length}
           onPageChange={handleChangePage}
+          checkboxSelection
           onPageSizeChange={(newPageSize) => {
             setRowsPerPage(newPageSize.pageSize);
             setPage(0);

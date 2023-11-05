@@ -53,7 +53,6 @@ function FormularioLlegada() {
       flex flex-col gap-y-4"
         >
           
-          <InputGasolina></InputGasolina>
           <InputKilometraje />
           {/* <InputDepartamento/> */}
           <InputName text={"Nombre Solicitante:"} />
@@ -69,6 +68,7 @@ function FormularioLlegada() {
           {/* <InputChofer /> */}
           
           <InputObservaciones />
+          <InputGasolina></InputGasolina>
           <ButtonPostSalidaLlegada></ButtonPostSalidaLlegada>
         </div>
       </section>

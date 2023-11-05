@@ -100,3 +100,24 @@ export async function reportesGeneralGetById(id: number) {
     throw error;
   }
 }
+export async function reportesGeneralGetByRangeDate(fechaInicio?:string, FechaFin?:string) {
+  try {
+    const result = await fetch(GET_REPORTES_GENERAL_URL + `?fechaInicio=${fechaInicio}&fechaFin=${FechaFin}`);
+    if (result.ok) {
+      const responseData = await result.json();
+      console.log('Respuesta exitosa:', responseData);
+      return responseData.data;
+    }else{
+
+      const responseData = await result.json();
+      console.log('No se encontro:', responseData);
+      return responseData.message
+    } 
+    
+  
+  } catch (error) {
+    
+    console.error('Ocurrió un error:', error);
+    throw error;
+  }
+}

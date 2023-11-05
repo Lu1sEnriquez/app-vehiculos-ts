@@ -17,7 +17,7 @@ function InputGasolina() {
 
 
 useEffect(()=>{
-  dispatch({type:"SET_PORCENTAJE_GASOLINA", payload: porcentaje})
+  dispatch({type:"SET_PORCENTAJE_GASOLINA", payload: `${porcentaje}`})
 },[porcentaje,dispatch])
 
   return (
