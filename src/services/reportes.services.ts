@@ -56,7 +56,7 @@ export async function apartadosGet(type?: "Pendiente" | "Circulacion" | "Finaliz
     const fechaActual = new Date();
     const fechaSiguiente = new Date();
     fechaSiguiente.setDate(fechaSiguiente.getDate() + 1);
-
+    
     if (result.ok) {
       const responseData: DataType = await result.json();
       if (responseData) {
@@ -77,9 +77,12 @@ export async function apartadosGet(type?: "Pendiente" | "Circulacion" | "Finaliz
           if (Array.isArray(responseData.data)) {
             const apartados: ApartadosType[] = responseData.data;
             return apartados.filter(apartado => {
-              const fechaApartado = new Date(apartado.fechaSalida);
-
-              return fechaApartado >= fechaActual && fechaApartado < fechaSiguiente ;
+              const fechaApartado = new Date(apartado.fechaSalida)
+              console.log('actual :'+fechaActual.getDate());
+              console.log('apartado :'+fechaApartado.getDate());
+              console.log('siguiente :'+fechaSiguiente.getDate());
+              
+              return fechaApartado.getDate() >= fechaActual.getDate() && fechaApartado.getDate() <= fechaSiguiente.getDate() ;
             }).sort(compararFechas)
           }
           return responseData.data
