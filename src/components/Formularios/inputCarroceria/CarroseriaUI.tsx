@@ -25,8 +25,8 @@ export function drawMarks(
       if (imagen.current) {
         const newCoordenadas = redimensionarCoordenada(
           marca,
-          Number(marca.widthOriginal),
-          Number(marca.heightOriginal),
+          Number(marca.width),
+          Number(marca.height),
           imagen.current.width,
           imagen.current.height
         );
@@ -98,7 +98,7 @@ export function CarroseriaUI({
     const y: number = event.clientY - rect.top;
     setCoordenadas((coordenadasAnteriores: CoordenadasType[]) => [
       ...coordenadasAnteriores,
-      { x, y, widthOriginal: width, heightOriginal: height },
+      { x, y, width: width, height: height },
     ]);
   }
 
@@ -111,8 +111,8 @@ export function CarroseriaUI({
       coordenadasAnteriores.filter((marca) => {
         const newCoordenadas = redimensionarCoordenada(
           marca,
-          Number(marca.widthOriginal),
-          Number(marca.heightOriginal),
+          Number(marca.width),
+          Number(marca.height),
           autoRef.current!.width,
           autoRef.current!.height
         );

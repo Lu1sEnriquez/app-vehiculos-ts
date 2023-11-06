@@ -1,4 +1,4 @@
-export default interface ReporteGeneralType {
+export default interface ApartadosType {
     idSolicitud: number;
     nombreSolicitante: string;
     chofer: string
@@ -9,9 +9,15 @@ export default interface ReporteGeneralType {
     fechaSalida: string;
     fechaLlegada: string;
     estadoSolicitud: string;
+    estado: estadoType;
 }
-
-export const solicitudes: ReporteGeneralType[] = [
+export type estadoType = "Pendiente"|"Circulacion"|"Finalizado";
+export const estado ={
+    Pendiente :"Pendiente",
+    Circulacion:  "Circulacion" ,
+    Finalizado: "Finalizado",
+  }
+export const solicitudes: ApartadosType[] = [
     {
         idSolicitud: 1,
         fechaSalida: '2023-01-15',
@@ -21,8 +27,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Juan Pérez',
         chofer: 'Carlos García',
         destino: 'Playa Tulum',
-        estadoSolicitud: 'Aprobada',
-        fechaRegistro: '2023-01-05'
+        estadoSolicitud: 'Finalizado',
+        fechaRegistro: '2023-01-05',
+        estado: "Pendiente"
     },
     {
         idSolicitud: 2,
@@ -33,8 +40,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Ana Sánchez',
         chofer: 'Miguel López',
         destino: 'Montañas de Yosemite',
-        estadoSolicitud: 'Rechazada',
-        fechaRegistro: '2022-06-01'
+        estadoSolicitud: 'Pendiente',
+        fechaRegistro: '2022-06-01',
+        estado: "Finalizado"
     },
     {
         idSolicitud: 3,
@@ -45,8 +53,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'María González',
         chofer: 'Javier Rodríguez',
         destino: 'Ciudad de Nueva York',
-        estadoSolicitud: 'Pendiente',
-        fechaRegistro: '2024-03-01'
+        estadoSolicitud: 'Circulacion',
+        fechaRegistro: '2024-03-01',
+        estado: "Circulacion"
     },
     {
         idSolicitud: 4,
@@ -57,8 +66,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Pedro Martínez',
         chofer: 'Luis Hernández',
         destino: 'Parque Nacional Yellowstone',
-        estadoSolicitud: 'Aprobada',
-        fechaRegistro: '2022-09-15'
+        estadoSolicitud: 'Finalizado',
+        fechaRegistro: '2022-09-15',
+        estado: "Pendiente"
     },
     {
         idSolicitud: 5,
@@ -69,8 +79,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Laura Jiménez',
         chofer: 'Carlos Rodríguez',
         destino: 'Las Vegas',
-        estadoSolicitud: 'Pendiente',
-        fechaRegistro: '2023-11-25'
+        estadoSolicitud: 'Circulacion',
+        fechaRegistro: '2023-11-25',
+        estado: "Pendiente"
     },
     {
         idSolicitud: 6,
@@ -81,8 +92,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Roberto García',
         chofer: 'Mariana López',
         destino: 'San Francisco',
-        estadoSolicitud: 'Rechazada',
-        fechaRegistro: '2025-02-05'
+        estadoSolicitud: 'Pendiente',
+        fechaRegistro: '2025-02-05',
+        estado: "Finalizado"
     },
     {
         idSolicitud: 7,
@@ -93,8 +105,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Carmen Fernández',
         chofer: 'Juan Rodríguez',
         destino: 'Orlando',
-        estadoSolicitud: 'Aprobada',
-        fechaRegistro: '2022-11-05'
+        estadoSolicitud: 'Circulacion',
+        fechaRegistro: '2022-11-05',
+        estado: "Circulacion"
     },
     {
         idSolicitud: 8,
@@ -106,7 +119,8 @@ export const solicitudes: ReporteGeneralType[] = [
         chofer: 'Sofía García',
         destino: 'Los Ángeles',
         estadoSolicitud: 'Pendiente',
-        fechaRegistro: '2024-07-01'
+        fechaRegistro: '2024-07-01',
+        estado: "Pendiente"
     },
     {
         idSolicitud: 9,
@@ -117,8 +131,9 @@ export const solicitudes: ReporteGeneralType[] = [
         nombreSolicitante: 'Isabel González',
         chofer: 'Alejandro Martínez',
         destino: 'París',
-        estadoSolicitud: 'Rechazada',
-        fechaRegistro: '2023-05-15'
+        estadoSolicitud: 'Circulacion',
+        fechaRegistro: '2023-05-15',
+        estado: "Finalizado"
     },
     {
         idSolicitud: 10,
@@ -130,6 +145,7 @@ export const solicitudes: ReporteGeneralType[] = [
         chofer: 'Luisa Sánchez',
         destino: 'Roma',
         estadoSolicitud: 'Pendiente',
-        fechaRegistro: '2026-08-05'
+        fechaRegistro: '2026-08-05',
+        estado: "Circulacion"
     }
 ];

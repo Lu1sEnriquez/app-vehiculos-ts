@@ -1,16 +1,13 @@
+import ItemsApartados from '@/components/compApartados/ItemsApartados'
+import ItemsSalida from '@/components/compSalidas/ItemsSalidas'
+import React from 'react'
 
-import FormularioSalida from "@/components/complejos/FormularioSalida";
-import { ReactNode } from "react";
-
-interface Props{
-  children:ReactNode
-}
-function page({children}:Props) {
+function page() {
   return (
-    <div className="container bg-[#f2f2f2] text-black  w-full  h-full  " >
-      <FormularioSalida></FormularioSalida>
-      
-    </div>
-  );
+    <main>
+      <ItemsSalida></ItemsSalida>
+    </main>
+  )
 }
-export default page;
+
+export default page

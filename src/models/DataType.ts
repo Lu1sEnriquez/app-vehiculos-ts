@@ -1,15 +1,15 @@
 import datosSalidaLlegadaType from "./DatosSalidaLlegada";
-import ReporteGeneralType from "./ReporteGeneralType";
+import ApartadosType from "./ReporteGeneralType";
 
 
 
 //en caso de que la data cambie del fetch aqui se agregaran los nuevos tipos
 export default interface DataType {
     error:string,
-    data: string | ReporteGeneralType | datosSalidaLlegadaType
+    data: string | ApartadosType | datosSalidaLlegadaType
 }
 
-export function mapResponseToReporteGeneral(responseData: DataType): ReporteGeneralType[] {
+export function mapResponseToReporteGeneral(responseData: DataType): ApartadosType[] {
     if (Array.isArray(responseData.data)) {
       // Si responseData.data es un arreglo, mapea sus elementos a ReporteGeneralType
       return responseData.data.map((item: any) => {

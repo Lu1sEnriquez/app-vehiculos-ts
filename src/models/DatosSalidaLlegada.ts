@@ -53,12 +53,12 @@ export const datosSalidaLlegada: datosSalidaLlegadaType[] = [
     golpesSalida: false,
     golpesLlegada: false,
     carroceriaSalida: [
-      { x: 0, y: 0, widthOriginal: 100, heightOriginal: 50 },
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 }
+      { x: 0, y: 0, width: 100, height: 50 },
+      { x: 50, y: 50, width: 120, height: 70 }
     ],
     carroceriaLlegada: [
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 },
-      { x: 100, y: 100, widthOriginal: 150, heightOriginal: 80 }
+      { x: 50, y: 50, width: 120, height: 70 },
+      { x: 100, y: 100, width: 150, height: 80 }
     ],
     porcentajeGasolinaSalida: 75,
     porcentajeGasolinaLlegada: 80,
@@ -105,12 +105,12 @@ export const datosSalidaLlegada: datosSalidaLlegadaType[] = [
     golpesSalida: false,
     golpesLlegada: true,
     carroceriaSalida: [
-      { x: 0, y: 0, widthOriginal: 100, heightOriginal: 50 },
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 }
+      { x: 0, y: 0, width: 100, height: 50 },
+      { x: 50, y: 50, width: 120, height: 70 }
     ],
     carroceriaLlegada: [
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 },
-      { x: 100, y: 100, widthOriginal: 150, heightOriginal: 80 }
+      { x: 50, y: 50, width: 120, height: 70 },
+      { x: 100, y: 100, width: 150, height: 80 }
     ],
     porcentajeGasolinaSalida: 75,
     porcentajeGasolinaLlegada: 70,
@@ -157,12 +157,12 @@ export const datosSalidaLlegada: datosSalidaLlegadaType[] = [
     golpesSalida: false,
     golpesLlegada: true,
     carroceriaSalida: [
-      { x: 0, y: 0, widthOriginal: 90, heightOriginal: 45 },
-      { x: 40, y: 40, widthOriginal: 110, heightOriginal: 65 }
+      { x: 0, y: 0, width: 90, height: 45 },
+      { x: 40, y: 40, width: 110, height: 65 }
     ],
     carroceriaLlegada: [
-      { x: 40, y: 40, widthOriginal: 110, heightOriginal: 65 },
-      { x: 90, y: 90, widthOriginal: 130, heightOriginal: 75 }
+      { x: 40, y: 40, width: 110, height: 65 },
+      { x: 90, y: 90, width: 130, height: 75 }
     ],
     porcentajeGasolinaSalida: 70,
     porcentajeGasolinaLlegada: 85,
@@ -209,12 +209,12 @@ export const datosSalidaLlegada: datosSalidaLlegadaType[] = [
     golpesSalida: false,
     golpesLlegada: false,
     carroceriaSalida: [
-      { x: 0, y: 0, widthOriginal: 100, heightOriginal: 50 },
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 }
+      { x: 0, y: 0, width: 100, height: 50 },
+      { x: 50, y: 50, width: 120, height: 70 }
     ],
     carroceriaLlegada: [
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 },
-      { x: 100, y: 100, widthOriginal: 150, heightOriginal: 80 }
+      { x: 50, y: 50, width: 120, height: 70 },
+      { x: 100, y: 100, width: 150, height: 80 }
     ],
     porcentajeGasolinaSalida: 75,
     porcentajeGasolinaLlegada: 80,
@@ -261,12 +261,12 @@ export const datosSalidaLlegada: datosSalidaLlegadaType[] = [
     golpesSalida: false,
     golpesLlegada: true,
     carroceriaSalida: [
-      { x: 0, y: 0, widthOriginal: 100, heightOriginal: 50 },
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 }
+      { x: 0, y: 0, width: 100, height: 50 },
+      { x: 50, y: 50, width: 120, height: 70 }
     ],
     carroceriaLlegada: [
-      { x: 50, y: 50, widthOriginal: 120, heightOriginal: 70 },
-      { x: 100, y: 100, widthOriginal: 150, heightOriginal: 80 }
+      { x: 50, y: 50, width: 120, height: 70 },
+      { x: 100, y: 100, width: 150, height: 80 }
     ],
     porcentajeGasolinaSalida: 75,
     porcentajeGasolinaLlegada: 70,

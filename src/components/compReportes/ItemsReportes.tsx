@@ -1,13 +1,13 @@
 'use client'
 
 import {useState, useEffect} from 'react'
-import ReporteGeneralType from '@/models/ReporteGeneralType'
+import ApartadosType from '@/models/ReporteGeneralType'
 import ItemReporte from './ItemReporte';
 import { reportesGeneralGet } from '@/services/reportes.services';
 import DataType from '@/models/DataType';
 
 function ItemsReportes() {
-const [reportes, setReportes] = useState<ReporteGeneralType[]>([])
+const [reportes, setReportes] = useState<ApartadosType[]>([])
 
 
 

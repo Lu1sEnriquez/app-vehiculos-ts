@@ -1,8 +1,8 @@
-import ReporteGeneralType from "@/models/ReporteGeneralType"
+import ApartadosType from "@/models/ReporteGeneralType"
 import { ReactNode } from "react"
 
 interface Props{
-  solicitud:ReporteGeneralType
+  solicitud:ApartadosType
 }
 
 function ItemReporte({solicitud}:Props) {

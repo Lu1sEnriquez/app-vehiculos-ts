@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss'
 
-const config: Config = {
+module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,31 +7,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       fontFamily: {
-        Nunito: ["Nunito", "sans-serif"],
-        Poppins: ["Poppins", "sans-serif"],
-        PtSans: ["PT Sans", "sans-serif"],
+        'nunito': ['Nunito', 'sans'],
+        'nunito-sans': ['Nunito Sans', 'sans'],
+        'poppins': ['Poppins', 'sans'],
+        'pt-sans': ['PT Sans', 'sans'],
+        'roboto': ['Roboto', 'sans'],
       },
       colors: {
         blanco: "#f2f2f2",
         AmarilloVerde: "#d9d04e",
         AmarilloCafe: "#d9c873",
         rojoRosa: "#F24444",
-        AzulOscuro: "#0c3c59",
-        azulOscuro: "#0b3c65",
+        azulOscuro: "#0c3c59",
+        AzulOscuro: "#0b3c65",
         azulMarino: "#0a4b73",
         azulNormal: "#026ab1",
-        AzulTurquesa: "#3caacb",
+        azulTurquesa: "#3caacb",
         azulClaro: "#a0d3f2",
         grisOscuro: "#5a5c5a",
+        bluePrimary: "#007BFF",
+        orangePendiente: "#FF8A00",
+        greenSuccess: "#28A745",
+        slatePrimary: "#4B4B4B",
       },
     },
   },
   plugins: [],
 }
-export default config

@@ -1,5 +1,5 @@
-import { drawMarks, redimensionarCoordenada } from "@/components/Formularios/inputCarroceria/CarroseriaUI";
-import { CoordenadasType } from "@/reducer/salidaLlegadaReducer";
+import {  redimensionarCoordenada } from "@/components/Formularios/inputCarroceria/CarroseriaUI";
+import CoordenadasType from "@/models/CoordenadasType";
 import { StaticImageData } from "next/image";
 
 export async function generateImageWithCoordinates(coordenadas: CoordenadasType[], imgCar: StaticImageData) {
@@ -30,8 +30,8 @@ export async function generateImageWithCoordinates(coordenadas: CoordenadasType[
       if (backgroundImage) {
         const newCoordenadas = redimensionarCoordenada(
           marca,
-          Number(marca.widthOriginal),
-          Number(marca.heightOriginal),
+          Number(marca.width),
+          Number(marca.height),
           backgroundImage.width,
           backgroundImage.height
         );
