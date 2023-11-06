@@ -6,10 +6,10 @@ function IsSalida({isSalida}:{isSalida: boolean}) {
     const {state,dispatch } = useDatosSalidaLlegadaReducer();
   
     useEffect(() => {
-      dispatch({type:"SET_ISSALIDA", payload: true})
+      dispatch({type:"SET_ISSALIDA", payload: isSalida})
     
       
-    }, [dispatch])
+    }, [dispatch, isSalida])
     
     return <></>
   }

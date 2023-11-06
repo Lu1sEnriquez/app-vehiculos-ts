@@ -1,16 +1,16 @@
 "use client"
 import { DatosSalidaLlegadaProvider, useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer"
 import { ButtonAzul } from "../basicos/ButtonAzul"
-import { salidaPost } from "@/services/reportes.services";
+import { salidaLlegadaPost } from "@/services/reportes.services";
 import { data } from "autoprefixer";
 
 function ButtonPostSalidaLlegada() {
-    const { state, dispatch } = useDatosSalidaLlegadaReducer();
+    const { state } = useDatosSalidaLlegadaReducer();
 
     async function handlePost() {
         try {
             
-            const result = await salidaPost(state);
+            const result = await salidaLlegadaPost(state);
             // Aquí puedes manejar la respuesta exitosa si es necesario
             console.log("Solicitud POST exitosa:", result);
         } catch (error) {

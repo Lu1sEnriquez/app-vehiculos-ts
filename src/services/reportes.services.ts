@@ -19,7 +19,7 @@ async function handleAsyncError<T>(
 }
 
 
-export async function salidaPost(data: datosSalidaType) {
+export async function salidaLlegadaPost(data: datosSalidaType) {
   return handleAsyncError(async () => {
     console.log(data);
 
@@ -30,7 +30,8 @@ export async function salidaPost(data: datosSalidaType) {
       },
       body: JSON.stringify(data),
     });
-
+    console.log(result);
+    
     if (result.ok) {
       const responseData = await result.json();
       console.log('Respuesta exitosa:', responseData);
@@ -42,11 +43,6 @@ export async function salidaPost(data: datosSalidaType) {
   }, 'Error en salidaPost');
 }
 
-export async function llegadaPost(data: datosSalidaType) {
-  return handleAsyncError(async () => {
-    return salidaPost(data);
-  }, 'Error en llegadaPost');
-}
 
 export async function apartadosGet(type?: "Pendiente" | "Circulacion" | "Finalizado") {
   return handleAsyncError(async () => {
@@ -78,9 +74,9 @@ export async function apartadosGet(type?: "Pendiente" | "Circulacion" | "Finaliz
             const apartados: ApartadosType[] = responseData.data;
             return apartados.filter(apartado => {
               const fechaApartado = new Date(apartado.fechaSalida)
-              console.log('actual :'+fechaActual.getDate());
-              console.log('apartado :'+fechaApartado.getDate());
-              console.log('siguiente :'+fechaSiguiente.getDate());
+              // console.log('actual :'+fechaActual.getDate());
+              // console.log('apartado :'+fechaApartado.getDate());
+              // console.log('siguiente :'+fechaSiguiente.getDate());
               
               return fechaApartado.getDate() >= fechaActual.getDate() && fechaApartado.getDate() <= fechaSiguiente.getDate() ;
             }).sort(compararFechas)

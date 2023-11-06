@@ -24,7 +24,7 @@ function ItemLlegada({ solicitud }: Props) {
         <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
           <div className="flex flex-col min-w-[150px] ">
             <h1>Folio: {solicitud.idSolicitud} </h1>
-            <h1>Salida: {fechaLlegadaFormat}</h1>
+            <h1>Llegada: {fechaLlegadaFormat}</h1>
           </div>
           <div className="flex flex-col items-center  ">
             <h1 className=" w-full flex ">

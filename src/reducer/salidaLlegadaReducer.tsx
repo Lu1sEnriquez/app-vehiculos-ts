@@ -118,7 +118,7 @@ export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProvi
     departamento:null,
     placa: null,
     kilometraje: null,
-    golpes: true,
+    golpes: false,
     carroceria: [],
     tanque: null,
     nombreVigilante: null,

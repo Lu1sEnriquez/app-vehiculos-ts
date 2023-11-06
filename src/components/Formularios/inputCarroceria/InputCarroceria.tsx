@@ -4,27 +4,34 @@ import { CarroseriaUI } from "./CarroseriaUI";
 
 import autoImage from "@/assets/icons/auto.png";
 import LabelFormulario from "../inputs/LabelFormulario";
+import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 
 function InputCarroceria() {
-  const [tieneGolpes, setTieneGolpes] = useState(false);
-
-  const handleTieneGolpesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = e.target.value == "true";
-    setTieneGolpes(isChecked);
-  };
+  const [golpes, setGolpes] = useState(false);
+  const { dispatch, state } = useDatosSalidaLlegadaReducer();
+  function handleNo() {
+    const golpes = false;
+    setGolpes(golpes);
+    dispatch({ type: "SET_TIENE_GOLPES", payload: golpes });
+  }
+  function handleSi() {
+    const golpes = true;
+    setGolpes(golpes);
+    dispatch({ type: "SET_TIENE_GOLPES", payload: golpes });
+  }
 
   return (
-    <div id="container-inputCar" >
+    <div id="container-inputCar">
       <div className="flex flex-col gap-2">
         <LabelFormulario>{"El Vehiculo Tiene Daños: "}</LabelFormulario>
 
         <label>
           <input
             type="radio"
-            name="daños"
-            value={"false"}
-            onChange={handleTieneGolpesChange}
-            checked={tieneGolpes === false}
+            name="no"
+            value={0}
+            onChange={handleNo}
+            checked={!golpes}
           />
           No
         </label>
@@ -32,15 +39,15 @@ function InputCarroceria() {
         <label>
           <input
             type="radio"
-            name="daños"
-            value={"true"}
-            onChange={handleTieneGolpesChange}
-            checked={tieneGolpes === true}
+            name="si"
+            value={1}
+            onChange={handleSi}
+            checked={golpes}
           />
           Si
         </label>
       </div>
-      {tieneGolpes && (
+      {golpes && (
         <>
           <LabelFormulario>
             {"Marca donde se encuentran los golpes: "}

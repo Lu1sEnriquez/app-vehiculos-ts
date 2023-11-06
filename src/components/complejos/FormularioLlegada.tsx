@@ -55,7 +55,7 @@ function FormularioLlegada() {
           
           <InputKilometraje />
           {/* <InputDepartamento/> */}
-          <InputName text={"Nombre Solicitante:"} />
+          {/* <InputName text={"Nombre Solicitante:"} /> */}
 
           <ButtonFirmaModal type={"Solicitante"}>
             <InputFirma />
@@ -67,8 +67,8 @@ function FormularioLlegada() {
           </ButtonFirmaModal>
           {/* <InputChofer /> */}
           
-          <InputObservaciones />
           <InputGasolina></InputGasolina>
+          <InputObservaciones />
           <ButtonPostSalidaLlegada></ButtonPostSalidaLlegada>
         </div>
       </section>
