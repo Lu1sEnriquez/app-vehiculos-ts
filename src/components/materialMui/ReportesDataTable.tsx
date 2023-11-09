@@ -7,9 +7,7 @@ type Column = keyof typeof solicitudes[0]; // Obtén las claves de las propiedad
 type Data = typeof solicitudes[0][];
 
 const columns: Column[] = [
-  "idSolicitud",
-  "nombreSolicitante",
-  "chofer",
+ 
   "destino",
   "vehiculo",
   "placa",
@@ -21,9 +19,7 @@ const columns: Column[] = [
 
 const data: Data = solicitudes;
 
-const options = {
-  filterType: 'checkbox',
-};
+
 
 function ReportesDataTable() {
   return (
@@ -31,8 +27,47 @@ function ReportesDataTable() {
       <MUIDataTable
       title={"Lista De Reportes Vehiculos"}
       data={data}
-      columns={columns}
+      columns={[
+        {
+          name:"idSolicitud",
+          label:"Folio"
+        },
+        {
+          name:"nombreSolicitante",
+          label:"Solicitante"
+        },
+        {
+          name:"chofer",
+          label:"Chofer"
+        },
+        {
+          name:"destino",
+          label:"Destino"
+        },
+        {
+          name:"vehiculo",
+          label:"Vehiculo"
+        },
+        {
+          name:"fechaRegistro",
+          label:"Registro"
+        },
+        {
+          name:"fechaSalida",
+          label:"Salida"
+        },
+        {
+          name:"fechaLlegada",
+          label:"Llegada"
+        },
+        {
+          name:"estadoSolicitud",
+          label:"estado"
+        },
+        
+      ]}
       options={{filterType:"checkbox"}}
+      
     ></MUIDataTable>
     </div>
   );
