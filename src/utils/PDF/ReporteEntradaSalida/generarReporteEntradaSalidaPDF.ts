@@ -59,7 +59,7 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
   
   if (data.carroceriaLlegada.length !== 0) {
     imagesPromises.push(
-      generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
+      generateImageWithCoordinates(data.carroceriaLlegada, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
           doc.addImage(carSalida, 'PNG', 130, 150, 50, 30, '', 'FAST')
           resolve();
@@ -70,9 +70,9 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
     doc.addImage(imgCar.src, 'PNG', 130, 150, 50, 30, '', 'FAST')
   }
   
-  if (data.porcentajeGasolinaSalida) {
+  if (data.tanqueSalida) {
     imagesPromises.push(
-      generarMarcadorGasolina(data.porcentajeGasolinaSalida).then((img) => {
+      generarMarcadorGasolina(data.tanqueSalida).then((img) => {
         return new Promise((resolve) => {
           doc.addImage(img, 40, 205, 40, 20, '', 'FAST')
           resolve();
@@ -81,9 +81,9 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
     );
   }
   
-  if (data.porcentajeGasolinaLlegada) {
+  if (data.tanqueLlegada) {
     imagesPromises.push(
-      generarMarcadorGasolina(data.porcentajeGasolinaLlegada).then((img) => {
+      generarMarcadorGasolina(data.tanqueLlegada).then((img) => {
         return new Promise((resolve) => {
           doc.addImage(img, 135, 205, 40, 20, '', 'FAST')
           resolve();
@@ -243,7 +243,7 @@ export async function GenerarPDF(data: datosSalidaLlegadaType) {
 
 
     // Guardar el PDF o ofrecerlo para su descarga
-    doc.save();
+    doc.save(`${data.nombreSolicitante}-${data.idSolicitud}`);
   });
 }
 

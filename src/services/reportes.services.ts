@@ -86,12 +86,12 @@ export async function reportesGeneralGet() {
     const result = await fetch(GET_REPORTES_GENERAL_URL);
     if (result.ok) {
       const responseData: DataType = await result.json();
-      console.log('Respuesta exitosa:', responseData);
        if(Array.isArray(responseData.data)){
-        return responseData;
+        return responseData.data;
       } 
     } else {
       console.error('Error en la solicitud: ', result.status);
+      console.error('Error en la solicitud: ', await result.json());
       return null;
     }
   }, 'Error en reportesGeneralGet');

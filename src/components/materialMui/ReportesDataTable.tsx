@@ -29,7 +29,9 @@ function ReportesDataTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const reportesData = await apartadosGet();
+        const reportesData = await reportesGeneralGet();
+        console.log(reportesData);
+        
         if (Array.isArray(reportesData)) {
           setData(reportesData);
         }
@@ -37,9 +39,12 @@ function ReportesDataTable() {
         console.error("Error fetching data:", error);
         // Handle error as needed
       }
+      
     };
 
     fetchData();
+    console.log(data);
+    
   }, []);
 
   return (
