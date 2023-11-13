@@ -8,8 +8,12 @@ export function formatHoraAmPm(fecha:Date) {
     return `${horas12}:${minutos.toString().padStart(2, '0')} ${amPm}`;
   }
 
-  export function formatFecha(fecha:Date) {
-    return`${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}`;
+  export function formatFecha(fecha: Date) {
+    const day = fecha.getDate().toString().padStart(2, '0');
+    const month = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Sumar 1 para obtener el mes correcto
+    const year = fecha.getFullYear();
+  
+    return `${year}-${month}-${day}`;
   }
 
 

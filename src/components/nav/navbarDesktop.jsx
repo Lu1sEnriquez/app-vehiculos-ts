@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import { HiMenuAlt3 } from "react-icons/hi";
 
-import menuItems from "@/app/router/menuItems"; // aqui estan los apartados del nav y sus iconos
+import menuItems from "@/router/menuItems"; // aqui estan los apartados del nav y sus iconos
 
 
 function NavbarDesktop() {

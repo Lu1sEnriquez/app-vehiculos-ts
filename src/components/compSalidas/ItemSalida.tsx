@@ -5,6 +5,7 @@ import { formatFecha, formatHoraAmPm } from "@/utils/format/formatFecha";
 
 interface Props {
     solicitud: ApartadosType;
+    
   }
 function ItemSalida({ solicitud }: Props) {
   const fechaSalida = new Date(solicitud.fechaSalida);
@@ -54,7 +55,7 @@ function ItemSalida({ solicitud }: Props) {
             </div>
           </div>
           <div className="flex w-full justify-end pr-4">
-           <ButtonAzulLink href="/salidas/form" text="Registrar Salida"></ButtonAzulLink>
+           <ButtonAzulLink href={`/salidas/${solicitud.idSolicitud}`} text="Registrar Salida"></ButtonAzulLink>
           </div>
         </footer>
       </div>

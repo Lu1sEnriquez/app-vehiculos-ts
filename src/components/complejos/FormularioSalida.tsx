@@ -17,14 +17,23 @@ import ButtonPostSalidaLlegada from "../buttonServices/ButtonPostSalidaLlegada";
 import InputDepartamento from "../Formularios/inputs/InputDepartamento";
 import InputFolio from "../Formularios/inputs/InputFolio";
 import IsSalida from "../Formularios/inputs/IsSalida";
+import React from 'react'
+import MostrarFolio from "../Formularios/inputs/MostrarFolio";
 
-function FormularioSalida() {
+interface Props{
+  children?:React.ReactNode
+  folio?: number
+}
+function FormularioSalida({folio}:Props) {
 
 
+console.log(folio);
 
   return (
     <DatosSalidaLlegadaProvider>
-      <IsSalida isSalida={true}/>
+      <IsSalida isSalida={true} estado="Circulacion"/>
+
+
       <section
         className=" flex flex-wrap sm:justify-around 
     py-5 md:px-5 
@@ -35,7 +44,9 @@ function FormularioSalida() {
       w-full h-full mx-5 
       flex flex-col gap-y-5"
         >
-          <InputFolio/>
+          {!folio &&<InputFolio/>
+          }
+          {folio && <MostrarFolio folio={folio}/>}
           <InputDate />
           <InputHora />
           <InputDestino />

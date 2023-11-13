@@ -1,31 +1,27 @@
 'use client'
-import {useMemo} from 'react'
 import {ButtonAzul} from '@/components/basicos/ButtonAzul'
 import {GenerarPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
 import {GrDocumentPdf} from "react-icons/gr"
 
 import { ButtonRojo } from './ButtonRojo';
-import { datosSalidaLlegada } from '@/models/DatosSalidaLlegada';
+import { reportesGetById } from '@/services/reportes.services';
 function ButtonGenerarPDF({id}:{id: number}) {
 
-  
-  
-  const handleGenerar =useMemo(()=>{
-    return ()=>{
-      const data= datosSalidaLlegada.find(item => item.idSolicitud == id)
-      console.log(data);
-      
-      if(data){
-        GenerarPDF(data)
-      }
-  };
-  },[id]);
+  async function handleData() {
+    const data =await reportesGetById(id)
+    console.log(data);
+    await GenerarPDF(data)
+  }
+
+   function handleGenerar() {
+    handleData()
+  }
+ 
     
   return (
-
-        <ButtonRojo onClick={handleGenerar} >
+        <button onClick={handleGenerar}  className='p-4'>
           <GrDocumentPdf size={20}></GrDocumentPdf>
-        </ButtonRojo>
+        </button>
   )
 }
 

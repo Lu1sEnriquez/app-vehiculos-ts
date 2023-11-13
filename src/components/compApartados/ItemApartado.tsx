@@ -21,6 +21,10 @@ const fechaLlegada = new Date(solicitud.fechaLlegada)
  
   const fechaLlegadaFormat =formatFecha(fechaLlegada)
   const horaLlegadaFormat = formatHoraAmPm(fechaLlegada);
+console.log(`solicitud.fechaSalida: `+solicitud.fechaSalida );
+console.log(`solicitud.fechaLlegada: `+solicitud.fechaLlegada );
+console.log(`fechaSalida: `+fechaSalida );
+console.log(`fechaLlegada: `+fechaLlegada );
 
   return (
     <div
@@ -30,18 +34,23 @@ const fechaLlegada = new Date(solicitud.fechaLlegada)
       <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
         <div className="flex flex-col min-w-[150px] ">
           <h1>Folio: {solicitud.idSolicitud} </h1>
-          <h1>Salida: {fechaSalidaFormat}</h1>
+          
+          {solicitud.estado == "Pendiente"
+          ?<h1>Salida: {fechaSalidaFormat}</h1>
+          : <h1>Llegada: {fechaLlegadaFormat}</h1>}
         </div>
         <div className="flex flex-col items-center  ">
           <h1 className=" w-full flex ">
             Destino: <p className="truncate"> {solicitud.destino}</p>
           </h1>
-          <h1>Llegada: {fechaLlegadaFormat}</h1>
+          {solicitud.estado == "Pendiente"
+          ?<h1>Hora: {horaSalidaFormat}</h1>
+          : <h1>Hora: {horaLlegadaFormat}</h1>}
         </div>
       </header>
       <div className=" w-full h-14  pl-3 gap-2  flex flex-col  justify-center">
         <div className="flex flex-row gap-2">
-          <h1 className="flex flex-row">Solicitante:</h1>
+          <h1 className="flex flex-row">Responsable:</h1>
           <p> {solicitud.nombreSolicitante}</p>
         </div>
         <div className="flex flex-row  gap-2">
@@ -50,7 +59,7 @@ const fechaLlegada = new Date(solicitud.fechaLlegada)
         </div>
       </div>
       <div className="pl-3  w-full flex flex-row h-20 truncate   ">
-        <div>
+        <div className="w-1/2 truncate">
           <div className="flex flex-row gap-2 ">
             <h1 className="flex flex-row">Vehiculos :</h1>
             <p> {solicitud.vehiculo}</p>
@@ -60,15 +69,15 @@ const fechaLlegada = new Date(solicitud.fechaLlegada)
             <p> {solicitud.placa}</p>
           </div>
         </div>
-        <footer className="flex w-full justify-end pr-4">
+        <footer className="flex w-1/2 justify-end pr-4">
           <div
             className={`w-[150px] rounded-xl flex justify-center items-center text-base text-blanco h-12 justify-self-end
               ${
-                solicitud.estado == "Pendiente"
-                  ? "bg-orangePendiente"
+                solicitud.estado == "Finalizado"
+                  ?  "bg-greenSuccess"
                   : solicitud.estado == "Circulacion"
                   ? "bg-bluePrimary"
-                  : "bg-greenSuccess"
+                  :"bg-orangePendiente"
               }`}
           >
             {solicitud.estado}

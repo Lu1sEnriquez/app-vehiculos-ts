@@ -1,15 +1,21 @@
 "use client"
+import { estadoType } from "@/models/ReporteGeneralType";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { useEffect } from "react";
-function IsSalida({isSalida}:{isSalida: boolean}) {
+
+
+interface Props{isSalida: boolean;
+   estado:estadoType
+  }
+function IsSalida({isSalida, estado}:Props) {
   
     const {state,dispatch } = useDatosSalidaLlegadaReducer();
   
     useEffect(() => {
       dispatch({type:"SET_ISSALIDA", payload: isSalida})
-    
+    dispatch({type:"SET_ESTADO", payload:estado})
       
-    }, [dispatch, isSalida])
+    }, [dispatch, isSalida, estado])
     
     return <></>
   }

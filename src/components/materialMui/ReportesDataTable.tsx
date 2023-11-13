@@ -1,13 +1,17 @@
-'use client'
+"use client";
 import MUIDataTable from "mui-datatables";
-import { solicitudes } from "@/models/ReporteGeneralType";
+import ApartadosType, { solicitudes } from "@/models/ReporteGeneralType";
+import { GridExpandMoreIcon } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
+import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
+import { useEffect, useState } from "react";
+import { reportesGeneralGet } from "@/services/reportes.services";
+import { apartadosGet } from "@/services/apartados.services";
 
 // Definición de tipos para las columnas y los datos
-type Column = keyof typeof solicitudes[0]; // Obtén las claves de las propiedades de un elemento de "solicitudes"
-type Data = typeof solicitudes[0][];
+type Column = keyof ApartadosType; // Obtén las claves de las propiedades de un elemento de "solicitudes"
 
 const columns: Column[] = [
- 
   "destino",
   "vehiculo",
   "placa",
@@ -15,60 +19,118 @@ const columns: Column[] = [
   "fechaSalida",
   "fechaLlegada",
   "estadoSolicitud",
+  "chofer",
+  "nombreSolicitante",
 ];
 
-const data: Data = solicitudes;
-
-
-
 function ReportesDataTable() {
+  const [data, setData] = useState<ApartadosType[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const reportesData = await apartadosGet();
+        if (Array.isArray(reportesData)) {
+          setData(reportesData);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle error as needed
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full md:pl-10">
       <MUIDataTable
-      title={"Lista De Reportes Vehiculos"}
-      data={data}
-      columns={[
-        {
-          name:"idSolicitud",
-          label:"Folio"
-        },
-        {
-          name:"nombreSolicitante",
-          label:"Solicitante"
-        },
-        {
-          name:"chofer",
-          label:"Chofer"
-        },
-        {
-          name:"destino",
-          label:"Destino"
-        },
-        {
-          name:"vehiculo",
-          label:"Vehiculo"
-        },
-        {
-          name:"fechaRegistro",
-          label:"Registro"
-        },
-        {
-          name:"fechaSalida",
-          label:"Salida"
-        },
-        {
-          name:"fechaLlegada",
-          label:"Llegada"
-        },
-        {
-          name:"estadoSolicitud",
-          label:"estado"
-        },
-        
-      ]}
-      options={{filterType:"checkbox"}}
-      
-    ></MUIDataTable>
+        title={"Lista De Reportes Vehiculos"}
+        data={
+          data.map((solicitud) => {
+            return {
+              folio: solicitud.idSolicitud,
+              solicitante: solicitud.nombreSolicitante,
+              vehiculo: solicitud.vehiculo,
+              // chofer:solicitud.chofer,
+              salida: solicitud.fechaSalida,
+              llegada: solicitud.fechaLlegada,
+              destino: solicitud.destino || "Local",
+              estado: solicitud.estado,
+            };
+          })
+          // .filter((s) => s.estado === "Finalizado")
+        }
+        columns={[
+          {
+            name: "folio",
+            label: "Folio",
+          },
+          {
+            name: "solicitante",
+            label: "Solicitante",
+          },
+          // {
+          //   name:"chofer",
+          //   label:"Chofer"
+          // },
+
+          {
+            name: "vehiculo",
+            label: "Vehiculo",
+          },
+          // {
+          //   name:"fechaRegistro",
+          //   label:"Registro"
+          // },
+          {
+            name: "salida",
+            label: "Salida",
+          },
+          {
+            name: "llegada",
+            label: "Llegada",
+          },
+          {
+            name: "destino",
+            label: "Destino",
+          },
+          {
+            name: "estado",
+            label: "estado",
+          },
+        ]}
+        options={{
+          downloadOptions: {
+            filename: "Reporte General",
+            filterOptions: {
+              useDisplayedColumnsOnly: true,
+              useDisplayedRowsOnly: true,
+            },
+            separator: " , ",
+          },
+          download: "true",
+          expandableRows: true,
+          renderExpandableRow: (rowData, rowMeta) => {
+            console.log(rowData);
+
+            return (
+              <tr className="w-full ">
+                <td className="bg-green-500"></td>
+                <td className="bg-red-500"></td>
+                <td className="bg-green-500"></td>
+                <td className="bg-red-500"></td>
+                <td className="bg-green-500"></td>
+                <td className="bg-red-500"></td>
+                <td></td>
+                <td className="w-full flex justify-center items-center bg-green-500">
+                  <ButtonGenerarPDF id={parseInt(rowData[0])} />
+                </td>
+              </tr>
+            );
+          },
+        }}
+      ></MUIDataTable>
     </div>
   );
 }

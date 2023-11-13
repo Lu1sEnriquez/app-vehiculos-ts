@@ -5,7 +5,7 @@ import ApartadosType from "@/models/ReporteGeneralType";
 import { compararFechas } from "@/utils/format/formatFecha";
 
 
-async function handleAsyncError<T>(
+export async function handleAsyncError<T>(
   asyncFunction: () => Promise<T>,
   errorMessage: string
 ): Promise<T> {
@@ -37,57 +37,17 @@ export async function salidaLlegadaPost(data: datosSalidaType) {
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
     } else {
-      console.error('Error en la solicitud: ', result.status);
+      console.log('Error en la solicitud: ', result.status);
+      console.log(await result.json());
+      
       return null;
     }
   }, 'Error en salidaPost');
 }
 
 
-export async function apartadosGet(type?: "Pendiente" | "Circulacion" | "Finalizado") {
-  return handleAsyncError(async () => {
-    const result = await fetch(GET_APARTADOS_URL);
 
-    // Obtiene la fecha actual y la fecha siguiente
-    const fechaActual = new Date();
-    const fechaSiguiente = new Date();
-    fechaSiguiente.setDate(fechaSiguiente.getDate() + 1);
-    
-    if (result.ok) {
-      const responseData: DataType = await result.json();
-      if (responseData) {
-        console.log('Respuesta exitosa:', responseData);
-        if (type === "Pendiente" || type === "Circulacion" || type === "Finalizado") {
-          // Verifica si responseData.data es del tipo ApartadosType
-          if (Array.isArray(responseData.data)) {
-            const apartados: ApartadosType[] = responseData.data;
-            return apartados.filter(apartado => {
-              const fechaApartado = new Date(apartado.fechaSalida);
 
-              return fechaApartado >= fechaActual && fechaApartado < fechaSiguiente && apartado.estado === type;
-            }).sort(compararFechas);
-          } else {
-            return responseData.data
-          }
-        } else {
-          if (Array.isArray(responseData.data)) {
-            const apartados: ApartadosType[] = responseData.data;
-            return apartados.filter(apartado => {
-              const fechaApartado = new Date(apartado.fechaSalida)
-              // console.log('actual :'+fechaActual.getDate());
-              // console.log('apartado :'+fechaApartado.getDate());
-              // console.log('siguiente :'+fechaSiguiente.getDate());
-              
-              return fechaApartado.getDate() >= fechaActual.getDate() && fechaApartado.getDate() <= fechaSiguiente.getDate() ;
-            }).sort(compararFechas)
-          }
-          return responseData.data
-        }
-      }
-    }
-    return [];
-  }, 'Error en apartadosGet');
-}
 
 export async function reportesGet() {
   return handleAsyncError(async () => {
@@ -105,6 +65,7 @@ export async function reportesGet() {
   }, 'Error en reportesGet');
 }
 
+
 export async function reportesGetById(id: number) {
   return handleAsyncError(async () => {
     const result = await fetch(GET_REPORTES_INDIVIDUAL_URL + id);
@@ -119,19 +80,24 @@ export async function reportesGetById(id: number) {
   }, 'Error en reportesGetById');
 }
 
+
 export async function reportesGeneralGet() {
   return handleAsyncError(async () => {
     const result = await fetch(GET_REPORTES_GENERAL_URL);
     if (result.ok) {
       const responseData: DataType = await result.json();
       console.log('Respuesta exitosa:', responseData);
-      return Array.isArray(responseData.data) ? mapResponseToReporteGeneral(responseData) : null;
+       if(Array.isArray(responseData.data)){
+        return responseData;
+      } 
     } else {
       console.error('Error en la solicitud: ', result.status);
       return null;
     }
   }, 'Error en reportesGeneralGet');
 }
+
+
 
 export async function reportesGeneralGetById(id: number) {
   return handleAsyncError(async () => {
@@ -146,6 +112,8 @@ export async function reportesGeneralGetById(id: number) {
     }
   }, 'Error en reportesGeneralGetById');
 }
+
+
 
 export async function reportesGeneralGetByRangeDate(fechaInicio?: string, FechaFin?: string) {
   return handleAsyncError(async () => {

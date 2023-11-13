@@ -3,6 +3,7 @@ import DatosSalidaLlegadaType from "@/models/DatosSalidaType";
 import CoordenadasType from "@/models/CoordenadasType";
 // Importa las bibliotecas de TypeScript y React
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
+import { estadoType } from "@/models/ReporteGeneralType";
 
 // Define los tipos de acciones
 type ActionTypes =
@@ -25,6 +26,7 @@ type ActionTypes =
   | { type: "SET_DESTINO"; payload: string | null }
   | { type: "SET_OBSERVACIONES"; payload: string | null }
   | { type: "SET_ISSALIDA"; payload: boolean | null }
+  | { type: "SET_ESTADO"; payload: estadoType | null }
   | {
       type: "SET_ACCESORIOS";
       payload: {
@@ -86,6 +88,8 @@ const DatosSalidaLlegadaReducer = (
       return { ...state, accesorios: action.payload };
     case "SET_OBSERVACIONES":
       return { ...state, observaciones: action.payload };
+    case "SET_ESTADO":
+      return { ...state, observaciones: action.payload };
     default:
       return state;
   }
@@ -127,16 +131,18 @@ export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProvi
     isLocal:null,
     destino: null,
     accesorios: {
-      gato: null,
-      extra: null,
-      cables: null,
-      luzMuerta: null,
-      extintor: null,
-      documentos: null,
+      gato: false,
+      extra: false,
+      cables: false,
+      luzMuerta: false,
+      extintor: false,
+      documentos: false,
     },
 
     observaciones: null,
-    isSalida:true
+    isSalida:true,
+    estado:"Finalizado"
+    
   };
 
   // Usa useReducer para gestionar el estado con el reducer

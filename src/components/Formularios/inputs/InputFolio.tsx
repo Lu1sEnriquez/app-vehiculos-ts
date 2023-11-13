@@ -9,7 +9,7 @@ interface Props {
 
 function InputFolio({ children }: Props) {
   const [idSolicitud, setIdSolicitud] = useState(0);
-  const { state, dispatch } = useDatosSalidaLlegadaReducer();
+  const { dispatch } = useDatosSalidaLlegadaReducer();
 
   const handleSetDepartamento = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setIdSolicitud(parseInt(evt.target.value));

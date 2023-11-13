@@ -2,7 +2,7 @@
 import ApartadosType from "@/models/ReporteGeneralType";
 import React, { useEffect, useState } from "react";
 import ItemApartado from "./ItemApartado";
-import { apartadosGet } from "@/services/reportes.services";
+import { apartadosGet } from "@/services/apartados.services";
 
 function ItemsApartados() {
   const [data, setData] = useState<ApartadosType[]>([]);

@@ -1,17 +1,20 @@
 export default interface ApartadosType {
     idSolicitud: number;
-    nombreSolicitante: string;
-    chofer: string
-    destino: string;
-    vehiculo: string;
-    placa: string;
+    nombreSolicitante?: string;
+    chofer?: string
+    destino?: string;
+    vehiculo?: string;
+    placa?: string;
     fechaRegistro: string;
     fechaSalida: string;
     fechaLlegada: string;
     estadoSolicitud: string;
     estado: estadoType;
 }
+
+
 export type estadoType = "Pendiente"|"Circulacion"|"Finalizado";
+
 export const estado ={
     Pendiente :"Pendiente",
     Circulacion:  "Circulacion" ,

@@ -6,6 +6,7 @@ import ApartadosType from "./ReporteGeneralType";
 //en caso de que la data cambie del fetch aqui se agregaran los nuevos tipos
 export default interface DataType {
     error:string,
+    message:string
     data: string | ApartadosType | datosSalidaLlegadaType
 }
 

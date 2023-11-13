@@ -1,6 +1,5 @@
 
 import InputDate from "../Formularios/inputs/InputDate";
-import InputPlacaVehiculo from "../Formularios/inputs/InputPlacaVehiculo";
 import InputName from "../Formularios/inputs/InputName";
 import InputHora from "../Formularios/inputs/InputHora";
 import InputKilometraje from "../Formularios/inputs/InputKilometraje";
@@ -9,24 +8,28 @@ import ButtonFirmaModal from "../modal/ButtonActiveModal";
 import InputFirma from "../Formularios/inputs/InputFirma";
 import InputGasolina from "../Formularios/inputGasolina/InputGasolina";
 import { DatosSalidaLlegadaProvider} from "../../reducer/salidaLlegadaReducer";
-import InputDestino from "../Formularios/inputs/inputDestino";
 import InputAccesorios from "../Formularios/inputs/InputAccesorios";
 import InputObservaciones from "../Formularios/inputs/InputObservaciones";
-import InputChofer from "../Formularios/inputs/InputChofer";
-import InputLicencia from "../Formularios/inputs/InputLicencia";
 import ButtonPostSalidaLlegada from "../buttonServices/ButtonPostSalidaLlegada";
-import InputDepartamento from "../Formularios/inputs/InputDepartamento";
 import InputFolio from "../Formularios/inputs/InputFolio";
-import { useEffect } from "react";
 import IsSalida from "../Formularios/inputs/IsSalida";
+import MostrarFolio from "../Formularios/inputs/MostrarFolio";
 
-function FormularioLlegada() {
+
+
+interface Props{
+  children?:React.ReactNode
+  folio?: number
+}
+
+
+function FormularioLlegada({folio}:Props) {
 
 
 
   return (
     <DatosSalidaLlegadaProvider>
-      <IsSalida isSalida={false}/>
+      <IsSalida isSalida={false} estado="Finalizado"/>
       <section
         className=" flex flex-wrap sm:justify-around 
     py-5 md:px-5 
@@ -37,7 +40,9 @@ function FormularioLlegada() {
       w-full h-full mx-5 
       flex flex-col gap-y-5"
         >
-          <InputFolio/>
+           {!folio &&<InputFolio/>
+          }
+          {folio && <MostrarFolio folio={folio}/>}
           <InputDate />
           <InputHora />
           {/* <InputDestino /> */}

@@ -1,4 +1,5 @@
 import CoordenadasType from "./CoordenadasType";
+import { estadoType } from "./ReporteGeneralType";
 
 // Define el estado inicial
 export default interface datosSalidaType {
@@ -28,5 +29,6 @@ export default interface datosSalidaType {
     extintor: boolean | null;
     documentos: boolean | null;
   };
-  observaciones: string | null;
+  observaciones: string | null,
+  estado:estadoType
 };

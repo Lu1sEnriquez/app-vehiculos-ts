@@ -55,7 +55,7 @@ function ItemLlegada({ solicitud }: Props) {
             </div>
           </div>
           <div className="flex w-1/2 justify-end pr-4 ">
-           <ButtonAzulLink href="/llegadas/form" text="Registrar Llegada"></ButtonAzulLink>
+           <ButtonAzulLink href={`/llegadas/${solicitud.idSolicitud}`} text="Registrar Llegada"></ButtonAzulLink>
           </div>
         </footer>
       </div>

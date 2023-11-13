@@ -17,10 +17,10 @@ function InputName({ text}: Props) {
   };
 
 useEffect(()=>{
-  if(text.toLowerCase() .includes('vigilante')){
+  if(text.toLowerCase() .includes('vigilante') && name.length>1){
     dispatch({ type: 'SET_NOMBRE_VIGILANTE', payload: name });
   }
-  else if(text.toLowerCase().includes('solicitante')){
+  else if(text.toLowerCase().includes('solicitante')&& name.length>1){
     dispatch({ type: 'SET_NOMBRE_SOLICITANTE', payload: name });
   }
 
