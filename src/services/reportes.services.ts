@@ -91,8 +91,8 @@ export async function reportesGeneralGet() {
       } 
     } else {
       console.error('Error en la solicitud: ', result.status);
-      console.error('Error en la solicitud: ', await result.json());
-      return null;
+      const data = await result.json();
+      return data.message
     }
   }, 'Error en reportesGeneralGet');
 }

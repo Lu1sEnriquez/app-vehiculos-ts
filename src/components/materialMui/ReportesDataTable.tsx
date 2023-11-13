@@ -1,8 +1,9 @@
 "use client";
 import MUIDataTable from "mui-datatables";
 import ApartadosType, { solicitudes } from "@/models/ReporteGeneralType";
-import { GridExpandMoreIcon } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
 import { reportesGeneralGet } from "@/services/reportes.services";
@@ -25,30 +26,40 @@ const columns: Column[] = [
 
 function ReportesDataTable() {
   const [data, setData] = useState<ApartadosType[]>([]);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const reportesData = await reportesGeneralGet();
-        console.log(reportesData);
-        
-        if (Array.isArray(reportesData)) {
-          setData(reportesData);
+        const result = await reportesGeneralGet();
+        console.log(result);
+
+        if (Array.isArray(result)) {
+          setData(result);
+        }else{
+          setError(`${result}`)
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
         // Handle error as needed
+        setError(`${error}`)
+        // setData(solicitudes)
       }
-      
     };
 
     fetchData();
     console.log(data);
-    
   }, []);
 
   return (
     <div className="w-full md:pl-10">
+      {error &&(
+        <Stack spacing={2}>
+          <Alert variant="filled" severity="error" >
+            <AlertTitle>No Hay Datos para Mostrar</AlertTitle>
+          </Alert>
+        </Stack>
+      )}
       <MUIDataTable
         title={"Lista De Reportes Vehiculos"}
         data={
@@ -104,6 +115,10 @@ function ReportesDataTable() {
             name: "estado",
             label: "estado",
           },
+          {
+            name:"",
+            label:""
+          }
         ]}
         options={{
           downloadOptions: {
@@ -115,7 +130,25 @@ function ReportesDataTable() {
             separator: " , ",
           },
           download: "true",
-          expandableRows: true,
+          expandableRows: false,
+
+          customRowRender(data, dataIndex, rowIndex) {
+            return (
+              <tr className="w-full  ">
+                <td className=""></td>
+                <td className="">{data[0]}</td>
+                <td className="">{data[1]}</td>
+                <td className="">{data[2]}</td>
+                <td className="">{data[3]}</td>
+                <td className="">{data[4]}</td>
+                <td className="">{data[5]}</td>
+                <td className="">{data[6]}</td>
+                <td className="w-full flex justify-center items-center ">
+                  <ButtonGenerarPDF id={parseInt(data[0])} />
+                </td>
+              </tr>
+            );
+          },
           renderExpandableRow: (rowData, rowMeta) => {
             console.log(rowData);
 

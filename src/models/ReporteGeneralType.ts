@@ -32,7 +32,7 @@ export const solicitudes: ApartadosType[] = [
         destino: 'Playa Tulum',
         estadoSolicitud: 'Finalizado',
         fechaRegistro: '2023-01-05',
-        estado: "Pendiente"
+        estado: "Finalizado"
     },
     {
         idSolicitud: 2,
@@ -58,7 +58,7 @@ export const solicitudes: ApartadosType[] = [
         destino: 'Ciudad de Nueva York',
         estadoSolicitud: 'Circulacion',
         fechaRegistro: '2024-03-01',
-        estado: "Circulacion"
+        estado: "Finalizado"
     },
     {
         idSolicitud: 4,
@@ -84,7 +84,7 @@ export const solicitudes: ApartadosType[] = [
         destino: 'Las Vegas',
         estadoSolicitud: 'Circulacion',
         fechaRegistro: '2023-11-25',
-        estado: "Pendiente"
+        estado: "Finalizado"
     },
     {
         idSolicitud: 6,
@@ -110,7 +110,7 @@ export const solicitudes: ApartadosType[] = [
         destino: 'Orlando',
         estadoSolicitud: 'Circulacion',
         fechaRegistro: '2022-11-05',
-        estado: "Circulacion"
+        estado: "Finalizado"
     },
     {
         idSolicitud: 8,
