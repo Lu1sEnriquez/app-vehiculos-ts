@@ -18,7 +18,9 @@ const ModalFirma = ({ isOpen, onClose, children, title }:Props) => {
   return (
     <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen max-h-max top-0 left-0 min-h-fit ">
       <div 
-      style={{ height:
+      style={{
+        zIndex:70,
+        height:
       height<350?'98%':
       width<600?`${width/1.4}px`: '90dvh',
 

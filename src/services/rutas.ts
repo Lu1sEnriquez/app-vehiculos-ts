@@ -1,5 +1,5 @@
 
-const IP_API ="localhost"
+const IP_API ="10.21.44.1"
 const PORT_API =3001
 const POST_SALIDALLEGADA_URL =`http://${IP_API}:${PORT_API}/reportes/` //varia  segun la propiedad isSalida
 const GET_APARTADOS_URL =`http://${IP_API}:${PORT_API}/apartados/`;

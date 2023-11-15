@@ -14,8 +14,8 @@ function UiGasolina({ porcentaje }:{porcentaje:number}) {
 
   const { dispatch } = useDatosSalidaLlegadaReducer();
   useEffect(() => {
-    dispatch({ type: "SET_MARCADOR_GASOLINA", payload: containerMarcador.current });
-  }, [porcentaje]);
+    dispatch({ type: "SET_TANQUE", payload:`${porcentaje}` });
+  }, [porcentaje,dispatch]);
 
 
   const red = 255 - porcentaje * 5.1 < 0 ? 0 : 255 - porcentaje * 5.55; // Valor de rojo decrece de 255 a 0

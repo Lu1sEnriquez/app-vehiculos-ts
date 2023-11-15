@@ -18,7 +18,7 @@ type ActionTypes =
   | { type: "SET_KILOMETRAJE"; payload: string | null }
   | { type: "SET_TIENE_GOLPES"; payload: boolean | null }
   | { type: "SET_CARROCERIA"; payload: CoordenadasType[] }
-  | { type: "SET_PORCENTAJE_GASOLINA"; payload: string | null }
+  | { type: "SET_TANQUE"; payload: string | null }
   | { type: "SET_NOMBRE_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_VIGILANTE"; payload: string | null }
   | { type: "SET_FIRMA_SOLICITANTE"; payload: string | null }
@@ -70,7 +70,7 @@ const DatosSalidaLlegadaReducer = (
       return { ...state, golpes: action.payload };
     case "SET_CARROCERIA":
       return { ...state, carroceria: action.payload };
-    case "SET_PORCENTAJE_GASOLINA":
+    case "SET_TANQUE":
       return { ...state, tanque: action.payload };
     case "SET_ISSALIDA":
       return { ...state, isSalida: action.payload };
