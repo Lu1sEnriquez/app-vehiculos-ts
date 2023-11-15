@@ -12,7 +12,7 @@ function InputGasolina() {
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     const nuevoPorcentaje = e.target.value;
     setPorcentaje(parseInt(nuevoPorcentaje));
-    console.log(porcentaje);
+    //console.log(porcentaje);
   };
 
 

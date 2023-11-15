@@ -13,7 +13,7 @@ interface AccesoriosState {
   documentos: boolean;
 }
 
-const InputAccesorios: React.FC = () => {
+export function InputAccesorios() {
   const [accesorios, setAccesorios] = useState<AccesoriosState>({
     gato: false,
     extra: false,
@@ -24,24 +24,19 @@ const InputAccesorios: React.FC = () => {
   });
 
   const handleCheckboxChange = (accesorio: keyof AccesoriosState) => {
-    console.log(accesorio);
-
-    setAccesorios((prevAccesorios): AccesoriosState => {
-      const newAccesorios = {
-        ...prevAccesorios,
-        [accesorio]: !prevAccesorios[accesorio],
-      };
-      console.log(newAccesorios);
-
-      dispatch({ type: "SET_ACCESORIOS", payload: newAccesorios });
-      return newAccesorios;
-    });
+    const newAccesorios = {
+      ...accesorios,
+      [accesorio]: !accesorios[accesorio],
+    };
+    setAccesorios(newAccesorios);
+    dispatch({ type: "SET_ACCESORIOS", payload: newAccesorios });
   };
 
   const { dispatch } = useDatosSalidaLlegadaReducer();
-  useEffect(() => {}, [accesorios]);
+
   const classNameLabel = "flex flex-row  ";
-const claseCheck ="w-8 h-8 border-black border-2 rounded flex items-center justify-center"
+  const claseCheck =
+    "w-8 h-8 border-black border-2 rounded flex items-center justify-center";
   return (
     <section className="border-2  flex flex-col font-bold ">
       <LabelFormulario>{"Seleccione los Accesorios: "}</LabelFormulario>
@@ -120,6 +115,6 @@ const claseCheck ="w-8 h-8 border-black border-2 rounded flex items-center justi
       </div>
     </section>
   );
-};
+}
 
 export default InputAccesorios;

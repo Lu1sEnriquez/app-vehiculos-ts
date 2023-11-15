@@ -26,7 +26,7 @@ function InputFirma({ type, onClose }: { type?:firmaType; onClose?: () => void }
   function handleSaveClick() {
     if (firma) {
       const imageDataURL = CreateImageFirmaURL(firma, "png");
-      console.log(imageDataURL);
+      //console.log(imageDataURL);
       
       if (type === "Vigilante") {
         // Cambia '==' por '==='

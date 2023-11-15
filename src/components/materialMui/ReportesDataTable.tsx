@@ -1,6 +1,9 @@
 "use client";
 import MUIDataTable from "mui-datatables";
-import ApartadosType, { ReporteType, estadoType } from "@/models/ReporteGeneralType";
+import ApartadosType, {
+  ReporteType,
+  estadoType,
+} from "@/models/ReporteGeneralType";
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
 import { reportesGeneralGet } from "@/services/reportes.services";
@@ -46,156 +49,143 @@ function ReportesDataTable() {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="w-full md:pl-10 animate-fade-down font-nunito-sans text-base font-semibold">
-      <MUIDataTable
-        title={"Lista De Reportes Vehiculos"}
-        data={
-          data.map((solicitud) => {
-            return {
-              folio: solicitud.idSolicitud,
-              solicitante: solicitud.nombreSolicitante,
-              vehiculo: solicitud.vehiculo,
-              // chofer:solicitud.chofer,
-              salida: solicitud.fechaSalida,
-              llegada: solicitud.fechaLlegada,
-              destino: solicitud.destino || "Local",
-              estado: solicitud.estado,
-            };
-          })
-          // .filter((s) => s.estado === "Finalizado")
-        }
-        columns={[
-          {
-            name: "folio",
-            label: "Folio",
-          },
-          {
-            name: "solicitante",
-            label: "Solicitante",
-          },
-          // {
-          //   name:"chofer",
-          //   label:"Chofer"
-          // },
-
-          {
-            name: "vehiculo",
-            label: "Vehiculo",
-          },
-          // {
-          //   name:"fechaRegistro",
-          //   label:"Registro"
-          // },
-          {
-            name: "salida",
-            label: "Salida",
-          },
-          {
-            name: "llegada",
-            label: "Llegada",
-          },
-          {
-            name: "destino",
-            label: "Destino",
-          },
-          {
-            name: "estado",
-            label: "estado",
-          },
-          {
-            name: "",
-            label: "",
-          },
-        ]}
-        options={{
-          downloadOptions: {
-            filename: "Reporte General",
-            filterOptions: {
-              useDisplayedColumnsOnly: true,
-              useDisplayedRowsOnly: true,
+      {data && (
+        <MUIDataTable
+          key={data.length}
+          title={"Lista De Reportes Vehiculos"}
+          data={
+            data.map((solicitud) => {
+              return {
+                folio: solicitud.idSolicitud,
+                solicitante: solicitud.nombreSolicitante,
+                vehiculo: solicitud.vehiculo,
+                // chofer:solicitud.chofer,
+                salida: solicitud.fechaSalida,
+                llegada: solicitud.fechaLlegada,
+                destino: solicitud.destino || "Local",
+                estado: solicitud.estado,
+              };
+            })
+            // .filter((s) => s.estado === "Finalizado")
+          }
+          columns={[
+            {
+              name: "folio",
+              label: "Folio",
             },
-            separator: " , ",
-          },
-          download: "true",
-          expandableRows: false,
+            {
+              name: "solicitante",
+              label: "Solicitante",
+            },
+            // {
+            //   name:"chofer",
+            //   label:"Chofer"
+            // },
 
-          customToolbar(data) {
-            
-              const dataReporte = data.displayData.map((row):ReporteType => {
+            {
+              name: "vehiculo",
+              label: "Vehiculo",
+            },
+            // {
+            //   name:"fechaRegistro",
+            //   label:"Registro"
+            // },
+            {
+              name: "salida",
+              label: "Salida",
+            },
+            {
+              name: "llegada",
+              label: "Llegada",
+            },
+            {
+              name: "destino",
+              label: "Destino",
+            },
+            {
+              name: "estado",
+              label: "estado",
+            },
+            {
+              name: "",
+              label: "",
+            },
+          ]}
+          options={{
+            downloadOptions: {
+              filename: "Reporte General",
+              filterOptions: {
+                useDisplayedColumnsOnly: true,
+                useDisplayedRowsOnly: true,
+              },
+              separator: " , ",
+            },
+            download: "true",
+            expandableRows: false,
+
+            customToolbar(data) {
+              const dataReporte = data.displayData.map((row): ReporteType => {
                 const data = row.data;
                 return {
                   Folio: data[0] as number,
                   Solicitante: data[1] as string,
                   Vehiculo: data[2] as string,
-                  FechaSalida: data[3].slice(0,10) as string,
-                  HoraSalida: data[3].slice(11,16) as string,
-                  FechaLlegada: data[4].slice(0,10) as string,
-                  HoraLlegada: data[4].slice(11,16) as string,
+                  FechaSalida: data[3].slice(0, 10) as string,
+                  HoraSalida: data[3].slice(11, 16) as string,
+                  FechaLlegada: data[4].slice(0, 10) as string,
+                  HoraLlegada: data[4].slice(11, 16) as string,
                   Destino: data[5] as string,
                   Estado: data[6] as estadoType,
                 };
-              })
-            
+              });
 
-            return (
-              <div className="  w-full hover:cursor-pointer flex justify-end  ">
-                <button className="flex flex-row gap-1 items-center justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
-                onClick={()=>{
-                  GenerarReportePDF(dataReporte)
-                }}
+              return (
+                <div className="  w-full hover:cursor-pointer flex justify-end  ">
+                  <button
+                    className="flex flex-row gap-1 items-center justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
+                    onClick={() => {
+                      GenerarReportePDF(dataReporte);
+                    }}
+                  >
+                    <h3 className="font-nunito-sans font-bold">REPORTE</h3>
+                    <HiOutlineClipboardDocumentList size={20} />
+                  </button>
+                </div>
+              );
+            },
+
+            customRowRender(data, dataIndex, rowIndex) {
+              return (
+                <tr
+                  key={rowIndex}
+                  className="w-full border-b-2 border-slate-300  lowercase "
                 >
-                  <h3 className="font-nunito-sans font-bold">REPORTE</h3>
-                  <HiOutlineClipboardDocumentList size={20} />
-                </button>
-              </div>
-            );
-          },
-
-          customRowRender(data, dataIndex, rowIndex) {
-            return (
-              <tr className="w-full border-b-2 border-slate-300  lowercase ">
-                <td className="w-full flex justify-center items-center ">
-                  <ButtonGenerarPDF id={parseInt(data[0])} />
-                </td>
-                <td className="">{data[0]}</td>
-                <td className="">{data[1]}</td>
-                <td className="">{data[2]}</td>
-                <td className="">
-                  <span>{data[3].slice(0, 10)}</span>
-                  <span>{data[3].slice(11, 16)}</span>
-                </td>
-                <td className="">
-                  <span>{data[4].slice(0, 10)}</span>
-                  <span>{data[4].slice(11, 16)}</span>
-                </td>
-                <td className="">{data[5]}</td>
-                <td className="">{data[6]}</td>
-              </tr>
-            );
-          },
-          renderExpandableRow: (rowData, rowMeta) => {
-            console.log(rowData);
-
-            return (
-              <tr className="w-full ">
-                <td className="bg-green-500"></td>
-                <td className="bg-red-500"></td>
-                <td className="bg-green-500"></td>
-                <td className="bg-red-500"></td>
-                <td className="bg-green-500"></td>
-                <td className="bg-red-500"></td>
-                <td></td>
-                <td className="w-full flex justify-center items-center bg-green-500">
-                  <ButtonGenerarPDF id={parseInt(rowData[0])} />
-                </td>
-              </tr>
-            );
-          },
-        }}
-      ></MUIDataTable>
+                  <td className="w-full flex justify-center items-center ">
+                    <ButtonGenerarPDF id={parseInt(data[0])} />
+                  </td>
+                  <td className="">{data[0]}</td>
+                  <td className="">{data[1]}</td>
+                  <td className="">{data[2]}</td>
+                  <td className="">
+                    <span>{data[3].slice(0, 10)}</span>
+                    <span>{data[3].slice(11, 16)}</span>
+                  </td>
+                  <td className="">
+                    <span>{data[4].slice(0, 10)}</span>
+                    <span>{data[4].slice(11, 16)}</span>
+                  </td>
+                  <td className="">{data[5]}</td>
+                  <td className="">{data[6]}</td>
+                </tr>
+              );
+            },
+          }}
+        ></MUIDataTable>
+      )}
     </div>
   );
 }

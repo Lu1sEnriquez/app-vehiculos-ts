@@ -14,7 +14,7 @@ export default interface ApartadosType {
 
 
 export  interface ReporteType {
-    Folio: number;
+    Folio?: number;
     Solicitante?: string;
     Chofer?: string
     Destino?: string;
