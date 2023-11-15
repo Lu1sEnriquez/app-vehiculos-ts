@@ -12,7 +12,7 @@ import { generarMarcadorGasolina } from '../../canvas/generateMarcadorPng';
 import datosSalidaLlegadaType from '@/models/DatosSalidaLlegada';
 
 
-function generarCoordenadas(doc: jsPDF) {
+export function generarCoordenadas(doc: jsPDF) {
   //agregar puntos en y
   doc.setFontSize(5)
   doc.setTextColor(255, 0, 0);
@@ -29,7 +29,7 @@ function generarCoordenadas(doc: jsPDF) {
 
 
 
-export async function GenerarPDF(data: datosSalidaLlegadaType) {
+export async function GenerarEntradaSalidaPDF(data: datosSalidaLlegadaType) {
 
 
   // Crear un nuevo documento PDF

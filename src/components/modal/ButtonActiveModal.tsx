@@ -2,7 +2,7 @@
 
 import useModal from "@/utils/custom/useModal";
 import { ButtonAzul } from "@/components/basicos/ButtonAzul";
-import Modal from "./Modal";
+import ModalFirma from "./ModalFirma";
 import InputFirma, { firmaType } from "../Formularios/inputs/InputFirma";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ReactNode } from "react";
@@ -46,9 +46,9 @@ function ButtonFirmaModal({ type, children }: Props) {
         <ButtonAzul text={textButton} onClick={openModal} />
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={type}>
+      <ModalFirma isOpen={isModalOpen} onClose={closeModal} title={type}>
         <InputFirma onClose={closeModal} type={type}></InputFirma>
-      </Modal>
+      </ModalFirma>
     </div>
   );
 }

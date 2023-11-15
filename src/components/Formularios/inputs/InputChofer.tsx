@@ -55,7 +55,7 @@ const {dispatch, state} = useDatosSalidaLlegadaReducer();
         </label>
       </div>
       {isChofer && (
-        <div className="">
+        <div className="animate-fade-down animate-duration-300">
           <label className="block text-gray-500 font-semibold mb-3">
             {"Ingresa nombre del Chofer:"}
           </label>

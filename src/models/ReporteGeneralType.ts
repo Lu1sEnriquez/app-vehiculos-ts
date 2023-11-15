@@ -13,6 +13,22 @@ export default interface ApartadosType {
 }
 
 
+export  interface ReporteType {
+    Folio: number;
+    Solicitante?: string;
+    Chofer?: string
+    Destino?: string;
+    Vehiculo?: string;
+    Placa?: string;
+    FechaRegistro?: string;
+    FechaSalida: string;
+    HoraSalida: string;
+    FechaLlegada: string;
+    HoraLlegada: string;
+    Estado: estadoType;
+}
+
+
 export type estadoType = "Pendiente"|"Circulacion"|"Finalizado";
 
 export const estado ={

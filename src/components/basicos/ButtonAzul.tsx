@@ -33,9 +33,10 @@ export function ButtonAzul({ onClick, text, children }: ButtonAzulType) {
 interface ButtonAzulLinkType {
   text?: string,
   href: string
+  children?:React.ReactNode
 }
 
-export function ButtonAzulLink({ href, text }: ButtonAzulLinkType) {
+export function ButtonAzulLink({ href, text, children }: ButtonAzulLinkType) {
   return (
     <Link href={href}>
       <button
@@ -43,13 +44,14 @@ export function ButtonAzulLink({ href, text }: ButtonAzulLinkType) {
         bg-azulOscuro text-blanco
         px-5 py-2 rounded-md 
         shadow-lg
-        
+        flex flex-wrap justify-center items-center gap-2
         duration-200
         hover:bg-azulNormal
         hover:scale-105
         "
       >
         {text || ""}
+        {children}
       </button>
     </Link>
   );

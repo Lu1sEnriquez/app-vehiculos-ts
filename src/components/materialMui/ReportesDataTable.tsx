@@ -1,13 +1,13 @@
 "use client";
 import MUIDataTable from "mui-datatables";
-import ApartadosType, { solicitudes } from "@/models/ReporteGeneralType";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
+import ApartadosType, { ReporteType, estadoType } from "@/models/ReporteGeneralType";
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
 import { reportesGeneralGet } from "@/services/reportes.services";
-import { apartadosGet } from "@/services/apartados.services";
+import { useErrorReducer } from "@/reducer/errorReducer";
+import { HiDocumentArrowDown } from "react-icons/hi2";
+import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
+import { GenerarReportePDF } from "@/utils/PDF/ReporteMensual/generarReporteMensual";
 
 // Definición de tipos para las columnas y los datos
 type Column = keyof ApartadosType; // Obtén las claves de las propiedades de un elemento de "solicitudes"
@@ -26,8 +26,8 @@ const columns: Column[] = [
 
 function ReportesDataTable() {
   const [data, setData] = useState<ApartadosType[]>([]);
-  const [error, setError] = useState<string>();
 
+  const { dispatch } = useErrorReducer();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,30 +36,20 @@ function ReportesDataTable() {
 
         if (Array.isArray(result)) {
           setData(result);
-        }else{
-          setError(`${result}`)
         }
       } catch (error) {
-        // console.error("Error fetching data:", error);
-        // Handle error as needed
-        setError(`${error}`)
-        // setData(solicitudes)
+        dispatch({
+          type: "SET_ERROR",
+          payload: error.message || "Error Desconocido",
+        });
       }
     };
 
     fetchData();
-    console.log(data);
   }, []);
 
   return (
-    <div className="w-full md:pl-10">
-      {error &&(
-        <Stack spacing={2}>
-          <Alert variant="filled" severity="error" >
-            <AlertTitle>No Hay Datos para Mostrar</AlertTitle>
-          </Alert>
-        </Stack>
-      )}
+    <div className="w-full md:pl-10 animate-fade-down font-nunito-sans text-base font-semibold">
       <MUIDataTable
         title={"Lista De Reportes Vehiculos"}
         data={
@@ -116,9 +106,9 @@ function ReportesDataTable() {
             label: "estado",
           },
           {
-            name:"",
-            label:""
-          }
+            name: "",
+            label: "",
+          },
         ]}
         options={{
           downloadOptions: {
@@ -132,20 +122,57 @@ function ReportesDataTable() {
           download: "true",
           expandableRows: false,
 
+          customToolbar(data) {
+            
+              const dataReporte = data.displayData.map((row):ReporteType => {
+                const data = row.data;
+                return {
+                  Folio: data[0] as number,
+                  Solicitante: data[1] as string,
+                  Vehiculo: data[2] as string,
+                  FechaSalida: data[3].slice(0,10) as string,
+                  HoraSalida: data[3].slice(11,16) as string,
+                  FechaLlegada: data[4].slice(0,10) as string,
+                  HoraLlegada: data[4].slice(11,16) as string,
+                  Destino: data[5] as string,
+                  Estado: data[6] as estadoType,
+                };
+              })
+            
+
+            return (
+              <div className="  w-full hover:cursor-pointer flex justify-end  ">
+                <button className="flex flex-row gap-1 items-center justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
+                onClick={()=>{
+                  GenerarReportePDF(dataReporte)
+                }}
+                >
+                  <h3 className="font-nunito-sans font-bold">REPORTE</h3>
+                  <HiOutlineClipboardDocumentList size={20} />
+                </button>
+              </div>
+            );
+          },
+
           customRowRender(data, dataIndex, rowIndex) {
             return (
-              <tr className="w-full  ">
-                <td className=""></td>
-                <td className="">{data[0]}</td>
-                <td className="">{data[1]}</td>
-                <td className="">{data[2]}</td>
-                <td className="">{data[3]}</td>
-                <td className="">{data[4]}</td>
-                <td className="">{data[5]}</td>
-                <td className="">{data[6]}</td>
+              <tr className="w-full border-b-2 border-slate-300  lowercase ">
                 <td className="w-full flex justify-center items-center ">
                   <ButtonGenerarPDF id={parseInt(data[0])} />
                 </td>
+                <td className="">{data[0]}</td>
+                <td className="">{data[1]}</td>
+                <td className="">{data[2]}</td>
+                <td className="">
+                  <span>{data[3].slice(0, 10)}</span>
+                  <span>{data[3].slice(11, 16)}</span>
+                </td>
+                <td className="">
+                  <span>{data[4].slice(0, 10)}</span>
+                  <span>{data[4].slice(11, 16)}</span>
+                </td>
+                <td className="">{data[5]}</td>
+                <td className="">{data[6]}</td>
               </tr>
             );
           },

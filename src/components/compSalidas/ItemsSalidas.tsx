@@ -16,7 +16,9 @@ function ItemsSalida() {
     })
    }, []);
   return (
-    <section className="items-center font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-wrap  gap-5 justify-center  mt-10  border-2 h-full ">
+    <section className="items-center font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-wrap  gap-5 justify-center  mt-10  
+     py-6 
+     h-full ">
       {
         data.filter(solicitud => solicitud.estado == "Pendiente").map((solicitud) => {
             return <ItemSalida key={solicitud.idSolicitud} solicitud={solicitud} />;

@@ -2,7 +2,15 @@ import useDeviceSizeWindow from "@/utils/custom/useDeviseSizeWindow";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Modal = ({ isOpen, onClose, children, title }) => {
+
+
+interface Props{ 
+  isOpen: boolean
+   onClose:()=> void
+  children?: React.ReactNode;
+  title?: string 
+}
+const ModalFirma = ({ isOpen, onClose, children, title }:Props) => {
   const {width,height} = useDeviceSizeWindow();
   
   if (!isOpen) return null;
@@ -34,4 +42,4 @@ const Modal = ({ isOpen, onClose, children, title }) => {
   );
 };
 
-export default Modal;
+export default ModalFirma;

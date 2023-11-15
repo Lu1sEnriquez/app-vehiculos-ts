@@ -1,8 +1,5 @@
 
-import ButtonGenerarPDF from "@/components/basicos/ButtonGenerarPDF";
-import ItemsReportes from "@/components/compReportes/ItemsReportes";
 import ReportesDataTable from "@/components/materialMui/ReportesDataTable";
-import ReportesTable from "@/components/materialMui/ReportesTable";
 import { Suspense } from "react";
 
 function page() {

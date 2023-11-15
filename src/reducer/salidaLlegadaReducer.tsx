@@ -141,7 +141,7 @@ export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProvi
 
     observaciones: null,
     isSalida:true,
-    estado:"Finalizado"
+    estado:null
     
   };
 

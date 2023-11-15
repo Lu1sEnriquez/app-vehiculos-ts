@@ -1,6 +1,7 @@
 import ApartadosType from "@/models/ReporteGeneralType";
 import { ButtonAzulLink } from "../basicos/ButtonAzul";
 import { formatFecha, formatHoraAmPm } from "@/utils/format/formatFecha";
+import { PiKeyReturnBold } from "react-icons/pi";
 
 
 interface Props {
@@ -19,7 +20,7 @@ function ItemLlegada({ solicitud }: Props) {
   
     return (
       <div       
-        className="min-w-[400px]   w-full md:w-80 lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black "
+        className="min-w-[400px] animate-fade-down   w-full md:w-80 lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black "
       >
         <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
           <div className="flex flex-col min-w-[150px] ">
@@ -55,7 +56,9 @@ function ItemLlegada({ solicitud }: Props) {
             </div>
           </div>
           <div className="flex w-1/2 justify-end pr-4 ">
-           <ButtonAzulLink href={`/llegadas/${solicitud.idSolicitud}`} text="Registrar Llegada"></ButtonAzulLink>
+           <ButtonAzulLink href={`/llegadas/${solicitud.idSolicitud}`} text="REGISTRAR">
+           <PiKeyReturnBold size={25}/>
+           </ButtonAzulLink>
           </div>
         </footer>
       </div>

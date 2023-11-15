@@ -1,6 +1,7 @@
 "use client"
 import { AiFillCar } from "react-icons/ai";
 import { useState, useEffect } from "react";
+import { ErrorProvider } from "@/reducer/errorReducer";
 
 function Layout({ children }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -21,6 +22,7 @@ function Layout({ children }) {
   }, []);
 
   return (
+   
     <>
       <div
         className={`fixed z-20 top-0   bg-AzulOscuro w-full h-12 text-center flex flex-row gap-5 items-center justify-center transition-all ${
@@ -31,9 +33,11 @@ function Layout({ children }) {
         <AiFillCar size={30} className="md:z-0" />
       </div>
       <main className="mt-12">
+        
       {children}
       </main>
-    </>
+      </>
+    
   );
 }
 

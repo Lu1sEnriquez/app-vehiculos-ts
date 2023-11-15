@@ -1,51 +1,9 @@
 import datosSalidaType from "@/models/DatosSalidaType";
 import DataType, { mapResponseToReporteGeneral } from "@/models/DataType";
-import { POST_SALIDALLEGADA_URL, GET_REPORTES_INDIVIDUAL_URL, GET_REPORTES_GENERAL_URL, GET_APARTADOS_URL } from "./rutas";
+import { POST_SALIDALLEGADA_URL, GET_REPORTES_INDIVIDUAL_URL, GET_REPORTES_GENERAL_URL } from "./rutas";
 import ApartadosType from "@/models/ReporteGeneralType";
 import { compararFechas } from "@/utils/format/formatFecha";
-
-
-export async function handleAsyncError<T>(
-  asyncFunction: () => Promise<T>,
-  errorMessage: string
-): Promise<T> {
-  try {
-    const result = await asyncFunction();
-    return result;
-  } catch (error) {
-    console.error('Ocurrió un error:', error);
-    throw new Error(errorMessage);
-  }
-}
-
-
-export async function salidaLlegadaPost(data: datosSalidaType) {
-  return handleAsyncError(async () => {
-    console.log(data);
-
-    const result = await fetch(POST_SALIDALLEGADA_URL, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(result);
-    
-    if (result.ok) {
-      const responseData = await result.json();
-      console.log('Respuesta exitosa:', responseData);
-      return responseData.data;
-    } else {
-      console.log('Error en la solicitud: ', result.status);
-      console.log(await result.json());
-      
-      return null;
-    }
-  }, 'Error en salidaPost');
-}
-
-
+import { handleAsyncError, lanzarError } from "./errors";
 
 
 
@@ -57,11 +15,8 @@ export async function reportesGet() {
       const responseData = await result.json();
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
-    } else {
-      const errorMessage = `Error en la solicitud: ${result.status}`;
-      console.error(errorMessage);
-      throw new Error(errorMessage);
     }
+    lanzarError(result.status)
   }, 'Error en reportesGet');
 }
 
@@ -73,10 +28,8 @@ export async function reportesGetById(id: number) {
       const responseData = await result.json();
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
-    } else {
-      console.error('Error en la solicitud: ', result.status);
-      return null;
-    }
+    } 
+    lanzarError(result.status)
   }, 'Error en reportesGetById');
 }
 
@@ -90,9 +43,7 @@ export async function reportesGeneralGet() {
         return responseData.data;
       } 
     } else {
-      console.error('Error en la solicitud: ', result.status);
-      const data = await result.json();
-      return data.message
+      lanzarError(result.status)
     }
   }, 'Error en reportesGeneralGet');
 }
@@ -106,10 +57,8 @@ export async function reportesGeneralGetById(id: number) {
       const responseData = await result.json();
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
-    } else {
-      console.error('Error en la solicitud: ', result.status);
-      return null;
-    }
+    } 
+    lanzarError(result.status)
   }, 'Error en reportesGeneralGetById');
 }
 

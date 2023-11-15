@@ -65,7 +65,7 @@ function InputDestino() {
         </label>
       </div>
       {!isLocal && (
-        <div className="">
+        <div className="animate-fade-down animate-duration-300 ">
           <label className="block text-gray-500 font-semibold mb-3">
             {"Ingresa el destino:"}
           </label>

@@ -69,7 +69,7 @@ const {state,dispatch} = useDatosSalidaLlegadaReducer()
           {placa && (
             <>
               <Image
-                className="w-28 sm:w-28 md:w-22 lg:w-36 "
+                className="animate-fade animate-duration-300 w-28 sm:w-28 md:w-22 lg:w-36 "
                 src={placaImg}
                 alt="placa"
               ></Image>

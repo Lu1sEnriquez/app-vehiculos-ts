@@ -27,7 +27,7 @@ interface Props{
 function FormularioSalida({folio}:Props) {
 
 
-console.log(folio);
+
 
   return (
     <DatosSalidaLlegadaProvider>
@@ -35,7 +35,7 @@ console.log(folio);
 
 
       <section
-        className=" flex flex-wrap sm:justify-around 
+        className=" flex flex-wrap sm:justify-around  animate-fade
     py-5 md:px-5 
     gap-y-5 mr-5 md:gap-0 w-full mb-10"
       >

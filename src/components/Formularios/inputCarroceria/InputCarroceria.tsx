@@ -48,14 +48,14 @@ function InputCarroceria() {
         </label>
       </div>
       {golpes && (
-        <>
+        <div className="animate-fade-down animate-duration-300">
           <LabelFormulario>
             {"Marca donde se encuentran los golpes: "}
           </LabelFormulario>
           <div className=" h-fit">
             <CarroseriaUI autoImage={autoImage}></CarroseriaUI>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

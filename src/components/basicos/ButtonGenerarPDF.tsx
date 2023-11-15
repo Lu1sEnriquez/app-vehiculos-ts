@@ -1,6 +1,6 @@
 'use client'
 import {ButtonAzul} from '@/components/basicos/ButtonAzul'
-import {GenerarPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
+import {GenerarEntradaSalidaPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
 import {GrDocumentPdf} from "react-icons/gr"
 
 import { ButtonRojo } from './ButtonRojo';
@@ -10,7 +10,7 @@ function ButtonGenerarPDF({id}:{id: number}) {
   async function handleData() {
     const data =await reportesGetById(id)
     console.log(data);
-    await GenerarPDF(data)
+    await GenerarEntradaSalidaPDF(data)
   }
 
    function handleGenerar() {

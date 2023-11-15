@@ -31,7 +31,7 @@ function FormularioLlegada({folio}:Props) {
     <DatosSalidaLlegadaProvider>
       <IsSalida isSalida={false} estado="Finalizado"/>
       <section
-        className=" flex flex-wrap sm:justify-around 
+        className=" animate-fade flex flex-wrap sm:justify-around 
     py-5 md:px-5 
     gap-y-5 mr-5 md:gap-0 w-full mb-10"
       >

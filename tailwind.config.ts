@@ -31,7 +31,11 @@ module.exports = {
         greenSuccess: "#28A745",
         slatePrimary: "#4B4B4B",
       },
+
+
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }

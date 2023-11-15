@@ -29,6 +29,6 @@ export default interface datosSalidaType {
     extintor: boolean | null;
     documentos: boolean | null;
   };
-  observaciones: string | null,
-  estado:estadoType
+  observaciones: string | null;
+  estado:estadoType | null;
 };
