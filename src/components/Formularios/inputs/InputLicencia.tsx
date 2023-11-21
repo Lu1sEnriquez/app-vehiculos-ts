@@ -8,7 +8,7 @@ function InputLicencia() {
   const {  dispatch } = useDatosSalidaLlegadaReducer();
   
   const handleSetLicencia = (e:ChangeEvent<HTMLInputElement>) => {
-    setLicencia(e.target.value);
+    setLicencia(e.target.value.toUpperCase());
   };
 
 useEffect(()=>{

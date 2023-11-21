@@ -52,7 +52,7 @@ function ReportesDataTable() {
   }, [dispatch]);
 
   return (
-    <div className="w-full md:pl-10 animate-fade-down font-nunito-sans text-base font-semibold">
+    <div className="w-full  animate-fade-down font-nunito-sans text-base font-semibold">
       {data && (
         <MUIDataTable
           key={data.length}
@@ -171,12 +171,12 @@ function ReportesDataTable() {
                   <td className="">{data[1]}</td>
                   <td className="">{data[2]}</td>
                   <td className="">
-                    <span>{data[3].slice(0, 10)}</span>
-                    <span>{data[3].slice(11, 16)}</span>
+                    <span className="truncate">{data[3].slice(0, 10)}</span>
+                    {/* <span>{data[3].slice(11, 16)}</span> */}
                   </td>
                   <td className="">
-                    <span>{data[4].slice(0, 10)}</span>
-                    <span>{data[4].slice(11, 16)}</span>
+                    <span className="truncate">{data[4].slice(0, 10)}</span>
+                    {/* <span>{data[4].slice(11, 16)}</span> */}
                   </td>
                   <td className="">{data[5]}</td>
                   <td className="">{data[6]}</td>

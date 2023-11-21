@@ -18,13 +18,13 @@ function NavbarMovil() {
       className={` bg-azulOscuro text-blanco  font-medium
      flex  flex-col  
      top-0 mb-4 
-     md:px-10 md:py-3 
+     md:px-10  
      items-center   
      fixed  
      w-full 
      z-30
      shadow-xl
-     ${!open ? "h-12" : "h-80"} duration-300
+     ${!open ? "h-14" : "h-80"} duration-300
     `}
     >
       <div className="flex flex-row justify-between w-full items-center">

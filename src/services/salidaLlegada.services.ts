@@ -14,6 +14,9 @@ export async function salidaLlegadaPost(data: datosSalidaType) {
         },
         body: JSON.stringify(data),
       });
+
+      console.log(await result.json());
+
       console.log(result);
       
       if (result.ok) {

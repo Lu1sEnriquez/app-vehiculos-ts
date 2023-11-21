@@ -7,11 +7,11 @@ function Layout({ children }:{children:ReactNode}) {
 
   return (
     <>
-      <div className="text-black w-full  text-center p-10">
+      <div className="text-black w-full mt-10 lg:mt-0  text-center p-10">
         <h1 className="font-Poppins font-bold text-5xl text-azulNormal ">GENERAR REPORTES </h1>
         
       </div>
-      <main className=" md:pl-12 w-full">
+      <main className="  w-full">
       {children}
       </main>
     </>
