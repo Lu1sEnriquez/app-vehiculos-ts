@@ -3,6 +3,7 @@ import {ButtonAzul} from '@/components/basicos/ButtonAzul'
 import {GenerarEntradaSalidaPDF} from '@/utils/PDF/ReporteEntradaSalida/generarReporteEntradaSalidaPDF';
 import {GrDocumentPdf} from "react-icons/gr"
 import { FcFile } from "react-icons/fc";
+import { FcDocument } from "react-icons/fc";
 
 import { ButtonRojo } from './ButtonRojo';
 import { reportesGetById } from '@/services/reportes.services';
@@ -21,8 +22,8 @@ function ButtonGenerarPDF({id}:{id: number}) {
  
     
   return (
-        <button onClick={handleGenerar}  className='p-3 m-2 rounded-full hover:bg-azulNormal opacity-80 duration-200 shadow-xl'>
-          <FcFile size={20}></FcFile>
+        <button onClick={handleGenerar}  className='p-1  rounded-full hover:bg-azulTurquesa hover:scale-110 opacity-80 duration-100 shadow-slate-800 '>
+          <FcDocument size={30}></FcDocument>
         </button>
   )
 }

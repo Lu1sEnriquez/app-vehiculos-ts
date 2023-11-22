@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import ApartadosType, {
   ReporteType,
   estadoType,
+  solicitudes,
 } from "@/models/ReporteGeneralType";
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
@@ -46,11 +47,11 @@ interface filterDateInitialType {
 }
 const filterDateInitial = {
   inicioDelMes: formatFecha(inicioDelMes),
-  finDelMes:formatFecha(finDelMes),
+  finDelMes: formatFecha(finDelMes),
 };
 function ReportesDataTable() {
   const [data, setData] = useState<ApartadosType[]>([]);
-  const [filterDate, setfilterDate] = 
+  const [filterDate, setfilterDate] =
     useState<filterDateInitialType>(filterDateInitial);
 
   const { dispatch } = useErrorReducer();
@@ -60,6 +61,10 @@ function ReportesDataTable() {
         const result = await reportesGeneralGet(
           new Date(filterDate.inicioDelMes),
           new Date(filterDate.finDelMes)
+        ).then((data) =>
+          data?.filter(
+            (solicitud: ApartadosType) => solicitud.estado == "Finalizado"
+          )
         );
         console.log(result);
 
@@ -71,7 +76,7 @@ function ReportesDataTable() {
           type: "SET_ERROR",
           payload: error.message || "Error Desconocido",
         });
-        setData([])
+        setData([]);
       }
     };
 
@@ -79,7 +84,7 @@ function ReportesDataTable() {
   }, [dispatch, filterDate]);
 
   return (
-    <div className="w-full md:pl-10 animate-fade-down font-nunito-sans text-base font-semibold">
+    <div className="w-full  animate-fade-down font-nunito-sans text-base font-semibold">
       {data && (
         <MUIDataTable
           key={data.length}
@@ -125,10 +130,20 @@ function ReportesDataTable() {
               name: "estado",
               label: "estado",
             },
+            {
+              name: "acciones",
+              label: "Descargar",
+              options: {
+                customBodyRender: (value, tableMeta) => (
+                  <ButtonGenerarPDF id={parseInt(tableMeta.rowData[0])} />
+                ),
+              },
+            },
           ]}
           options={{
+            
             downloadOptions: {
-              filename: "Reporte General",
+              filename: `Reporte-vehicular-${filterDate.inicioDelMes}-${filterDate.finDelMes}`,
               filterOptions: {
                 useDisplayedColumnsOnly: true,
                 useDisplayedRowsOnly: true,
@@ -158,7 +173,7 @@ function ReportesDataTable() {
               ) => {
                 setfilterDate({
                   ...filterDate,
-                  inicioDelMes:e.target.value
+                  inicioDelMes: e.target.value,
                 });
               };
               const handleDiaFin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -169,60 +184,40 @@ function ReportesDataTable() {
               };
 
               return (
-                <div className="  w-full hover:cursor-pointer flex  items-center font-nunito-sans font-semibold">
-                  <div className=" w-full flex flex-row gap-5 justify-center items-center">
-                    <h3>Fecha Inicio: </h3>
-                    <input
-                      type="date"
-                      onChange={handleDiaInicio}
-                      className="border-2 border-slate-900 rounded"
-                      value={filterDate.inicioDelMes}
-                    />
-                    <h3>Fecha Fin: </h3>
-                    <input
-                      type="date"
-                      onChange={handleDiaFin}
-                      className="border-2 border-slate-900 rounded"
-                      value={filterDate.finDelMes}
-                    />
+                <div className="   w-full hover:cursor-pointer flex flex-wrap gap-2  items-center justify-end lg:justify-between  font-nunito-sans font-semibold">
+                  <div className=" w-fit flex flex-wrap gap-2 justify-end lg:justify-between items-center ">
+                    <label className="flex flex-wrap gap-2">
+                      Fecha Inicio:
+                      <input
+                        type="date"
+                        onChange={handleDiaInicio}
+                        className="border-2 border-slate-300 rounded"
+                        value={filterDate.inicioDelMes}
+                      />{" "}
+                    </label>
+
+                    <label className="flex flex-wrap gap-2">
+                      Fecha Fin:
+                      <input
+                        type="date"
+                        onChange={handleDiaFin}
+                        className="border-2 border-slate-300 rounded"
+                        value={filterDate.finDelMes}
+                      />
+                    </label>
                   </div>
                   <button
-                    className="flex flex-row gap-1 items-center justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
+                    className="flex flex-row gap-1 items-center  justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
                     onClick={() => {
                       GenerarReportePDF(dataReporte);
                     }}
                   >
-                    <h3 className="font-nunito-sans font-bold">REPORTE</h3>
+                    <label className="font-nunito-sans font-bold">
+                      REPORTE
+                    </label>
                     <HiOutlineClipboardDocumentList size={20} />
                   </button>
                 </div>
-              );
-            },
-
-            customRowRender(data, dataIndex, rowIndex) {
-              return (
-                <tr
-                  key={rowIndex}
-                  className="w-full border-b-2 border-slate-300 lowercase "
-                >
-                  <td></td>
-                  <td className="">{data[0]}</td>
-                  <td className="">{data[1]}</td>
-                  <td className="">{data[2]}</td>
-                  <td className="">
-                    <span>{data[3].slice(0, 10)}</span>
-                    <span>{data[3].slice(11, 16)}</span>
-                  </td>
-                  <td className="">
-                    <span>{data[4].slice(0, 10)}</span>
-                    <span>{data[4].slice(11, 16)}</span>
-                  </td>
-                  <td className="">{data[5]}</td>
-                  <td className="">{data[6]}</td>
-                  <td className="w-full flex justify-center items-center ">
-                    <ButtonGenerarPDF id={parseInt(data[0])} />
-                  </td>
-                </tr>
               );
             },
           }}

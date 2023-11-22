@@ -29,7 +29,7 @@ console.log(`fechaLlegada: `+fechaLlegada );
   return (
     <div
       
-      className="min-w-[400px] animate-fade-down animate-duration-300  w-full md:w-80 lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black "
+      className="min-w-[400px] animate-fade-down animate-duration-300  w-full  lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[220px] shadow-xl rounded-md text-black "
     >
       <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
         <div className="flex flex-col min-w-[150px] ">
@@ -48,10 +48,14 @@ console.log(`fechaLlegada: `+fechaLlegada );
           : <h1>Hora: {horaLlegadaFormat}</h1>}
         </div>
       </header>
-      <div className=" w-full h-14  pl-3 gap-2  flex flex-col  justify-center">
+      <div className=" w-full h-20  pl-3 gap-2  flex flex-col  justify-center">
         <div className="flex flex-row gap-2">
           <h1 className="flex flex-row">Responsable:</h1>
           <p> {solicitud.nombreSolicitante}</p>
+        </div>
+        <div className="flex flex-row gap-2">
+          <h1 className="flex flex-row">Entregado a:</h1>
+          <p> {}</p>
         </div>
         <div className="flex flex-row  gap-2">
           <h1 className="flex flex-row">Chofer:</h1>

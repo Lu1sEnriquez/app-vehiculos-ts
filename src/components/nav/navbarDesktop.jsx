@@ -7,9 +7,9 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import menuItems from "@/router/menuItems"; // aqui estan los apartados del nav y sus iconos
 
 
-function NavbarDesktop() {
+function NavbarDesktop({open, setOpen}) {
   
-  const [open, setOpen] = useState(false);
+  
 
   const handleClick = () => setOpen(!open);
   const handleClickItem = () =>{

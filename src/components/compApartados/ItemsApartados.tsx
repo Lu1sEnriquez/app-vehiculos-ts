@@ -17,7 +17,7 @@ function ItemsApartados() {
   }, []);
 
   return (
-    <section className=" font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-wrap gap-5 justify-center m-auto mt-10   ">
+    <section className=" font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-wrap gap-5 justify-center m-auto   mt-10 px-2  ">
       {data.map((solicitud, index)  => {
         return <ItemApartado key={index} solicitud={solicitud} />;
       })}

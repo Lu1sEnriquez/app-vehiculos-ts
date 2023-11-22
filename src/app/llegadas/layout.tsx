@@ -4,11 +4,13 @@ import { AiFillCar } from "react-icons/ai";
 function layout({ children }: { children: ReactNode }) {
   return (
     <>
-      <div className=" bg-azulOscuro w-full  h-14 text-center flex flex-row gap-5 items-center justify-center ">
-        <h1 className="font-semibold z-30 md:z-0">Formulario Llegada</h1>
-        <AiFillCar size={30} className={"z-30 md:z-0"} />
+      <div className="  bg-azulOscuro w-full  h-14 text-center flex flex-row gap-5 items-center justify-center ">
+        <div className="fixed md:sticky w-fit z-30 flex flex-row items-center gap-2">
+        <h1 className="font-semibold md:z-0">Registrar Llegada</h1>
+        <AiFillCar size={30} className={" md:z-0"} />
+        </div>
       </div>
-      {children}
+      <main >{children}</main>
     </>
   );
 }

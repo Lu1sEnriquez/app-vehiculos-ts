@@ -1,57 +1,91 @@
 "use client";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ButtonAzul, ButtonAzulLink } from "../basicos/ButtonAzul";
-import { useState } from "react";
 import useModal from "@/utils/custom/useModal";
 import { salidaLlegadaPost } from "@/services/salidaLlegada.services";
 import { useErrorReducer } from "@/reducer/errorReducer";
 import ModalComponent from "../modal/Modal";
-import { CiCircleCheck } from "react-icons/ci";
 import Image from "next/image";
-
+import Swal from "sweetalert2";
 import checkIcon from "@/assets/icons/icons8-comprobado-100.png";
+import datosSalidaLlegadaType from "@/models/DatosSalidaLlegada";
+import datosSalidaType from "@/models/DatosSalidaType";
 
 function ButtonPostSalidaLlegada() {
   const { state } = useDatosSalidaLlegadaReducer();
 
-  const { dispatch } = useErrorReducer();
+  const errorReducer = useErrorReducer();
   async function handlePost() {
     try {
-      const result = await salidaLlegadaPost(state);    
-        console.log("Solicitud POST exitosa:", result);
-        openModal();    
+      const result = await salidaLlegadaPost(state);
+      alerta();
+      // console.log("Solicitud POST exitosa:", result);
     } catch (error) {
-      dispatch({
+      const incompletos = obtenerCamposFaltantes();
+      if (incompletos) {
+        errorReducer.dispatch({
+          type: "SET_ERROR",
+          payload: "Formulario Incompleto",
+        });
+
+        errorReducer.dispatch({
+          type: "SET_MESSAGE",
+          payload: incompletos,
+        });
+      }
+      errorReducer.dispatch({
         type: "SET_ERROR",
-        payload: error.message || "Error Desconocido",
+        payload: "Ya Existe",
       });
-      
+
+      errorReducer.dispatch({
+        type: "SET_MESSAGE",
+        payload: `${error}`,
+      });
     }
   }
 
+  function obtenerCamposFaltantes() {
+    const camposFaltantes: (keyof datosSalidaType)[] = [];
+
+    for (const key in state) {
+      if (state[key as keyof datosSalidaType] === null) {
+        if (
+          (key as keyof datosSalidaType) != "chofer" &&
+          key != "estado" &&
+          key != "destino"
+        ) {
+          camposFaltantes.push(key as keyof datosSalidaType);
+        }
+      }
+    }
+    console.log(camposFaltantes.length);
+    
+    if (camposFaltantes.length === 0) return null;
+    return `${camposFaltantes.join(", ")}, Estan Vacios`;
+  }
+
+  function alerta() {
+    if (errorReducer.state.error) {
+      Swal.fire({
+        title: "Exito!",
+        text: `Registro Exitoso`,
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          errorReducer.dispatch({ type: "SET_ERROR", payload: null });
+          errorReducer.dispatch({ type: "SET_MESSAGE", payload: null });
+        }
+      });
+    }
+  }
   function handleClick() {
     handlePost(); // Llama a la función asincrónica handlePost
   }
 
   const { closeModal, isModalOpen, openModal } = useModal();
-  return (
-    <>
-      
-        <ModalComponent isOpen={isModalOpen} onClose={closeModal}>
-          <section className="flex flex-col items-center gap-2">
-            <div className="flex flex-col items-center">
-              <h1 className="font-nunito-sans font-bold">
-                REGISTRADO CON EXITO
-              </h1>
-              <Image src={checkIcon} alt="Perfecto" />
-            </div>
-            <ButtonAzulLink href="/apartados" text="Regresar"></ButtonAzulLink>
-          </section>
-        </ModalComponent>
-      
-      <ButtonAzul text="Registrar" onClick={handleClick}></ButtonAzul>
-    </>
-  );
+  return <ButtonAzul text="Registrar" onClick={handleClick}></ButtonAzul>;
 }
 
 export default ButtonPostSalidaLlegada;

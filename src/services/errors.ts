@@ -29,12 +29,16 @@ export async function handleAsyncError<T>(
     }
   }
 
-
-  export function lanzarError(status:number){
-    for (const s in ERROR) {
-        if(status == parseInt(s)){
-            const error: errorKey = parseInt(s) as errorKey;
-            throw new Error(ERROR[error]);
-        } 
-    }
+  export function lanzarError(menssage:string){
+  throw new Error(menssage)
   }
+
+
+  // export function lanzarError(status:number){
+  //   for (const s in ERROR) {
+  //       if(status == parseInt(s)){
+  //           const error: errorKey = parseInt(s) as errorKey;
+  //           throw new Error(ERROR[error]);
+  //       } 
+  //   }
+  // }

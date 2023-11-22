@@ -24,7 +24,7 @@ function InputKilometraje() {
     <>
       <div className="w-60  ">
         
-          <LabelFormulario>Kilometraje de Salida:</LabelFormulario>
+          <LabelFormulario>Kilometraje: </LabelFormulario>
             <input
               className="border border-slate-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
               shadow-md shadow-gray-300

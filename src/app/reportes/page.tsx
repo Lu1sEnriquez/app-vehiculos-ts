@@ -6,7 +6,7 @@ function page() {
   return (
     <main className=" bg-[#f2f2f2] text-black  w-full   h-full  ">
       {/* <ReportesTable></ReportesTable> */}
-     <section className="md:mr-6" >
+     <section className="lg:ml-16 p-4" >
     
      <ReportesDataTable></ReportesDataTable>
      

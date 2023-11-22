@@ -7,8 +7,7 @@ import { AiOutlineHome } from "react-icons/ai";
 
 import menuItems from "@/router/menuItems"; // aqui estan los apartados del nav y sus iconos
 
-function NavbarMovil() {
-  const [open, setOpen] = useState(false);
+function NavbarMovil({open, setOpen}) {
 
   const handleClick = () => setOpen(!open);
 
@@ -18,13 +17,13 @@ function NavbarMovil() {
       className={` bg-azulOscuro text-blanco  font-medium
      flex  flex-col  
      top-0 mb-4 
-     md:px-10 md:py-3 
+     md:px-10  
      items-center   
      fixed  
      w-full 
      z-30
      shadow-xl
-     ${!open ? "h-12" : "h-80"} duration-300
+     ${!open ? "h-14" : "h-80"} duration-300
     `}
     >
       <div className="flex flex-row justify-between w-full items-center">

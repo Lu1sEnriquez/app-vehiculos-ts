@@ -1,6 +1,7 @@
 import datosSalidaType from "@/models/DatosSalidaType";
 import { handleAsyncError, lanzarError } from "./errors";
 import { POST_SALIDALLEGADA_URL } from "./rutas";
+import DataType from "@/models/DataType";
 
 
 export async function salidaLlegadaPost(data: datosSalidaType) {
@@ -14,7 +15,8 @@ export async function salidaLlegadaPost(data: datosSalidaType) {
         },
         body: JSON.stringify(data),
       });
-      console.log(result);
+
+      
       
       if (result.ok) {
         const responseData = await result.json();
@@ -22,6 +24,9 @@ export async function salidaLlegadaPost(data: datosSalidaType) {
         return responseData.data;
       } 
       
-      lanzarError(result.status)
+      const responseData:DataType = await result.json();
+      console.log(responseData);
+      
+      if(responseData.error)  lanzarError(responseData.message)
    
   }

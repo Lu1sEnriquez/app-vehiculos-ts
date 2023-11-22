@@ -2,7 +2,7 @@ import datosSalidaType from "@/models/DatosSalidaType";
 import DataType, { mapResponseToReporteGeneral } from "@/models/DataType";
 import { POST_SALIDALLEGADA_URL, GET_REPORTES_INDIVIDUAL_URL, GET_REPORTES_GENERAL_URL } from "./rutas";
 import ApartadosType from "@/models/ReporteGeneralType";
-import { compararFechas } from "@/utils/format/formatFecha";
+import { compararFechas, formatFecha } from "@/utils/format/formatFecha";
 import { handleAsyncError, lanzarError } from "./errors";
 
 
@@ -16,7 +16,8 @@ export async function reportesGet() {
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
     }
-    lanzarError(result.status)
+    const responseData: DataType = await result.json();
+        if (responseData.error) lanzarError(responseData.message)
   }, 'Error en reportesGet');
 }
 
@@ -29,24 +30,30 @@ export async function reportesGetById(id: number) {
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
     }
-    lanzarError(result.status)
+    const responseData: DataType = await result.json();
+    if (responseData.error) lanzarError(responseData.message)
   }, 'Error en reportesGetById');
 }
 
 
 export async function reportesGeneralGet(fechaInicio?: Date, fechaFin?: Date) {
   return handleAsyncError(async () => {
-    if (fechaFin && fechaFin) {
-      const result = await fetch(`${GET_REPORTES_GENERAL_URL}?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
+
+    console.log(fechaInicio, fechaFin);
+
+    if (fechaInicio && fechaFin) {
+
+      const result = await fetch(`${GET_REPORTES_GENERAL_URL}?fechaInicio=${formatFecha(fechaInicio)}&fechaFin=${formatFecha(fechaFin)}`);
       if (result.ok) {
         const responseData: DataType = await result.json();
-        if (Array.isArray(responseData.data)) {
-          return responseData.data;
-        }
+        if (Array.isArray(responseData.data)) return responseData.data;
       } else {
-        
-        lanzarError(result.status)
+
+        const responseData: DataType = await result.json();
+        if (responseData.error) lanzarError(responseData.message)
+
       }
+
     } else {
       const result = await fetch(GET_REPORTES_GENERAL_URL);
       if (result.ok) {
@@ -55,8 +62,9 @@ export async function reportesGeneralGet(fechaInicio?: Date, fechaFin?: Date) {
           return responseData.data;
         }
       } else {
-        
-        lanzarError(result.status)
+
+        const responseData: DataType = await result.json();
+        if (responseData.error) lanzarError(responseData.message)
       }
     }
 
@@ -75,7 +83,8 @@ export async function reportesGeneralGetById(id: number) {
       console.log('Respuesta exitosa:', responseData);
       return responseData.data;
     }
-    lanzarError(result.status)
+    const responseData: DataType = await result.json();
+        if (responseData.error) lanzarError(responseData.message)
   }, 'Error en reportesGeneralGetById');
 }
 

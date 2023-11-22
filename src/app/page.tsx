@@ -1,14 +1,18 @@
+'use client'
 import { ButtonAzulLink } from "@/components/basicos/ButtonAzul";
 import Link from "next/link";
-import React from "react";
-
+import {useEffect} from "react";
+import {  useRouter} from "next/navigation";
 function PagePrincipal() {
+  const router = useRouter()
+  
+  useEffect(() => {
+  router.push("/lobby")
+  }, [router])
+  
+  
   return (
-    <main className="flex justify-center items-center h-screen  w-full ">
-      
-      
-        <ButtonAzulLink text={"lobby"} href="/lobby" ></ButtonAzulLink>
-      
+    <main className="flex justify-center items-center h-screen  w-full ">    
     </main>
     
   );

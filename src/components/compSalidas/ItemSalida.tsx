@@ -20,7 +20,7 @@ function ItemSalida({ solicitud }: Props) {
   
     return (
       <div       
-        className="min-w-[400px]  animate-fade-down animate-duration-300  w-full md:w-80 lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black "
+        className="min-w-[400px]  animate-fade-down animate-duration-300  w-full  lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black "
       >
         <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
           <div className="flex flex-col min-w-[150px] ">

@@ -5,7 +5,7 @@ import { ButtonAzul } from "@/components/basicos/ButtonAzul";
 import ModalFirma from "./ModalFirma";
 import InputFirma, { firmaType } from "../Formularios/inputs/InputFirma";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
-import { ReactNode } from "react";
+import { ReactNode ,useEffect} from "react";
 import LabelFormulario from "../Formularios/inputs/LabelFormulario";
 
 interface Props {
@@ -18,9 +18,15 @@ function ButtonFirmaModal({ type, children }: Props) {
 
   const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
-  let textButton;
+  type textButtonType = "Agregar firma Solicitante" |"Agregar firma Vigilante"| "Modificar"| ""
+  let textButton:textButtonType="";
   let containerClass = "";
 
+  useEffect(() => {
+   
+    
+  }, [])
+  
   if (type == "Solicitante") {
     if (!state.firmaSolicitante) {
       textButton = "Agregar firma Solicitante";
@@ -39,11 +45,24 @@ function ButtonFirmaModal({ type, children }: Props) {
     }
   }
 
+
+function handleButton(){
+  if (type === "Vigilante" && state.firmaVigilante ) {
+    // Cambia '==' por '==='
+    dispatch({ type: "SET_FIRMA_VIGILANTE", payload: null });
+  } else if (type === "Solicitante" && state.firmaSolicitante) {
+    // Cambia '==' por '==='
+    dispatch({ type: "SET_FIRMA_SOLICITANTE", payload: null });
+  }
+  openModal()
+
+}
+
   return (
     <div>
       <LabelFormulario>{`Firma ${type}`}</LabelFormulario>
       <div className={containerClass}>
-        <ButtonAzul text={textButton} onClick={openModal} />
+        <ButtonAzul text={textButton} onClick={handleButton} />
       </div>
 
       <ModalFirma isOpen={isModalOpen} onClose={closeModal} title={type}>
