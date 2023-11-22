@@ -11,7 +11,7 @@ import { useErrorReducer } from "@/reducer/errorReducer";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { GenerarReportePDF } from "@/utils/PDF/ReporteMensual/generarReporteMensual";
-
+import { formatFecha } from "@/utils/format/formatFecha";
 // Definición de tipos para las columnas y los datos
 type Column = keyof ApartadosType; // Obtén las claves de las propiedades de un elemento de "solicitudes"
 
@@ -27,14 +27,40 @@ const columns: Column[] = [
   "nombreSolicitante",
 ];
 
+const fechaActual = new Date();
+
+const inicioDelMes = new Date(
+  fechaActual.getFullYear(),
+  fechaActual.getMonth(),
+  1
+);
+const finDelMes = new Date(
+  fechaActual.getFullYear(),
+  fechaActual.getMonth() + 1,
+  0
+);
+
+interface filterDateInitialType {
+  inicioDelMes: string;
+  finDelMes: string;
+}
+const filterDateInitial = {
+  inicioDelMes: formatFecha(inicioDelMes),
+  finDelMes:formatFecha(finDelMes),
+};
 function ReportesDataTable() {
   const [data, setData] = useState<ApartadosType[]>([]);
+  const [filterDate, setfilterDate] = 
+    useState<filterDateInitialType>(filterDateInitial);
 
   const { dispatch } = useErrorReducer();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await reportesGeneralGet();
+        const result = await reportesGeneralGet(
+          new Date(filterDate.inicioDelMes),
+          new Date(filterDate.finDelMes)
+        );
         console.log(result);
 
         if (Array.isArray(result)) {
@@ -45,11 +71,12 @@ function ReportesDataTable() {
           type: "SET_ERROR",
           payload: error.message || "Error Desconocido",
         });
+        setData([])
       }
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, filterDate]);
 
   return (
     <div className="w-full md:pl-10 animate-fade-down font-nunito-sans text-base font-semibold">
@@ -57,21 +84,18 @@ function ReportesDataTable() {
         <MUIDataTable
           key={data.length}
           title={"Lista De Reportes Vehiculos"}
-          data={
-            data.map((solicitud) => {
-              return {
-                folio: solicitud.idSolicitud,
-                solicitante: solicitud.nombreSolicitante,
-                vehiculo: solicitud.vehiculo,
-                // chofer:solicitud.chofer,
-                salida: solicitud.fechaSalida,
-                llegada: solicitud.fechaLlegada,
-                destino: solicitud.destino || "Local",
-                estado: solicitud.estado,
-              };
-            })
-            // .filter((s) => s.estado === "Finalizado")
-          }
+          data={data.map((solicitud) => {
+            return {
+              folio: solicitud.idSolicitud,
+              solicitante: solicitud.nombreSolicitante,
+              vehiculo: solicitud.vehiculo,
+              // chofer:solicitud.chofer,
+              salida: solicitud.fechaSalida,
+              llegada: solicitud.fechaLlegada,
+              destino: solicitud.destino || "Local",
+              estado: solicitud.estado,
+            };
+          })}
           columns={[
             {
               name: "folio",
@@ -81,19 +105,10 @@ function ReportesDataTable() {
               name: "solicitante",
               label: "Solicitante",
             },
-            // {
-            //   name:"chofer",
-            //   label:"Chofer"
-            // },
-
             {
               name: "vehiculo",
               label: "Vehiculo",
             },
-            // {
-            //   name:"fechaRegistro",
-            //   label:"Registro"
-            // },
             {
               name: "salida",
               label: "Salida",
@@ -110,10 +125,6 @@ function ReportesDataTable() {
               name: "estado",
               label: "estado",
             },
-            {
-              name: "",
-              label: "",
-            },
           ]}
           options={{
             downloadOptions: {
@@ -125,7 +136,6 @@ function ReportesDataTable() {
               separator: " , ",
             },
             download: "true",
-            expandableRows: false,
 
             customToolbar(data) {
               const dataReporte = data.displayData.map((row): ReporteType => {
@@ -143,8 +153,39 @@ function ReportesDataTable() {
                 };
               });
 
+              const handleDiaInicio = (
+                e: React.ChangeEvent<HTMLInputElement>
+              ) => {
+                setfilterDate({
+                  ...filterDate,
+                  inicioDelMes:e.target.value
+                });
+              };
+              const handleDiaFin = (e: React.ChangeEvent<HTMLInputElement>) => {
+                setfilterDate({
+                  ...filterDate,
+                  finDelMes: e.target.value,
+                });
+              };
+
               return (
-                <div className="  w-full hover:cursor-pointer flex justify-end  ">
+                <div className="  w-full hover:cursor-pointer flex  items-center font-nunito-sans font-semibold">
+                  <div className=" w-full flex flex-row gap-5 justify-center items-center">
+                    <h3>Fecha Inicio: </h3>
+                    <input
+                      type="date"
+                      onChange={handleDiaInicio}
+                      className="border-2 border-slate-900 rounded"
+                      value={filterDate.inicioDelMes}
+                    />
+                    <h3>Fecha Fin: </h3>
+                    <input
+                      type="date"
+                      onChange={handleDiaFin}
+                      className="border-2 border-slate-900 rounded"
+                      value={filterDate.finDelMes}
+                    />
+                  </div>
                   <button
                     className="flex flex-row gap-1 items-center justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
                     onClick={() => {
@@ -162,11 +203,9 @@ function ReportesDataTable() {
               return (
                 <tr
                   key={rowIndex}
-                  className="w-full border-b-2 border-slate-300  lowercase "
+                  className="w-full border-b-2 border-slate-300 lowercase "
                 >
-                  <td className="w-full flex justify-center items-center ">
-                    <ButtonGenerarPDF id={parseInt(data[0])} />
-                  </td>
+                  <td></td>
                   <td className="">{data[0]}</td>
                   <td className="">{data[1]}</td>
                   <td className="">{data[2]}</td>
@@ -180,6 +219,9 @@ function ReportesDataTable() {
                   </td>
                   <td className="">{data[5]}</td>
                   <td className="">{data[6]}</td>
+                  <td className="w-full flex justify-center items-center ">
+                    <ButtonGenerarPDF id={parseInt(data[0])} />
+                  </td>
                 </tr>
               );
             },

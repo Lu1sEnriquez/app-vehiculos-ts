@@ -29,7 +29,7 @@ const InputDate = () => {
     }    
     return currentDate;
    })
-  }, []);
+  }, [currentDate]);
 
   useEffect(() => {
     dispatch({ type: "SET_FECHA_SALIDA", payload: date });
