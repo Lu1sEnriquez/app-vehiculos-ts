@@ -24,7 +24,7 @@ const columns: Column[] = [
   "fechaLlegada",
   "estadoSolicitud",
   "chofer",
-  "nombreSolicitante",
+  "solicitante",
 ];
 
 const fechaActual = new Date();
