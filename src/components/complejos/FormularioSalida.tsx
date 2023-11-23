@@ -19,12 +19,14 @@ import InputFolio from "../Formularios/inputs/InputFolio";
 import IsSalida from "../Formularios/inputs/IsSalida";
 import React from 'react'
 import MostrarFolio from "../Formularios/inputs/MostrarFolio";
+import ApartadosType from "@/models/ReporteGeneralType";
 
 interface Props{
   children?:React.ReactNode
-  folio?: number
+  
+  data?:ApartadosType
 }
-function FormularioSalida({folio}:Props) {
+function FormularioSalida({ data}:Props) {
 
 
 
@@ -44,12 +46,12 @@ function FormularioSalida({folio}:Props) {
       w-full h-full mx-5 
       flex flex-col gap-y-5"
         >
-          {!folio &&<InputFolio/>
+          {!data &&<InputFolio/>
           }
-          {folio && <MostrarFolio folio={folio}/>}
+          {data && <MostrarFolio folio={data.idSolicitud}/>}
           <InputDate />
           <InputHora />
-          <InputDestino />
+          <InputDestino destinoApartado={data?.destino} />
           <InputPlacaVehiculo />
           <InputLicencia/>
           <InputAccesorios />

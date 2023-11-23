@@ -3,7 +3,6 @@ import MUIDataTable from "mui-datatables";
 import ApartadosType, {
   ReporteType,
   estadoType,
-  solicitudes,
 } from "@/models/ReporteGeneralType";
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
@@ -92,11 +91,14 @@ function ReportesDataTable() {
           data={data.map((solicitud) => {
             return {
               folio: solicitud.idSolicitud,
-              solicitante: solicitud.nombreSolicitante,
+              solicitante: solicitud.responsable,
               vehiculo: solicitud.vehiculo,
               // chofer:solicitud.chofer,
-              salida: solicitud.fechaSalida,
-              llegada: solicitud.fechaLlegada,
+
+              salida: solicitud.fechaSalida.slice(0,10),
+              horaSalida: solicitud.fechaSalida.slice(11,16),
+              llegada: solicitud.fechaLlegada.slice(0,10),
+              horaLlegada:solicitud.fechaLlegada.slice(11,16),
               destino: solicitud.destino || "Local",
               estado: solicitud.estado,
             };
@@ -117,10 +119,21 @@ function ReportesDataTable() {
             {
               name: "salida",
               label: "Salida",
+              
+            },
+            {
+              name: "horaSalida",
+              label: "Hora",
+              
             },
             {
               name: "llegada",
               label: "Llegada",
+             
+            },
+            {
+              name: "horaLlegada",
+              label: "Hora ",
             },
             {
               name: "destino",
@@ -135,13 +148,14 @@ function ReportesDataTable() {
               label: "Descargar",
               options: {
                 customBodyRender: (value, tableMeta) => (
-                  <ButtonGenerarPDF id={parseInt(tableMeta.rowData[0])} />
+                  <div>
+                    <ButtonGenerarPDF id={parseInt(tableMeta.rowData[0])} />
+                  </div>
                 ),
               },
             },
           ]}
           options={{
-            
             downloadOptions: {
               filename: `Reporte-vehicular-${filterDate.inicioDelMes}-${filterDate.finDelMes}`,
               filterOptions: {
@@ -155,16 +169,18 @@ function ReportesDataTable() {
             customToolbar(data) {
               const dataReporte = data.displayData.map((row): ReporteType => {
                 const data = row.data;
+                console.log(data[3]);
+                
                 return {
                   Folio: data[0] as number,
                   Solicitante: data[1] as string,
                   Vehiculo: data[2] as string,
-                  FechaSalida: data[3].slice(0, 10) as string,
-                  HoraSalida: data[3].slice(11, 16) as string,
-                  FechaLlegada: data[4].slice(0, 10) as string,
-                  HoraLlegada: data[4].slice(11, 16) as string,
-                  Destino: data[5] as string,
-                  Estado: data[6] as estadoType,
+                  FechaSalida: data[3], //.slice(0, 10) as string,
+                  HoraSalida: data[4], //.slice(11, 16) as string,
+                  FechaLlegada: data[5], //.slice(0, 10) as string,
+                  HoraLlegada: data[6] , //.slice(11, 16) as string,
+                  Destino: data[7] as string,
+                  Estado: data[8] as estadoType,
                 };
               });
 

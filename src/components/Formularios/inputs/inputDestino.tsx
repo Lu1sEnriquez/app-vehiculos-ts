@@ -9,12 +9,18 @@ import React, {
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import LabelFormulario from "./LabelFormulario";
 
-function InputDestino() {
-  const LOCAL = "local";
-  const FORANEO = "foraneo";
-  const [isLocal, SetIsLocal] = useState<boolean>(true);
-  const [destino, setDestino] = useState<string>("");
+interface Props {
+  destinoApartado?: string
+}
 
+function InputDestino({destinoApartado}:Props) {
+  const LOCAL = "Navojoa";
+  const FORANEO = "foraneo";
+  const [destino, setDestino] = useState<string >(destinoApartado ||"");
+  const [isLocal, SetIsLocal] = useState<boolean>(destino== LOCAL? true : false);
+  console.log(destino);
+  
+  
   const { dispatch, state } = useDatosSalidaLlegadaReducer();
 
   useEffect(() => {
@@ -51,7 +57,7 @@ function InputDestino() {
             }}
             checked={isLocal}
           />
-          {"  Local"}
+          {"  Navojoa"}
         </label>
         <br />
         <label>

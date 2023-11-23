@@ -19,9 +19,9 @@ export async function salidaLlegadaPost(data: datosSalidaType) {
       
       
       if (result.ok) {
-        const responseData = await result.json();
+        const responseData: DataType = await result.json();
         console.log('Respuesta exitosa:', responseData);
-        return responseData.data;
+        return responseData;
       } 
       
       const responseData:DataType = await result.json();

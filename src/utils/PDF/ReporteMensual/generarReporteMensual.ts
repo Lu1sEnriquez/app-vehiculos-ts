@@ -7,42 +7,52 @@ import { formatFecha } from "@/utils/format/formatFecha";
 export async function GenerarReportePDF(data: ReporteType[]) {
     type ColumnsType = keyof ReporteType;
     const columns: ColumnsType[] =
-        ["Folio", "Solicitante", 'Vehiculo', "FechaSalida", "FechaLlegada", "Destino", "Estado"];
+        ["Folio", "Solicitante", 'Vehiculo', "FechaSalida","HoraSalida", "FechaLlegada","HoraLlegada", "Destino", "Estado"];
 
+    // Define tus tipos
+
+    // ... Otro código ...
+
+    // Asegúrate de que la matriz esté correctamente tipada
     const matriz = data.map(r => [
-        `${r.Folio}`,
-        r.Solicitante,
-        r.Vehiculo,
-        `${r.FechaSalida} ${r.HoraSalida}`,
-        `${r.FechaLlegada} ${r.HoraLlegada}`,
-        r.Destino,
-        r.Estado,
+        `${r.Folio ?? ''}`,
+        r.Solicitante ?? '',
+        r.Vehiculo ?? '',
+        `${r.FechaSalida ?? ''}`,
+        `${r.HoraSalida ?? ''}`,
+        `${r.FechaLlegada ?? ''}`,
+        `${r.HoraLlegada ?? ''}`,
+        r.Destino ?? '',
+        r.Estado ?? '',
     ]);
 
     const fecha = new Date()
     const fechaFormat = formatFecha(fecha)
 
     const doc = new jsPDF();
-    
+
     // Cargar y configurar la fuente Poppins
     //   const fontData = await Poppins.load();
     //   doc.addFileToVFS('Poppins-Bold.ttf', fontData);
     //   doc.addFont('Poppins-Bold.ttf', 'Poppins-Bold', 'Bold');
     //   doc.setFont('Poppins-Bold');
-// generarCoordenadas(doc)
+    // generarCoordenadas(doc)
     doc.setTextColor("#026ab1");
     doc.setFontSize(20);
-    doc.setFont('helvetica','normal','bold')
+    doc.setFont('helvetica', 'normal', 'bold')
     doc.text('REPORTE VEHICULAR', 60, 15);
-    
-    doc.addImage(logoItson.src,'png',160,5,30,10)
+
+    doc.addImage(logoItson.src, 'png', 160, 5, 30, 10)
     doc.setFontSize(10)
     doc.setTextColor("#0A0A0A");
 
-    doc.text(fechaFormat,170,20)
+    doc.text(fechaFormat, 170, 20)
     doc.setTextColor("#000000");
-    
     autoTable(doc, {
+        styles: {
+            fontSize: 8,
+
+        },
         startY: 30,
         head: [columns],
         body: matriz,

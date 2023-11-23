@@ -10,15 +10,16 @@ import Swal from "sweetalert2";
 import checkIcon from "@/assets/icons/icons8-comprobado-100.png";
 import datosSalidaLlegadaType from "@/models/DatosSalidaLlegada";
 import datosSalidaType from "@/models/DatosSalidaType";
-
+import {useRouter} from "next/navigation";
 function ButtonPostSalidaLlegada() {
   const { state } = useDatosSalidaLlegadaReducer();
-
+  const router = useRouter()
   const errorReducer = useErrorReducer();
   async function handlePost() {
     try {
-      const result = await salidaLlegadaPost(state);
-      alerta();
+      const result = await salidaLlegadaPost(state)
+      if(!(result?.error)) alerta();
+      
       // console.log("Solicitud POST exitosa:", result);
     } catch (error) {
       const incompletos = obtenerCamposFaltantes();
@@ -66,7 +67,7 @@ function ButtonPostSalidaLlegada() {
   }
 
   function alerta() {
-    if (errorReducer.state.error) {
+    if (errorReducer) {
       Swal.fire({
         title: "Exito!",
         text: `Registro Exitoso`,
@@ -76,6 +77,12 @@ function ButtonPostSalidaLlegada() {
         if (result.isConfirmed) {
           errorReducer.dispatch({ type: "SET_ERROR", payload: null });
           errorReducer.dispatch({ type: "SET_MESSAGE", payload: null });
+         
+          if(state.isSalida){
+          router.push('/salidas')
+         }else{
+          router.push('/llegadas')
+         }
         }
       });
     }

@@ -21,10 +21,7 @@ const fechaLlegada = new Date(solicitud.fechaLlegada)
  
   const fechaLlegadaFormat =formatFecha(fechaLlegada)
   const horaLlegadaFormat = formatHoraAmPm(fechaLlegada);
-console.log(`solicitud.fechaSalida: `+solicitud.fechaSalida );
-console.log(`solicitud.fechaLlegada: `+solicitud.fechaLlegada );
-console.log(`fechaSalida: `+fechaSalida );
-console.log(`fechaLlegada: `+fechaLlegada );
+
 
   return (
     <div
@@ -51,11 +48,11 @@ console.log(`fechaLlegada: `+fechaLlegada );
       <div className=" w-full h-20  pl-3 gap-2  flex flex-col  justify-center">
         <div className="flex flex-row gap-2">
           <h1 className="flex flex-row">Responsable:</h1>
-          <p> {solicitud.nombreSolicitante}</p>
+          <p> {solicitud.responsable}</p>
         </div>
         <div className="flex flex-row gap-2">
           <h1 className="flex flex-row">Entregado a:</h1>
-          <p> {}</p>
+          <p> {solicitud.solicitante}</p>
         </div>
         <div className="flex flex-row  gap-2">
           <h1 className="flex flex-row">Chofer:</h1>

@@ -36,8 +36,8 @@ function ItemSalida({ solicitud }: Props) {
         </header>
         <div className=" w-full h-14  pl-3 gap-2  flex flex-col  justify-center">
           <div className="flex flex-row gap-2">
-            <h1 className="flex flex-row">Solicitante:</h1>
-            <p> {solicitud.nombreSolicitante}</p>
+            <h1 className="flex flex-row">Responsable: </h1>
+            <p> {solicitud.responsable}</p>
           </div>
           <div className="flex flex-row  gap-2">
             <h1 className="flex flex-row">Chofer:</h1>
@@ -56,7 +56,7 @@ function ItemSalida({ solicitud }: Props) {
             </div>
           </div>
           <div className="flex w-full justify-end pr-4">
-           <ButtonAzulLink href={`/salidas/${solicitud.idSolicitud}`} text="REGISTRAR">
+           <ButtonAzulLink href={`/salidas/${JSON.stringify(solicitud)}`}   text="REGISTRAR">
            <IoExitOutline size={25} />
            </ButtonAzulLink>
           </div>

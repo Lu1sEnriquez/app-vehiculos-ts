@@ -1,10 +1,11 @@
-'use client'
+"use client";
+import ApartadosType from "@/models/ReporteGeneralType";
 import Link from "next/link";
-import { Children } from "react";
+import { useRouter } from "next/navigation";
 export interface ButtonAzulType {
   onClick?: () => void | undefined;
   text?: string;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export function ButtonAzul({ onClick, text, children }: ButtonAzulType) {
@@ -22,7 +23,6 @@ export function ButtonAzul({ onClick, text, children }: ButtonAzulType) {
         hover:bg-azulNormal
         hover:scale-105
         "
-        
     >
       {text || ""}
       {children}
@@ -31,9 +31,9 @@ export function ButtonAzul({ onClick, text, children }: ButtonAzulType) {
 }
 
 interface ButtonAzulLinkType {
-  text?: string,
-  href: string
-  children?:React.ReactNode
+  text?: string;
+  href: string;
+  children?: React.ReactNode;
 }
 
 export function ButtonAzulLink({ href, text, children }: ButtonAzulLinkType) {
@@ -56,3 +56,11 @@ export function ButtonAzulLink({ href, text, children }: ButtonAzulLinkType) {
     </Link>
   );
 }
+
+interface ButtonRedirectFormType {
+  text?: string;
+  href: string;
+  children?: React.ReactNode;
+  data: ApartadosType;
+}
+
