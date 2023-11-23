@@ -8,7 +8,7 @@ interface Props {
 }
 
 function InputDepartamento({ children }: Props) {
-  const [departamento, setDepartamento] = useState("");
+  const [departamento, setDepartamento] = useState<string>();
   const { state, dispatch } = useDatosSalidaLlegadaReducer();
 
   const handleSetDepartamento = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,7 +16,9 @@ function InputDepartamento({ children }: Props) {
   };
 
   useEffect(() => {
+   if(departamento){
     dispatch({ type: "SET_DEPARTAMENTO", payload: departamento });
+   }
   }, [departamento, dispatch]);
 
   return (

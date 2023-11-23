@@ -15,7 +15,9 @@ function InputKilometraje() {
   };
 
   useEffect(()=>{ 
-    dispatch({type: "SET_KILOMETRAJE", payload:`${kilometraje}`})
+    if(kilometraje != 0){
+      dispatch({type: "SET_KILOMETRAJE", payload:`${kilometraje}`})
+    }
   },[kilometraje, dispatch])
 
 

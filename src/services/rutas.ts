@@ -1,5 +1,5 @@
-// const IP_API ="10.21.44.1"
-const IP_API ="192.168.0.7"
+const IP_API ="10.21.44.8"
+// const IP_API ="192.168.0.7"
 
 
 // const PORT_API =3001

@@ -5,9 +5,10 @@ import React, { useEffect,  useState } from "react";
 
 interface Props{
   text: string
+  type: "solicitante" | "vigilante"
 }
 
-function InputName({ text}: Props) {
+function InputName({ type, text}: Props) {
   const [name, setName] = useState("");
   const { state, dispatch } = useDatosSalidaLlegadaReducer();
  
@@ -17,15 +18,15 @@ function InputName({ text}: Props) {
   };
 
 useEffect(()=>{
-  if(text.toLowerCase() .includes('vigilante') && name.length>1){
+  if(type == "vigilante"){
     dispatch({ type: 'SET_NOMBRE_VIGILANTE', payload: name });
   }
-  else if(text.toLowerCase().includes('solicitante')&& name.length>1){
+  else if(type == "solicitante"){
     dispatch({ type: 'SET_NOMBRE_SOLICITANTE', payload: name });
   }
 
 
-},[name])
+},[name, dispatch, type])
 
   return (
     <>

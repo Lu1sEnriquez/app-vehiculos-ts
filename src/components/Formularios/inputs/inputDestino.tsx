@@ -18,7 +18,7 @@ function InputDestino({destinoApartado}:Props) {
   const FORANEO = "foraneo";
   const [destino, setDestino] = useState<string >(destinoApartado ||"");
   const [isLocal, SetIsLocal] = useState<boolean>(destino== LOCAL? true : false);
-  console.log(destino);
+  
   
   
   const { dispatch, state } = useDatosSalidaLlegadaReducer();
@@ -27,6 +27,7 @@ function InputDestino({destinoApartado}:Props) {
     if (isLocal) {
       dispatch({ type: "SET_ISLOCAL", payload: isLocal });
     } else {
+      dispatch({ type: "SET_ISLOCAL", payload: isLocal });
       dispatch({ type: "SET_DESTINO", payload: destino });
     }
   }, [destino, isLocal, dispatch]);

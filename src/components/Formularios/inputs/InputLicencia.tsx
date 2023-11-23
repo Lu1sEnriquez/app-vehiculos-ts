@@ -1,24 +1,26 @@
-'use client'
+"use client";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ChangeEvent, useEffect, useState } from "react";
 import LabelFormulario from "./LabelFormulario";
 
 function InputLicencia() {
-  const [licencia, setLicencia] = useState("");
-  const {  dispatch } = useDatosSalidaLlegadaReducer();
-  
-  const handleSetLicencia = (e:ChangeEvent<HTMLInputElement>) => {
+  const [licencia, setLicencia] = useState<string>();
+  const { dispatch } = useDatosSalidaLlegadaReducer();
+
+  const handleSetLicencia = (e: ChangeEvent<HTMLInputElement>) => {
     setLicencia(e.target.value.toUpperCase());
   };
 
-useEffect(()=>{
-dispatch({type:'SET_LICENCIA', payload:licencia})  
-},[licencia, dispatch])
+  useEffect(() => {
+    if (licencia) {
+      dispatch({ type: "SET_LICENCIA", payload: licencia });
+    }
+  }, [licencia, dispatch]);
 
   return (
     <>
       <div className="">
-        <LabelFormulario>{'Licencia Conductor :'}</LabelFormulario>
+        <LabelFormulario>{"Licencia Conductor :"}</LabelFormulario>
         <input
           className="border  border-slate-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
               shadow-md shadow-gray-300

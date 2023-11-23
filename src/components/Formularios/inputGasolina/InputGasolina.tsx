@@ -5,20 +5,22 @@ import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import LabelFormulario from "../inputs/LabelFormulario";
 
 function InputGasolina() {
-  const {dispatch, state} = useDatosSalidaLlegadaReducer();
-  const [porcentaje, setPorcentaje] = useState(0);
-  
+  const { dispatch, state } = useDatosSalidaLlegadaReducer();
+  const [porcentaje, setPorcentaje] = useState<number>(0);
 
-  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nuevoPorcentaje = e.target.value;
     setPorcentaje(parseInt(nuevoPorcentaje));
     //console.log(porcentaje);
   };
 
-
-useEffect(()=>{
-  dispatch({type:"SET_PORCENTAJE_GASOLINA", payload: `${porcentaje}`})
-},[porcentaje,dispatch])
+  useEffect(() => {
+    if (porcentaje != 0) {
+      console.log("gasolina");
+      
+      dispatch({ type: "SET_TANQUE", payload: `${porcentaje}` });
+    }
+  }, [porcentaje, dispatch]);
 
   return (
     <section className="gasolina-container  flex flex-col justify-center items-center w-3/4 m-auto">

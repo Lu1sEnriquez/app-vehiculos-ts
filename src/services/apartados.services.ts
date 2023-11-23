@@ -8,7 +8,7 @@ import { handleAsyncError, lanzarError } from "./errors";
 export async function apartadosGet(type?: estadoType) {
 
   const fechaActual = new Date();
-  fechaActual.setDate(fechaActual.getDate() - 1);
+  fechaActual.setDate(fechaActual.getDate() - 5);
   fechaActual.setHours(0, 0);
 
   const fechaSiguiente = new Date();

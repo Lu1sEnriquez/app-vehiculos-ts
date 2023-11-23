@@ -67,12 +67,12 @@ function FormularioSalida({ data}:Props) {
           <InputGasolina></InputGasolina>
           <InputKilometraje />
           <InputDepartamento/>
-          <InputName text={"Nombre Solicitante:"} />
+          <InputName text={"Entregado a:"} type="solicitante" />
 
           <ButtonFirmaModal type={"Solicitante"}>
             <InputFirma />
           </ButtonFirmaModal>
-          <InputName text={"Nombre Vigilante:"} />
+          <InputName text={"Nombre Vigilante:"} type="vigilante"/>
 
           <ButtonFirmaModal type={"Vigilante"}>
             <InputFirma />
