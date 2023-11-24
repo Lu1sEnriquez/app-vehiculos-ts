@@ -200,7 +200,7 @@ function ReportesDataTable() {
               };
 
               return (
-                <div className="   w-full hover:cursor-pointer flex flex-wrap gap-2  items-center justify-end lg:justify-between  font-nunito-sans font-semibold">
+                <div className="   w-full hover:cursor-pointer flex flex-wrap gap-2  items-center justify-end lg:justify-between  font-nunito-sans font-semibold mb-2">
                   <div className=" w-fit flex flex-wrap gap-2 justify-end lg:justify-between items-center ">
                     <label className="flex flex-wrap gap-2">
                       Fecha Inicio:
@@ -223,7 +223,7 @@ function ReportesDataTable() {
                     </label>
                   </div>
                   <button
-                    className="flex flex-row gap-1 items-center  justify-center w-32 bg-azulNormal rounded-sm text-slate-50 p-1"
+                    className="flex flex-row gap-1 items-center  justify-center w-36 bg-azulNormal rounded-sm text-slate-50 p-1  "
                     onClick={() => {
                       GenerarReportePDF(dataReporte);
                     }}
