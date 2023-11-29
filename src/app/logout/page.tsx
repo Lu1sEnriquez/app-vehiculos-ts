@@ -16,10 +16,10 @@ function LogoutPage() {
     logout()
   } 
   return (
-    <div>
-      <h1 className="text-black text-3xl">salir</h1>
+    <div className="w-full h-screen flex items-center justify-center gap-5 flex-col">
+      <h1 className="text-black text-5xl font-poppins font-bold">salir</h1>
 
-      <ButtonAzul onClick={handle}>Salir de la Session</ButtonAzul>
+      <ButtonAzul onClick={handle}>Cerrar Sesion</ButtonAzul>
     </div>
   );
 }

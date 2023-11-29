@@ -4,6 +4,7 @@ import { ImExit } from "react-icons/im";
 import { PiKeyReturnBold } from "react-icons/pi";
 import { TbReportSearch } from "react-icons/tb";
 import { GiExitDoor } from "react-icons/gi";
+import { FaUserCircle } from "react-icons/fa";
 
 
  const menuItems = [
@@ -12,7 +13,7 @@ import { GiExitDoor } from "react-icons/gi";
     { name: "SALIDAS", link: "/salidas", icon: ImExit },
     { name: "LLEGADAS", link: "/llegadas", icon: PiKeyReturnBold },
     { name: "REPORTES", link: "/reportes", icon: TbReportSearch },
-    { name: "LogOut", link: "/logout", icon: GiExitDoor  },
+    { name: "USUARIO", link: "/logout", icon: FaUserCircle  },
   ];
 
   export default menuItems;
