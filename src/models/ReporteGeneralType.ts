@@ -32,11 +32,14 @@ export  interface ReporteType {
 
 export type estadoType = "Pendiente"|"Circulacion"|"Finalizado";
 
-export const estado ={
-    Pendiente :"Pendiente",
-    Circulacion:  "Circulacion" ,
-    Finalizado: "Finalizado",
+
+
+export enum Estado {
+    Pendiente = "Pendiente",
+    Circulacion = "Circulacion",
+    Finalizado = "Finalizado",
   }
+
 // export const solicitudes: ApartadosType[] = [
 //     {
 //         idSolicitud: 1,

@@ -65,7 +65,7 @@ function FormularioLlegada({folio}:Props) {
           <ButtonFirmaModal type={"Solicitante"}>
             <InputFirma />
           </ButtonFirmaModal>
-          <InputName text={"Nombre Vigilante:"} />
+          <InputName type="vigilante" text={"Nombre Vigilante:"} />
 
           <ButtonFirmaModal type={"Vigilante"}>
             <InputFirma />

@@ -20,9 +20,12 @@
     "@types/react": "18.2.25",
     "@types/react-dom": "18.2.11",
     "autoprefixer": "10.4.16",
+    "axios": "^1.6.2",
+    "cookie": "0.6.0",
     "eslint": "8.51.0",
     "eslint-config-next": "13.5.4",
     "html2canvas": "^1.4.1",
+    "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.7.1",
     "mui-datatables": "^4.3.0",
@@ -37,6 +40,8 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/cookie": "^0.5.4",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/react-signature-canvas": "^1.0.4",
     "tailwindcss-animated": "^1.0.1"
   }
