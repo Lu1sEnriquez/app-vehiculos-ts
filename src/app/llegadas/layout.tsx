@@ -1,7 +1,16 @@
+'use client'
+import { useAuthContext } from "@/context/authContext";
+import { redirect } from "next/navigation";
 import React, { ReactNode } from "react";
 import { AiFillCar } from "react-icons/ai";
 
-function layout({ children }: { children: ReactNode }) {
+function Layout({ children }: { children: ReactNode }) {
+  const {isLoggedIn} = useAuthContext()
+  if(!isLoggedIn){
+      redirect('/login')
+  }
+
+
   return (
     <>
       <div className="  bg-azulOscuro w-full  h-14 text-center flex flex-row gap-5 items-center justify-center ">
@@ -15,4 +24,4 @@ function layout({ children }: { children: ReactNode }) {
   );
 }
 
-export default layout;
+export default Layout;

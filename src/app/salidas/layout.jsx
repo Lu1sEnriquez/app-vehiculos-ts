@@ -1,9 +1,14 @@
 "use client";
+import { redirect } from "next/navigation";
 import { AiFillCar } from "react-icons/ai";
-import { useState, useEffect } from "react";
-import { ErrorProvider } from "@/reducer/errorReducer";
+import { useAuthContext } from "@/context/authContext";
 
 function Layout({ children }) {
+  const {isLoggedIn} = useAuthContext()
+  if(!isLoggedIn){
+      redirect('/login')
+  }
+
   return (
     <>
       <div className="  bg-azulOscuro w-full  h-14 text-center flex flex-row gap-5 items-center justify-center ">

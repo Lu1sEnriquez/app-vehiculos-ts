@@ -3,6 +3,7 @@ import { BsCalendarCheck } from "react-icons/bs";
 import { ImExit } from "react-icons/im";
 import { PiKeyReturnBold } from "react-icons/pi";
 import { TbReportSearch } from "react-icons/tb";
+import { GiExitDoor } from "react-icons/gi";
 
 
  const menuItems = [
@@ -11,6 +12,7 @@ import { TbReportSearch } from "react-icons/tb";
     { name: "SALIDAS", link: "/salidas", icon: ImExit },
     { name: "LLEGADAS", link: "/llegadas", icon: PiKeyReturnBold },
     { name: "REPORTES", link: "/reportes", icon: TbReportSearch },
+    { name: "LogOut", link: "/logout", icon: GiExitDoor  },
   ];
 
   export default menuItems;

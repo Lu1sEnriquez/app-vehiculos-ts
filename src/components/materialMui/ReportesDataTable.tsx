@@ -71,10 +71,12 @@ function ReportesDataTable() {
           setData(result);
         }
       } catch (error) {
-        dispatch({
-          type: "SET_ERROR",
-          payload: error.message || "Error Desconocido",
-        });
+        if (error instanceof Error) {
+          dispatch({
+            type: "SET_ERROR",
+            payload: error.message || "Error Desconocido",
+          });
+        }
         setData([]);
       }
     };
@@ -95,10 +97,10 @@ function ReportesDataTable() {
               vehiculo: solicitud.vehiculo,
               // chofer:solicitud.chofer,
 
-              salida: solicitud.fechaSalida.slice(0,10),
-              horaSalida: solicitud.fechaSalida.slice(11,16),
-              llegada: solicitud.fechaLlegada.slice(0,10),
-              horaLlegada:solicitud.fechaLlegada.slice(11,16),
+              salida: solicitud.fechaSalida.slice(0, 10),
+              horaSalida: solicitud.fechaSalida.slice(11, 16),
+              llegada: solicitud.fechaLlegada.slice(0, 10),
+              horaLlegada: solicitud.fechaLlegada.slice(11, 16),
               destino: solicitud.destino || "Local",
               estado: solicitud.estado,
             };
@@ -119,17 +121,14 @@ function ReportesDataTable() {
             {
               name: "salida",
               label: "Salida",
-              
             },
             {
               name: "horaSalida",
               label: "Hora",
-              
             },
             {
               name: "llegada",
               label: "Llegada",
-             
             },
             {
               name: "horaLlegada",
@@ -170,7 +169,7 @@ function ReportesDataTable() {
               const dataReporte = data.displayData.map((row): ReporteType => {
                 const data = row.data;
                 console.log(data[3]);
-                
+
                 return {
                   Folio: data[0] as number,
                   Solicitante: data[1] as string,
@@ -178,7 +177,7 @@ function ReportesDataTable() {
                   FechaSalida: data[3], //.slice(0, 10) as string,
                   HoraSalida: data[4], //.slice(11, 16) as string,
                   FechaLlegada: data[5], //.slice(0, 10) as string,
-                  HoraLlegada: data[6] , //.slice(11, 16) as string,
+                  HoraLlegada: data[6], //.slice(11, 16) as string,
                   Destino: data[7] as string,
                   Estado: data[8] as estadoType,
                 };
