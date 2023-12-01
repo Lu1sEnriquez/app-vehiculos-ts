@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     try {
        
         const cookieFound = req.cookies.get(COOKIENAME);
-            //console.log("cookieFound"+cookieFound);
+            console.log("cookieFound"+cookieFound);
             
         if (!cookieFound) {
             // Si la cookie no se encuentra, devuelve una respuesta con un código de estado 404

@@ -31,15 +31,15 @@ export async function middleware(req: NextRequest) {
     if (!session && !url.pathname.startsWith('/auth/login')) {
       const requestedPage = req.nextUrl.pathname;
       url.pathname = '/auth/login';
-      url.search = `p=${requestedPage}`;
+      //url.search = `p=${requestedPage}`;
       //return NextResponse.next()
       return NextResponse.redirect(url.toString());
     }
   
     if (session && url.pathname.startsWith('/auth/login')) {
       url.pathname = '/lobby';
+      NextResponse.redirect(url.toString());
       return NextResponse.next()
-     // return NextResponse.redirect(url.toString());
     }
   
     return NextResponse.next();

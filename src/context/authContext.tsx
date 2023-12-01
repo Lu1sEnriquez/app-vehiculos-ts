@@ -7,8 +7,8 @@ import {
   useMemo,
 } from "react";
 
-import Cookies from "js-cookie";
-import { redirect, useRouter } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 import useToken from "@/hooks/useToken";
 
 type AuthTokens= string
@@ -34,9 +34,9 @@ const {  saveToken, removeToken } = useToken();
   const login = useCallback(function (authTokens: AuthTokens) {
    // Cookies.set("authTokens", authTokens); //con la libreria js-cookie
    saveToken(authTokens)
-   router.push('/lobby')
+  
     
-  }, [router,saveToken]);
+  }, [saveToken]);
 
   const logout = useCallback(function () {
     removeToken()
