@@ -2,11 +2,12 @@
 import ApartadosType from "@/models/ReporteGeneralType";
 import React, { useEffect, useState } from "react";
 import ItemLlegada from "./ItemLlegada";
-import { apartadosGet } from "@/services/apartados.services";
+
 import { FaCarOn } from "react-icons/fa6";
+import useApartados from "@/hooks/useApartados";
 function ItemsLlegadas() {
   const [data, setData] = useState<ApartadosType[]>([]);
-
+  const { apartadosGet } = useApartados();
   useEffect(() => {
     apartadosGet().then((response) => {
       console.log("respuesta ", response);
@@ -29,7 +30,7 @@ function ItemsLlegadas() {
       ) : (
         <div className="font-poppins text-5xl text-slate-500 flex  flex-col items-center gap-2">
           <span>NO EXISTEN AUTOS FUERA</span>
-          <FaCarOn size={50}/>
+          <FaCarOn size={50} />
         </div>
       )}
     </section>

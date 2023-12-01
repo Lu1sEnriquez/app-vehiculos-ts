@@ -6,19 +6,17 @@ import { useEffect, useState } from "react";
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 
 function InputPlacaVehiculo() {
-  const [placa, setPlaca] = useState<string>()
-const {state,dispatch} = useDatosSalidaLlegadaReducer()
-  const handleInputPlaca = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const [placa, setPlaca] = useState<string>("");
+  const { state, dispatch } = useDatosSalidaLlegadaReducer();
+  const handleInputPlaca = (event: React.ChangeEvent<HTMLInputElement>) => {
     const valor = event.target.value;
     // const nuevoValor = formatearMatriculaMexicana(valor);
     setPlaca(valor);
   };
-  
-  useEffect(()=>{
-    if(placa){
-      dispatch( {type: 'SET_PLACA', payload : placa})
-    }
-  },[placa, dispatch])
+
+  useEffect(() => {
+    dispatch({ type: "SET_PLACA", payload: placa });
+  }, [placa, dispatch]);
 
   function formatearMatriculaMexicana(inputValue: string) {
     // Eliminar cualquier carácter que no sea una letra o un dígito

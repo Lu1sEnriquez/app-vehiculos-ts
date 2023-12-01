@@ -2,12 +2,12 @@
 import ApartadosType from "@/models/ReporteGeneralType";
 import React, { useEffect, useState } from "react";
 import ItemApartado from "./ItemApartado";
-import { apartadosGet } from "@/services/apartados.services";
+import useApartados from "@/hooks/useApartados";
 import { FaCarOn } from "react-icons/fa6";
 
 function ItemsApartados() {
   const [data, setData] = useState<ApartadosType[]>([]);
-
+  const {apartadosGet} = useApartados();
   useEffect(() => {
    apartadosGet().then(response =>{
     console.log('respuesta ', response);

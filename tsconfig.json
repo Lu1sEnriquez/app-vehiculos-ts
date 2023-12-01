@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/**/*.d.ts" // Agrega esta línea para incluir archivos de definiciones de tipo
-, "src/components/Formularios/inputCarroceria/InputCarroceria.tsx"  ],
+, "src/components/Formularios/inputCarroceria/InputCarroceria.tsx", "src/hooks/useToken.jsx"  ],
   "exclude": [
     "node_modules"
   ]

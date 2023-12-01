@@ -23,7 +23,7 @@ function NavbarMovil({open, setOpen}) {
      w-full 
      z-30
      shadow-xl
-     ${!open ? "h-14" : "h-80"} duration-300
+     ${!open ? "h-14" : "h-96"} duration-300
     `}
     >
       <div className="flex flex-row justify-between w-full items-center">

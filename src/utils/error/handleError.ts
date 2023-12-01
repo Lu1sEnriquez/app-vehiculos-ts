@@ -30,7 +30,7 @@ export async function handleAsyncError<T>(
   }
 
   export function lanzarError(menssage:string){
-  throw new Error(menssage)
+  throw new Error(menssage || 'error')
   }
 
 

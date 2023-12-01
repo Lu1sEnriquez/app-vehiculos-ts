@@ -1,11 +1,9 @@
 /* importaciones de next */
 import Image from "next/image";
-import Link from "next/link";
 
 /* importaciones de img que necesitamos */
 import logoItson from "@/assets/icons/LogoItson.png";
 import ButtonsLobby from "@/components/lobbyComponents/ButtonsLobby";
-import InputFirma from "@/components/Formularios/inputs/InputFirma";
 
 const lobbyPage = () => {
   return (

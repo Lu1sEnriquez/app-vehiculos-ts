@@ -3,7 +3,7 @@
 import {useState, useEffect} from 'react'
 import ApartadosType from '@/models/ReporteGeneralType'
 import ItemReporte from './ItemReporte';
-import { reportesGeneralGet } from '@/services/reportes.services';
+import { reportesGeneralGet } from '@/services/useReportes';
 import DataType from '@/models/DataType';
 
 function ItemsReportes() {

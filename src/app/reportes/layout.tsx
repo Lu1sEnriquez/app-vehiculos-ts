@@ -5,10 +5,7 @@ import { useAuthContext } from "@/context/authContext";
 import { redirect } from "next/navigation";
 
 function Layout({ children }:{children:ReactNode}) {
-  const {isLoggedIn} = useAuthContext()
-  if(!isLoggedIn){
-      redirect('/login')
-  }
+ 
 
   return (
     <>

@@ -6,7 +6,7 @@ import ApartadosType, {
 } from "@/models/ReporteGeneralType";
 import ButtonGenerarPDF from "../basicos/ButtonGenerarPDF";
 import { useEffect, useState } from "react";
-import { reportesGeneralGet } from "@/services/reportes.services";
+import useReportes from "@/hooks/useReportes";
 import { useErrorReducer } from "@/reducer/errorReducer";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
@@ -49,6 +49,8 @@ const filterDateInitial = {
   finDelMes: formatFecha(finDelMes),
 };
 function ReportesDataTable() {
+  const { reportesGeneralGet } = useReportes();
+
   const [data, setData] = useState<ApartadosType[]>([]);
   const [filterDate, setfilterDate] =
     useState<filterDateInitialType>(filterDateInitial);
@@ -71,12 +73,12 @@ function ReportesDataTable() {
           setData(result);
         }
       } catch (error) {
-        if (error instanceof Error) {
-          dispatch({
-            type: "SET_ERROR",
-            payload: error.message || "Error Desconocido",
-          });
-        }
+        // if (error instanceof Error) {
+        //   dispatch({
+        //     type: "SET_ERROR",
+        //     payload: error.message || "Error Desconocido",
+        //   });
+        // }
         setData([]);
       }
     };

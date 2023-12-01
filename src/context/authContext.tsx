@@ -1,57 +1,54 @@
-"use client";
-import useLocalStorage from "@/hooks/useLocalStorage";
+'use client'
 import {
   ReactNode,
   createContext,
   useCallback,
   useContext,
   useMemo,
-  useState,
 } from "react";
 
-type AuthTokens = {
-  token: string;
-  refresh_oken: string;
-};
+import Cookies from "js-cookie";
+import { redirect, useRouter } from "next/navigation";
+import useToken from "@/hooks/useToken";
 
-export const AUTH_TOKENS_KEY = "AUTH_TOKENS"; //'$Perico123$'
+type AuthTokens= string
 
-export const AuthContext = createContext({
+//const AUTH_TOKENS_KEY = "NEXT_JS_AUTH";
+
+ const AuthContext = createContext({
   login: (authTokens: AuthTokens) => {},
   logout: () => {},
-  isLoggedIn: false,
-  authTokens: null,
 });
+
 
 export default function AuthContextProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-    const {getLocalStorage,setLocalStorage, deleteLocalStorage} =useLocalStorage();
 
-    const authTokensInLocalStorage = getLocalStorage(AUTH_TOKENS_KEY);
-    const [authTokens, setAuthTokens] = useState(authTokensInLocalStorage)
-      
-  
-  const login = useCallback((authTokends: AuthTokens) => {
-    deleteLocalStorage(AUTH_TOKENS_KEY)
-    setAuthTokens(authTokends);
-  }, [deleteLocalStorage]);
+const router = useRouter()
+const {  saveToken, removeToken } = useToken();
 
-  const logout = useCallback(() => {
-    window.localStorage.removeItem(AUTH_TOKENS_KEY);
-    setAuthTokens(null);
-  }, []);
+
+  const login = useCallback(function (authTokens: AuthTokens) {
+   // Cookies.set("authTokens", authTokens); //con la libreria js-cookie
+   saveToken(authTokens)
+   router.push('/lobby')
+    
+  }, [router,saveToken]);
+
+  const logout = useCallback(function () {
+    removeToken()
+    router.push('/auth/login')
+  }, [router,removeToken]);
 
   const value = useMemo(
     () => ({
       login,
-      logout,
-      authTokens: authTokens,
-      isLoggedIn: authTokens !== null,
+      logout
     }),
-    [authTokens, login, logout]
+    [login, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
