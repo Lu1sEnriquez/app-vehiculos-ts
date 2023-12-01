@@ -1,6 +1,5 @@
 'use client'
-import { ButtonAzulLink } from "@/components/basicos/ButtonAzul";
-import Link from "next/link";
+
 import {useEffect} from "react";
 import {  useRouter} from "next/navigation";
 function PagePrincipal() {

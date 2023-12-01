@@ -9,7 +9,7 @@ const useToken = () => {
     const result = await axios.get("/api/cookie");
     if (result.status == 200) {
       const data = result.data;
-      console.log(data.token.value);
+     // console.log(data.token.value);
       
       return data.token.value
     }

@@ -1,12 +1,12 @@
 // @ts-nocheck
-import FormularioLlegada from "@/components/complejos/FormularioLlegada";
+import FormularioSalida from "@/components/complejos/FormularioSalida";
 import React from "react";
 
 interface Props {
   params: { folio?: string };
 }
 
-function FormLlegadasPage({ params }: Props) {
+function FormSalidasPage({ params }: Props) {
   if (!params.folio) {
     return (
       <div>
@@ -17,9 +17,9 @@ function FormLlegadasPage({ params }: Props) {
 
   return (
     <div className="container bg-[#f2f2f2] text-black w-full h-full">
-      <FormularioLlegada folio={parseInt(params.folio)}></FormularioLlegada>
+      <FormularioSalida folio={parseInt(params.folio)}></FormularioSalida>
     </div>
   );
 }
 
-export default FormLlegadasPage;
+export default FormSalidasPage;

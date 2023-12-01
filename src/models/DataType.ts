@@ -16,11 +16,13 @@ export function mapResponseToReporteGeneral(responseData: DataType): ApartadosTy
       return responseData.data.map((item: any) => {
         return {
           idSolicitud: item.idSolicitud,
-          nombreSolicitante: item.nombreSolicitante,
+          solicitante: item.nombreSolicitante,
           chofer: item.chofer,
           destino: item.destino,
           vehiculo: item.vehiculo,
           placa: item.placa,
+          estado:item.estado,
+          responsable:item.responsable,
           fechaRegistro: item.fechaRegistro,
           fechaSalida: item.fechaSalida,
           fechaLlegada: item.fechaLlegada,

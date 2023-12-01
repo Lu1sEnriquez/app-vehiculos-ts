@@ -14,6 +14,7 @@ import ButtonPostSalidaLlegada from "../buttonServices/ButtonPostSalidaLlegada";
 import InputFolio from "../Formularios/inputs/InputFolio";
 import IsSalida from "../Formularios/inputs/IsSalida";
 import MostrarFolio from "../Formularios/inputs/MostrarFolio";
+import React from "react";
 
 
 

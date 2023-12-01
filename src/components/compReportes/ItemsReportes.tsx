@@ -3,12 +3,12 @@
 import {useState, useEffect} from 'react'
 import ApartadosType from '@/models/ReporteGeneralType'
 import ItemReporte from './ItemReporte';
-import { reportesGeneralGet } from '@/services/useReportes';
+import useReportes from '@/hooks/useReportes';
 import DataType from '@/models/DataType';
 
 function ItemsReportes() {
 const [reportes, setReportes] = useState<ApartadosType[]>([])
-
+const {reportesGeneralGet} = useReportes()
 
 
 useEffect(() => {

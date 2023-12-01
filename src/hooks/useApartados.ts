@@ -34,7 +34,7 @@ const useApartados = () => {
 
     try {
       const token = await getToken()
-      console.log("apartados 37 token:"+token);
+      //console.log("apartados 37 token:"+token);
       
       const headerToken = {
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const useApartados = () => {
         const responseData: DataType = await result.json();
 
         if (responseData) {
-          console.log('Respuesta exitosa:', responseData);
+          //console.log('Respuesta exitosa:', responseData);
 
           if (Array.isArray(responseData.data)) {
             const apartados: ApartadosType[] = responseData.data;

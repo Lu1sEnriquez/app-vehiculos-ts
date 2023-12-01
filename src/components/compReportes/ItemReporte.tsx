@@ -1,5 +1,5 @@
 import ApartadosType from "@/models/ReporteGeneralType"
-import { ReactNode } from "react"
+
 
 interface Props{
   solicitud:ApartadosType
@@ -23,7 +23,7 @@ function ItemReporte({solicitud}:Props) {
                 id="row2"
                 className="border-2  w-full h-full flex justify-between"
               >
-                <div className=" w-full flex flex-row"><h6 className="font-semibold">Solicitante : </h6> {solicitud.nombreSolicitante}</div>
+                <div className=" w-full flex flex-row"><h6 className="font-semibold">Solicitante : </h6> {solicitud.solicitante}</div>
                 <div className=" w-full flex flex-row"><h6 className="font-semibold">Vehiculo : </h6> {solicitud.vehiculo}</div>
                 <div className=" w-full flex flex-row"><h6 className="font-semibold">Chofer : </h6> {solicitud.chofer}</div>
               </div>

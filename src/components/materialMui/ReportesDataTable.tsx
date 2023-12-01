@@ -56,33 +56,33 @@ function ReportesDataTable() {
     useState<filterDateInitialType>(filterDateInitial);
 
   const { dispatch } = useErrorReducer();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await reportesGeneralGet(
-          new Date(filterDate.inicioDelMes),
-          new Date(filterDate.finDelMes)
-        ).then((data) =>
-          data?.filter(
-            (solicitud: ApartadosType) => solicitud.estado == "Finalizado"
-          )
-        );
-        console.log(result);
+  const fetchData = async () => {
+    try {
+      const result = await reportesGeneralGet(
+        new Date(filterDate.inicioDelMes),
+        new Date(filterDate.finDelMes)
+      ).then((data) =>
+        data?.filter(
+          (solicitud: ApartadosType) => solicitud.estado == "Finalizado"
+        )
+      );
+      //console.log(result);
 
-        if (Array.isArray(result)) {
-          setData(result);
-        }
-      } catch (error) {
-        // if (error instanceof Error) {
-        //   dispatch({
-        //     type: "SET_ERROR",
-        //     payload: error.message || "Error Desconocido",
-        //   });
-        // }
-        setData([]);
+      if (Array.isArray(result)) {
+        setData(result);
       }
-    };
+    } catch (error) {
+      // if (error instanceof Error) {
+      //   dispatch({
+      //     type: "SET_ERROR",
+      //     payload: error.message || "Error Desconocido",
+      //   });
+      // }
+      setData([]);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, [dispatch, filterDate]);
 
@@ -170,7 +170,7 @@ function ReportesDataTable() {
             customToolbar(data) {
               const dataReporte = data.displayData.map((row): ReporteType => {
                 const data = row.data;
-                console.log(data[3]);
+                //console.log(data[3]);
 
                 return {
                   Folio: data[0] as number,

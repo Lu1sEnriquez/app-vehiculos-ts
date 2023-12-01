@@ -8,13 +8,13 @@ import useToken from "@/hooks/useToken";
 
 const useReportes = () => {
   const { getToken } = useToken();
-  console.log('token' + getToken());
+  //console.log('token' + getToken());
 
 
 
   const fetchWithToken = async (url: string, options?: RequestInit) => {
     const token = await getToken()
-    console.log("apartados 37 token:"+token);
+   // console.log("apartados 37 token:"+token);
     
     const headerToken = {
       'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const useReportes = () => {
 
   const reportesGeneralGet = async (fechaInicio?: Date, fechaFin?: Date) => {
     return handleAsyncError(async () => {
-      console.log(fechaInicio, fechaFin);
+      //console.log(fechaInicio, fechaFin);
 
       if (fechaInicio && fechaFin) {
         const result = await fetchWithToken(`${GET_REPORTES_GENERAL_URL}?fechaInicio=${formatFecha(fechaInicio)}&fechaFin=${formatFecha(fechaFin)}`);

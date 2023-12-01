@@ -24,7 +24,7 @@ export async function handleAsyncError<T>(
       const result = await asyncFunction();
       return result;
     } catch (error) {
-      console.log('Ocurrió un error:', error);
+      //console.log('Ocurrió un error:', error);
       throw new Error(errorMessage);
     }
   }
