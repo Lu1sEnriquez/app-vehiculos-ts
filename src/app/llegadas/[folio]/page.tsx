@@ -6,7 +6,8 @@ interface Props {
   params: { folio?: string };
 }
 
-function FormLlegadasPage({ params }: Props) {
+function FormLlegadasPage({  }: Props) {
+  const params = useParams();
   if (!params.folio) {
     return (
       <div>

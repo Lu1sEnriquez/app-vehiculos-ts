@@ -6,11 +6,11 @@ import {useParams} from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 
 interface Props {
-  children: ReactNode;
-  params: { solicitud: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  children?: ReactNode;
+  // params: { solicitud: string };
+  // searchParams?: { [key: string]: string | string[] | undefined };
 }
-function FormSalidaPage({ children}: Props) {
+function FormSalidaPage({ }: Props) {
   const params = useParams();
 
   const [apartado, setApartado] = useState<ApartadosType | null>(null)
