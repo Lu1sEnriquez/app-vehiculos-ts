@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/authContext";
 import Swal from "sweetalert2";
 
+import logoActi3 from '@/assets/icons/actilogo2.png'
 export interface CredentialsType {
   usuario: string;
   password: string;
@@ -56,14 +57,14 @@ function LoginPage() {
   };
 
   return (
-    <main className="text-slate-800 h-screen  flex  items-center justify-center w-full">
-      <section className="flex flex-col items-center gap-10">
-        <div className="w-5/6">
+    <main className="text-slate-800 h-[40rem]  flex  items-center justify-center w-full">
+      <section className="flex flex-col  items-center mt-20 gap-10">
+        <div className="w-9/12">
           <Image priority width={400} src={logoItson} alt="ITSON"></Image>
         </div>
         <form
           action=""
-          className="flex flex-col gap-5  items-center bg-white shadow-xl h-96 justify-center px-5 rounded w-10/12 "
+          className="flex flex-col gap-5  items-center bg-white shadow-xl h-96 justify-center px-5 rounded  w-9/12 "
         >
           <h1 className="font-roboto text-3xl text-azulNormal font-bold ">LOGIN</h1>
           <label htmlFor="usuario" className="font-poppins flex flex-col gap-1 text-2xl ">
@@ -73,7 +74,7 @@ function LoginPage() {
               name="usuario"
               onChange={handleChange}
               type="text"
-              className="border-slate-300 shadow bg-slate-50 border-2 rounded-sm w-full text-base"
+              className="border-slate-300 shadow bg-slate-50 border-2 rounded-sm w-full h-10 text-base"
             />
           </label>
 
@@ -84,7 +85,7 @@ function LoginPage() {
               name="password"
               onChange={handleChange}
               type="password"
-              className="border-slate-300 shadow bg-slate-50 border-2 rounded-sm w-full text-base "
+              className="border-slate-300 shadow bg-slate-50 border-2 rounded-sm w-full h-10 text-base "
             />
           </label>
 
@@ -92,12 +93,16 @@ function LoginPage() {
         <button
             type="submit"
             onClick={handleSumit}
-            className="bg-azulNormal text-slate-50 px-4 w-40 py-1 rounded shadow"
+            className="bg-azulNormal text-slate-50 text-2xl px-4 w-40 py-1 rounded shadow"
           >
             Entrar
           </button>
         </div>
         </form>
+        <div className="flex flex-row items-end justify-center gap-2">
+          <h1 className="font-nunito-sans font-bold text-xl">Acti</h1>
+          <Image src={logoActi3} width={35} alt="Acti"></Image>
+        </div>
       </section>
     </main>
   );
