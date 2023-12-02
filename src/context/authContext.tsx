@@ -34,13 +34,16 @@ const {  saveToken, removeToken } = useToken();
   const login = useCallback(function (authTokens: AuthTokens) {
    // Cookies.set("authTokens", authTokens); //con la libreria js-cookie
    saveToken(authTokens)
+   router.refresh()
   
     
-  }, [saveToken]);
+  }, [saveToken,router]);
 
   const logout = useCallback(function () {
     removeToken()
-    router.push('/auth/login')
+    router.refresh()
+  
+  //  router.push('/auth/login')
   }, [router,removeToken]);
 
   const value = useMemo(

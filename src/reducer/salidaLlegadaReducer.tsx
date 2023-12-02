@@ -128,7 +128,7 @@ export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProvi
     nombreVigilante: null,
     firmaVigilante: null,
     firmaSolicitante: null,
-    isLocal:null,
+    isLocal:true,
     destino: null,
     accesorios: {
       gato: false,

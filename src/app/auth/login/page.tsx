@@ -41,9 +41,8 @@ function LoginPage() {
       console.log(data);
       const token = data.token;
       console.log(token);
-
       login(token);
-      router.push("/lobby");
+      //router.push("/lobby");
     } catch (error) {
       if (error instanceof Error) {
         Swal.fire({

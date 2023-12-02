@@ -29,7 +29,7 @@ function ButtonPostSalidaLlegada() {
 
       if (incompletos) {
         console.log(incompletos);
-        
+
         errorReducer.dispatch({
           type: "SET_ERROR",
           payload: "Formulario Incompleto",
@@ -46,10 +46,12 @@ function ButtonPostSalidaLlegada() {
           type: "SET_ERROR",
           payload: "ERROR",
         });
-        const message =error.message.includes('-')? error.message.split("-")[1].split(",")[0]: error.message
+        const message = error.message.includes("-")
+          ? error.message.split("-")[1].split(",")[0]
+          : error.message;
         errorReducer.dispatch({
           type: "SET_MESSAGE",
-          payload:message,
+          payload: message,
         });
       }
     }
@@ -82,12 +84,13 @@ function ButtonPostSalidaLlegada() {
           (key as keyof datosSalidaType) == "licencia" ||
           (key as keyof datosSalidaType) == "tanque" ||
           (key as keyof datosSalidaType) == "kilometraje" ||
-          (key as keyof datosSalidaType) == "departamento" ||
           (key as keyof datosSalidaType) == "nombreSolicitante" ||
           (key as keyof datosSalidaType) == "nombreVigilante" ||
           (key as keyof datosSalidaType) == "firmaSolicitante" ||
           (key as keyof datosSalidaType) == "firmaVigilante"
         ) {
+          camposFaltantes.push(key as keyof datosSalidaType);
+        } else if ((key as keyof datosSalidaType) == "departamento" && !data.isLocal) {
           camposFaltantes.push(key as keyof datosSalidaType);
         }
       }

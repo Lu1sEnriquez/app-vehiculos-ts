@@ -32,10 +32,13 @@ function InputGasolina() {
           type="range"
           min="0"
           max="100"
+          step={1}
+         
           value={porcentaje}
           onChange={handleChange}
-          className="w-full h-10 bg-gray-200 rounded-full appearance-none cursor-pointer "
+          className="appearance-none rounded-full h-7 bg-slate-200 w-full slider-thumb:appearance-none slider-thumb:w-10 slider-thumb:h-10 slider-thumb:border-none slider-thumb:bg-green-500 slider-thumb:shadow"
         />
+      
         <div className="flex justify-around mt-2 text-black">
           <span>E</span>
           <span>¼</span>
@@ -44,7 +47,9 @@ function InputGasolina() {
           <span>F</span>
         </div>
       </div>
+      
     </section>
+    
   );
 }
 export default InputGasolina;

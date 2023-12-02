@@ -36,79 +36,79 @@ export function InputAccesorios() {
 
   const classNameLabel = "flex flex-row  ";
   const claseCheck =
-    "w-8 h-8 border-black border-2 rounded flex items-center justify-center";
+    "w-10 h-10 border-black border-2 rounded flex items-center justify-center";
   return (
     <section className="border-2  flex flex-col font-bold ">
       <LabelFormulario>{"Seleccione los Accesorios: "}</LabelFormulario>
       <div className="container-cheks flex flex-col gap-3">
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("gato");
             }}
           >
-            {accesorios.gato && <FcCheckmark size={50} />}
+            {accesorios.gato && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Gato</h1>
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("cables");
             }}
           >
-            {accesorios.cables && <FcCheckmark size={50} />}
+            {accesorios.cables && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Cables</h1>
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("extra");
             }}
           >
-            {accesorios.extra && <FcCheckmark size={50} />}
+            {accesorios.extra && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Extra</h1>
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("documentos");
             }}
           >
-            {accesorios.documentos && <FcCheckmark size={50} />}
+            {accesorios.documentos && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Documentos</h1>
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("extintor");
             }}
           >
-            {accesorios.extintor && <FcCheckmark size={50} />}
+            {accesorios.extintor && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Extintor</h1>
         </div>
 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-5">
           <div
             className={claseCheck}
             onClick={() => {
               handleCheckboxChange("luzMuerta");
             }}
           >
-            {accesorios.luzMuerta && <FcCheckmark size={50} />}
+            {accesorios.luzMuerta && <FcCheckmark size={50} strokeWidth={5} color={"#2ECC5d"} />}
           </div>
           <h1>Luz Muerta</h1>
         </div>

@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config()
 
-const IP_API = process.env.IP_API || "10.21.44.13";
+// const IP_API = process.env.IP_API || "10.21.44.13";
+const IP_API = process.env.IP_API ||'192.168.0.2';
 const PORT_API = process.env.PORT_API || 3001;
 
 console.log(IP_API,PORT_API);
