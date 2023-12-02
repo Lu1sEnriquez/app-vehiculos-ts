@@ -13,7 +13,7 @@ import { FaUserCircle } from "react-icons/fa";
     { name: "SALIDAS", link: "/salidas", icon: ImExit },
     { name: "LLEGADAS", link: "/llegadas", icon: PiKeyReturnBold },
     { name: "REPORTES", link: "/reportes", icon: TbReportSearch },
-    { name: "USUARIO", link: "/logout", icon: FaUserCircle  },
+    { name: "CERRAR SESION", link: "/auth/logout", icon: FaUserCircle  },
   ];
 
   export default menuItems;

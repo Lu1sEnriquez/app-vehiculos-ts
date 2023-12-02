@@ -24,13 +24,13 @@ export async function handleAsyncError<T>(
       const result = await asyncFunction();
       return result;
     } catch (error) {
-      console.log('Ocurrió un error:', error);
+      //console.log('Ocurrió un error:', error);
       throw new Error(errorMessage);
     }
   }
 
   export function lanzarError(menssage:string){
-  throw new Error(menssage)
+  throw new Error(menssage || 'error')
   }
 
 

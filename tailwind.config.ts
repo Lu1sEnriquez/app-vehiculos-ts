@@ -1,4 +1,4 @@
-
+import plugin from 'tailwindcss/plugin'
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -36,6 +36,10 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-animated')
+    plugin(function ({ addVariant }) {
+      addVariant('slider-thumb', ['&::-webkit-slider-thumb', '&::slider-thumb'])
+    }),
+    require('tailwindcss-animated'),
+
   ],
 }

@@ -16,7 +16,7 @@ const ModalFirma = ({ isOpen, onClose, children, title }:Props) => {
   if (!isOpen) return null;
 
   return (
-    <section className="container-modal fixed z-50 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen max-h-max top-0 left-0 min-h-fit ">
+    <section className=" fixed z-20 flex items-center  justify-center bg-opacity-50 bg-black w-full h-screen max-h-max top-0 left-0 min-h-screen ">
       <div 
       style={{
         zIndex:70,

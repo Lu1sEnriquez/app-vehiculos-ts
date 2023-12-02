@@ -2,7 +2,7 @@
 import { useDatosSalidaLlegadaReducer } from "@/reducer/salidaLlegadaReducer";
 import { ButtonAzul, ButtonAzulLink } from "../basicos/ButtonAzul";
 import useModal from "@/utils/custom/useModal";
-import { salidaLlegadaPost } from "@/services/salidaLlegada.services";
+import useSalidaLLegada from "@/hooks/useSalidaLlegada";
 import { useErrorReducer } from "@/reducer/errorReducer";
 import ModalComponent from "../modal/Modal";
 import Image from "next/image";
@@ -15,6 +15,9 @@ function ButtonPostSalidaLlegada() {
   const { state } = useDatosSalidaLlegadaReducer();
   const router = useRouter();
   const errorReducer = useErrorReducer();
+
+  const { salidaLlegadaPost } = useSalidaLLegada();
+
   async function handlePost() {
     try {
       const result = await salidaLlegadaPost(state);
@@ -25,6 +28,8 @@ function ButtonPostSalidaLlegada() {
       const incompletos = obtenerCamposFaltantes(state);
 
       if (incompletos) {
+        console.log(incompletos);
+
         errorReducer.dispatch({
           type: "SET_ERROR",
           payload: "Formulario Incompleto",
@@ -34,16 +39,21 @@ function ButtonPostSalidaLlegada() {
           type: "SET_MESSAGE",
           payload: incompletos,
         });
+        return;
+      } else if (error instanceof Error) {
+        console.log(error.message);
+        errorReducer.dispatch({
+          type: "SET_ERROR",
+          payload: "ERROR",
+        });
+        const message = error.message.includes("-")
+          ? error.message.split("-")[1].split(",")[0]
+          : error.message;
+        errorReducer.dispatch({
+          type: "SET_MESSAGE",
+          payload: message,
+        });
       }
-      // errorReducer.dispatch({
-      //   type: "SET_ERROR",
-      //   payload: "Ya Existe",
-      // });
-
-      // errorReducer.dispatch({
-      //   type: "SET_MESSAGE",
-      //   payload: `${error}`,
-      // });
     }
   }
   function obtenerCamposFaltantes(data: datosSalidaType) {
@@ -74,12 +84,13 @@ function ButtonPostSalidaLlegada() {
           (key as keyof datosSalidaType) == "licencia" ||
           (key as keyof datosSalidaType) == "tanque" ||
           (key as keyof datosSalidaType) == "kilometraje" ||
-          (key as keyof datosSalidaType) == "departamento" ||
           (key as keyof datosSalidaType) == "nombreSolicitante" ||
           (key as keyof datosSalidaType) == "nombreVigilante" ||
           (key as keyof datosSalidaType) == "firmaSolicitante" ||
           (key as keyof datosSalidaType) == "firmaVigilante"
         ) {
+          camposFaltantes.push(key as keyof datosSalidaType);
+        } else if ((key as keyof datosSalidaType) == "departamento" && !data.isLocal) {
           camposFaltantes.push(key as keyof datosSalidaType);
         }
       }
@@ -118,6 +129,8 @@ function ButtonPostSalidaLlegada() {
         text: `Registro Exitoso`,
         icon: "success",
         confirmButtonText: "OK",
+        showCloseButton: false,
+        backdrop: "static",
       }).then((result) => {
         if (result.isConfirmed) {
           errorReducer.dispatch({ type: "SET_ERROR", payload: null });

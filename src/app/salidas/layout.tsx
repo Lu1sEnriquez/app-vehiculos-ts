@@ -1,13 +1,8 @@
-"use client";
-import { redirect } from "next/navigation";
-import { AiFillCar } from "react-icons/ai";
-import { useAuthContext } from "@/context/authContext";
 
-function Layout({ children }) {
-  const {isLoggedIn} = useAuthContext()
-  if(!isLoggedIn){
-      redirect('/login')
-  }
+import { AiFillCar } from "react-icons/ai";
+import {  ReactNode} from "react";
+function Layout({ children }:{children:ReactNode}) {
+
 
   return (
     <>

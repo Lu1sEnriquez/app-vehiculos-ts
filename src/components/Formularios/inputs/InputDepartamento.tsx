@@ -7,19 +7,19 @@ interface Props {
   children?: React.ReactNode;
 }
 
-function InputDepartamento({ children }: Props) {
-  const [departamento, setDepartamento] = useState<string>();
-  const { state, dispatch } = useDatosSalidaLlegadaReducer();
+function InputDepartamento({  }: Props) {
+  const [departamento, setDepartamento] = useState<string>("");
+  const {  dispatch } = useDatosSalidaLlegadaReducer();
 
   const handleSetDepartamento = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setDepartamento(evt.target.value);
   };
 
   useEffect(() => {
-   if(departamento){
+   
     dispatch({ type: "SET_DEPARTAMENTO", payload: departamento });
-   }
-  }, [departamento, dispatch]);
+   
+  },[departamento, dispatch]);
 
   return (
     <>

@@ -45,9 +45,9 @@ function UiGasolina({ porcentaje }:{porcentaje:number}) {
       ></div>
       <div
         style={{
-          borderBottom: `${parseInt(height * 0.8)}px  solid red`,
-          borderLeft: `${parseInt(height / 10)}px  solid  transparent`,
-          borderRight: `${parseInt(height / 10)}px solid transparent`,
+          borderBottom: `${Math.round(height * 0.8)}px  solid red`,
+          borderLeft: `${Math.round(height / 10)}px  solid  transparent`,
+          borderRight: `${Math.round(height / 10)}px solid transparent`,
           transformOrigin: "bottom center",
           transform: `rotate(${porcentajeAgrados}deg)`,
           bottom: -2,

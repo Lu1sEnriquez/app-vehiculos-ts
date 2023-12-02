@@ -6,33 +6,33 @@ import {useParams} from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 
 interface Props {
-  children: ReactNode;
-  params: { solicitud: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  children?: ReactNode;
+  // params: { solicitud: string };
+  // searchParams?: { [key: string]: string | string[] | undefined };
 }
-function FormSalidaPage({ children}: Props) {
+function FormSalidaPage({ }: Props) {
   const params = useParams();
-  
+
   const [apartado, setApartado] = useState<ApartadosType | null>(null)
-  
+
   useEffect(()=>{
-    
+
     if(typeof params.solicitud == "string"){
       const solicitud = decodeURIComponent(params.solicitud)
       const result = JSON.parse(solicitud)
       console.log(result);
-      
+
       setApartado(result)
     }
   },[params.solicitud])
 
-  
 
 
-  
-   
+
+
+
   // console.log(data);
-  
+
   // let apartado;
   // if(data){
   //  apartado= typeof data =="string"? JSON.parse(data) : JSON.parse(data.join(''))

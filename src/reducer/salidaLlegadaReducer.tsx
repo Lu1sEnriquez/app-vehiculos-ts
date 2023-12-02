@@ -53,41 +53,41 @@ const DatosSalidaLlegadaReducer = (
     case "SET_FECHA_SALIDA":
       return { ...state, fecha: action.payload };
     case "SET_NOMBRE_SOLICITANTE":
-      return { ...state, nombreSolicitante: action.payload };
+      return { ...state, nombreSolicitante: action.payload == ""?null:action.payload  };
     case "SET_NOMBRE_CHOFER":
-      return { ...state, chofer: action.payload };
+      return { ...state, chofer: action.payload == ""?null:action.payload  };
     case "SET_DEPARTAMENTO":
-      return { ...state, departamento: action.payload };
+      return { ...state, departamento:action.payload == ""?null:action.payload  };
     case "SET_PLACA":
-      return { ...state, placa: action.payload };
+      return { ...state, placa: action.payload == ""?null:action.payload  };
     case "SET_LICENCIA":
-      return { ...state, licencia: action.payload };
+      return { ...state, licencia:action.payload == ""?null:action.payload  };
     case "SET_HORA_SALIDA":
       return { ...state, hora: action.payload };
     case "SET_KILOMETRAJE":
-      return { ...state, kilometraje: action.payload };
+      return { ...state, kilometraje: action.payload == ""?null:action.payload  };
     case "SET_TIENE_GOLPES":
       return { ...state, golpes: action.payload };
     case "SET_CARROCERIA":
       return { ...state, carroceria: action.payload };
     case "SET_TANQUE":
-      return { ...state, tanque: action.payload };
+      return { ...state, tanque: action.payload == ""?null:action.payload  };
     case "SET_ISSALIDA":
       return { ...state, isSalida: action.payload };
     case "SET_NOMBRE_VIGILANTE":
-      return { ...state, nombreVigilante: action.payload };
+      return { ...state, nombreVigilante: action.payload == ""?null:action.payload };
     case "SET_FIRMA_VIGILANTE":
-      return { ...state, firmaVigilante: action.payload };
+      return { ...state, firmaVigilante: action.payload == ""?null:action.payload  };
     case "SET_FIRMA_SOLICITANTE":
-      return { ...state, firmaSolicitante: action.payload };
+      return { ...state, firmaSolicitante:action.payload == ""?null:action.payload  };
     case "SET_ISLOCAL":
       return { ...state, isLocal: action.payload };
     case "SET_DESTINO":
-      return { ...state, destino: action.payload };
+      return { ...state, destino: action.payload == ""?null:action.payload };
     case "SET_ACCESORIOS":
       return { ...state, accesorios: action.payload };
     case "SET_OBSERVACIONES":
-      return { ...state, observaciones: action.payload };
+      return { ...state, observaciones: action.payload == ""?null:action.payload  };
     case "SET_ESTADO":
       return { ...state, observaciones: action.payload };
     default:
@@ -128,7 +128,7 @@ export function DatosSalidaLlegadaProvider({ children }: DatosSalidaLlegadaProvi
     nombreVigilante: null,
     firmaVigilante: null,
     firmaSolicitante: null,
-    isLocal:null,
+    isLocal:true,
     destino: null,
     accesorios: {
       gato: false,

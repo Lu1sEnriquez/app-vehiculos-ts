@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import LabelFormulario from "./LabelFormulario";
 
 function InputLicencia() {
-  const [licencia, setLicencia] = useState<string>();
+  const [licencia, setLicencia] = useState<string>("");
   const { dispatch } = useDatosSalidaLlegadaReducer();
 
   const handleSetLicencia = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,9 +12,7 @@ function InputLicencia() {
   };
 
   useEffect(() => {
-    if (licencia) {
-      dispatch({ type: "SET_LICENCIA", payload: licencia });
-    }
+    dispatch({ type: "SET_LICENCIA", payload: licencia });
   }, [licencia, dispatch]);
 
   return (
