@@ -20,7 +20,7 @@ function ItemsLlegadas() {
   }, []);
 
   return (
-    <section className=" font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-col md:flex-wrap gap-5 justify-center m-auto  mt-10 mx-2 ">
+    <section className=" font-nunito-sans text-xs sm:text-base font-bold w-full flex flex-wrap gap-5 justify-center m-auto  mt-10 px-2  ">
       {data.length > 0 ? (
         data.map((solicitud) => {
           return (

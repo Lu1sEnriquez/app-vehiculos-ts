@@ -16,7 +16,7 @@ function ItemLlegada({ solicitud }: Props) {
   const horaLlegadaFormat = formatHoraAmPm(fechaLlegada);
 
   return (
-    <div className="min-w-[350px] animate-fade-down   w-full  lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[220px] shadow-xl rounded-md text-black ">
+    <div className="min-w-[400px]  animate-fade-down animate-duration-300  w-full  lg:w-full max-w-[600px] overflow-hidden bg-slate-50 h-[200px] shadow-xl rounded-md text-black ">
       <header className=" w-full h-16 p-3 gap-2   flex flex-row justify-between">
         <div className="flex flex-col min-w-[150px] ">
           <h1>Folio: {solicitud.idSolicitud} </h1>

@@ -9,7 +9,7 @@ import { FaChevronRight } from "react-icons/fa";
 
 function ButtonsLobby() {
   return (
-    <div className=" w-3/5 flex  mt-20 h-72 flex-col  gap-y-8  justify-center items-center  ">
+    <div className=" w-3/5 flex  mt-20 h-80  flex-col  gap-y-8  justify-center items-center  ">
       <Link className=" w-60 h-20" href={`/apartados`}>
         <ButtonLobby icon={check}>{"APARTADOS"}</ButtonLobby>
       </Link>

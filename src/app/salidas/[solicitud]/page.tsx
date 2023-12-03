@@ -3,14 +3,10 @@ import FormularioSalida from "@/components/complejos/FormularioSalida";
 import ApartadosType from "@/models/ReporteGeneralType";
 
 import {useParams} from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 
-interface Props {
-  children?: ReactNode;
-  // params: { solicitud: string };
-  // searchParams?: { [key: string]: string | string[] | undefined };
-}
-function FormSalidaPage({ }: Props) {
+
+function FormSalidaPage() {
   const params = useParams();
 
   const [apartado, setApartado] = useState<ApartadosType | null>(null)
