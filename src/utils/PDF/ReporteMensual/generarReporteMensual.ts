@@ -36,7 +36,9 @@ export async function GenerarReportePDF(data: ReporteType[]) {
     //   doc.addFileToVFS('Poppins-Bold.ttf', fontData);
     //   doc.addFont('Poppins-Bold.ttf', 'Poppins-Bold', 'Bold');
     //   doc.setFont('Poppins-Bold');
-    // generarCoordenadas(doc)
+
+
+    //generarCoordenadas(doc)
     doc.setTextColor("#026ab1");
     doc.setFontSize(20);
     doc.setFont('helvetica', 'normal', 'bold')

@@ -95,8 +95,8 @@ function ReportesDataTable() {
           data={data.map((solicitud) => {
             return {
               folio: solicitud.idSolicitud,
-              solicitante: solicitud.responsable,
-              vehiculo: solicitud.vehiculo,
+              solicitante: solicitud.responsable?.trim(),
+              vehiculo: solicitud.vehiculo?.trim(),
               // chofer:solicitud.chofer,
 
               salida: solicitud.fechaSalida.slice(0, 10),
@@ -136,7 +136,7 @@ function ReportesDataTable() {
               name: "horaLlegada",
               label: "Hora ",
             },
-            {
+          {
               name: "destino",
               label: "Destino",
             },
@@ -148,6 +148,7 @@ function ReportesDataTable() {
               name: "acciones",
               label: "Descargar",
               options: {
+                
                 customBodyRender: (value, tableMeta) => (
                   <div>
                     <ButtonGenerarPDF id={parseInt(tableMeta.rowData[0])} />
@@ -157,6 +158,7 @@ function ReportesDataTable() {
             },
           ]}
           options={{
+            selectableRows:"none",
             downloadOptions: {
               filename: `Reporte-vehicular-${filterDate.inicioDelMes}-${filterDate.finDelMes}`,
               filterOptions: {

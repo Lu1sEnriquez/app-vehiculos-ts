@@ -100,7 +100,7 @@ function LoginPage() {
         </div>
         </form>
         <div className="flex flex-row items-end justify-center gap-2">
-          <h1 className="font-nunito-sans font-bold text-xl">Acti</h1>
+          <h1 className="font-poppins font-bold text-xl">ACTI</h1>
           <Image src={logoActi3} width={35} alt="Acti"></Image>
         </div>
       </section>

@@ -6,12 +6,16 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { AiOutlineHome } from "react-icons/ai";
 
 import menuItems from "@/router/menuItems"; // aqui estan los apartados del nav y sus iconos
+import { ButtonAzul } from "../basicos/ButtonAzul";
+import { FaUserCircle } from "react-icons/fa";
+import { LogoutModal } from "@/hooks/LogoutModal";
+import { useAuthContext } from "@/context/authContext";
+import { useRouter } from "next/navigation";
 
-function NavbarMovil({open, setOpen}) {
-
+function NavbarMovil({ open, setOpen }) {
   const handleClick = () => setOpen(!open);
-
-
+  const { logout } = useAuthContext();
+  const router = useRouter();
   return (
     <nav
       className={` bg-azulOscuro text-blanco  font-medium
@@ -23,19 +27,14 @@ function NavbarMovil({open, setOpen}) {
      w-full 
      z-30
      shadow-xl
-     ${!open ? "h-14" : "h-96"} duration-200
+     
+     ${open ? "h-96" : "h-14"}  max-h-96 duration-200
     `}
     >
-      <div className="flex flex-row justify-between w-full items-center">
-        <Link
-          href={"/"}
-          className="w-28 ml-5"
-        >
+      <div className="flex flex-row justify-between w-full  items-center">
+        <Link href={"/"} className="w-28 ml-5">
           {/* <Image src={logoItson}> */}
-          <AiOutlineHome
-            size={32}
-            className="cursor-pointer"
-          />
+          <AiOutlineHome size={32} className="cursor-pointer" />
         </Link>
         <div className=" py-3 flex justify-end pr-5 md:pr-0">
           <HiMenuAlt3
@@ -45,7 +44,11 @@ function NavbarMovil({open, setOpen}) {
           />
         </div>
       </div>
-      <div className={`flex  flex-col  gap-2 whitespace-pre duration-500 ${!open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"}`}>
+      <div
+        className={`flex  flex-col  gap-2 whitespace-pre duration-500 ${
+          !open && " opacity-0 translate-x-28  -translate-y-10 overflow-hidden"
+        }`}
+      >
         {menuItems.map((item) => (
           <Link
             className={`${item.margin && "md:mt-6 "}
@@ -65,6 +68,19 @@ function NavbarMovil({open, setOpen}) {
             </h1>
           </Link>
         ))}
+        <button
+          className={`${"md:mt-6 "}
+        flex items-center 
+        text-lg gap-3.5 font-medium p-2 
+        hover:bg-azulNormal rounded-md`}
+          onClick={() => {
+            handleClick()
+            LogoutModal(logout, router);
+          }}
+        >
+          <FaUserCircle size={20} />
+          {`Cerrar Sesion`}
+        </button>
       </div>
     </nav>
   );

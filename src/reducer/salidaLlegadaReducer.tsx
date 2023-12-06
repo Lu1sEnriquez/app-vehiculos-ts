@@ -81,7 +81,7 @@ const DatosSalidaLlegadaReducer = (
     case "SET_FIRMA_SOLICITANTE":
       return { ...state, firmaSolicitante:action.payload == ""?null:action.payload  };
     case "SET_ISLOCAL":
-      return { ...state, isLocal: action.payload };
+      return { ...state, isLocal: action.payload == null?false: action.payload };
     case "SET_DESTINO":
       return { ...state, destino: action.payload == ""?null:action.payload };
     case "SET_ACCESORIOS":

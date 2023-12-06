@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import NavbarDesktop from "./navbarDesktop";
 import NavbarMovil from "./NavbarMovil";
@@ -6,7 +6,7 @@ import useDeviceSizeWindow from "@/utils/custom/useDeviseSizeWindow";
 
 function NavbarPrincipal() {
   const [open, setOpen] = useState(false);
-  const { width } = useDeviceSizeWindow();
+  const { width, height } = useDeviceSizeWindow();
   const navbarRef = useRef(null);
 
   useEffect(() => {
@@ -28,10 +28,10 @@ function NavbarPrincipal() {
 
   return (
     <div className="w-auto" ref={navbarRef}>
-      {width > 768 || width === 0 ? (
-        <NavbarDesktop open={open} setOpen={setOpen} />
-      ) : (
+      {width < 768 ? (
         <NavbarMovil open={open} setOpen={setOpen} />
+      ) : (
+        <NavbarDesktop open={open} setOpen={setOpen} height={height} />
       )}
     </div>
   );
