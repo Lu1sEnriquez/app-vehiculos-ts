@@ -19,6 +19,7 @@ export const LogoutModal = (logout: ()=> void, router:AppRouterInstance) => {
     cancelButtonColor: "#d33",
     confirmButtonText: "Salir",
     cancelButtonText: "Cancelar",
+    icon:"info"
   }).then((result) => {
     if (result.isConfirmed) {
       // Lógica para realizar el logout
