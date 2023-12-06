@@ -16,8 +16,8 @@ const lobbyPage = () => {
 
       <ButtonsLobby></ButtonsLobby>
       <div className="flex flex-row items-end justify-center gap-2 text-slate-800">
-        <h1 className="font-nunito-sans font-bold text-xl">Acti</h1>
-        <Image src={logoActi3} width={35} alt="Acti"></Image>
+        <h1 className="font-poppins font-bold text-xl">ACTI</h1>
+        <Image src={logoActi3} width={35} alt=""></Image>
       </div>
     </main>
   );

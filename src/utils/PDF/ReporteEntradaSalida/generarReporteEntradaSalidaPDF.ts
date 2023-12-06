@@ -48,7 +48,9 @@ export async function GenerarEntradaSalidaPDF(data: datosSalidaLlegadaType) {
       generateImageWithCoordinates(data.carroceriaSalida, imgCar).then((carSalida) => {
         return new Promise((resolve) => {
           doc.addImage(carSalida, 'PNG', 35, 150, 50, 30, '', 'FAST');
-          // generarCoordenadas(doc);
+           
+          //generarCoordenadas(doc); // genera las cordenadas en el archivo
+          
           resolve();
         });
       })
@@ -91,10 +93,15 @@ export async function GenerarEntradaSalidaPDF(data: datosSalidaLlegadaType) {
       })
     );
   }
+  
+  
+  
   // Agregar la imagen al PDF
   doc.addImage(formatoPart1.src, 'PNG', -10, 0, 240, 350, '', 'FAST'); // Ejemplo de cómo agregar la imagen al PDF
-   //generarCoordenadas(doc)
-
+  //generarCoordenadas(doc)
+  
+  doc.text('DATOS SALIDA',30,60)
+  doc.text('DATOS LLEGADA',130,60)
 
   if (data.idSolicitud) {
     doc.text(`${data.idSolicitud}`, 60, 71)
@@ -155,7 +162,7 @@ export async function GenerarEntradaSalidaPDF(data: datosSalidaLlegadaType) {
     //pagina 2
     doc.addPage();
     doc.addImage(formatoPart2.src, 'PNG', -10, 0, 240, 350, '', 'FAST'); // Agrega la imagen al comienzo de la segunda página 
-    //  generarCoordenadas(doc)
+     //generarCoordenadas(doc)
     
     if (data.nombreVigilanteSalida) {
       doc.text(data.nombreVigilanteSalida, 52, 69);
@@ -179,10 +186,12 @@ export async function GenerarEntradaSalidaPDF(data: datosSalidaLlegadaType) {
       doc.addImage(data.firmaSolicitanteLlegada, 'PNG', 145, 120, 50, 25, '', 'FAST');
     }
 
-    if (data.isLocal) {
+    if (data.isLocal !== null) {
 
       (data.isLocal ) ? doc.addImage(iconTrue.src, 'PNG', 150, 160, 5, 5, '', 'FAST')
         : doc.addImage(iconTrue.src, 'png', 178, 160, 5, 5, '', 'FAST')
+        
+        doc.text(`${data.destino}`, 170, 170)
     }
 
 

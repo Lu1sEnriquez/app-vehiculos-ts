@@ -10,7 +10,7 @@ function LogoutPage() {
   // useEffect(()=>{
   //   logout()
   //   router.push('/login')
-  // },[logout,router])
+  // },[logout,router]
 
   function handle() {
     logout();
